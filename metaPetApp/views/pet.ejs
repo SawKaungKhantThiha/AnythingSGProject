@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar-custom {
+            background-color: lightgreen;
+        }
+        
+        .pet-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .details-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .details-card-header {
+            background: #f8f9fa;
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+            border-radius: 8px 8px 0 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        table th, table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+        }
+
+        table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .sticky-sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .btn-custom {
+            background-color: lightgreen;
+            border: none;
+            margin: 5px;
+        }
+
+        .btn-custom:hover {
+            background-color: #90EE90;
+        }
+    </style>
+    <title>Pete's Pet Shop</title>
+</head>
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-custom">
+        <div class="container-fluid">
+            <img src="/images/petshop.png" width="100" height="100" alt="Pet Shop Logo" />
+            <a class="navbar-brand" href="/">Pete's Pet Shop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/addPet">Add a Pet</a>
+                    </li>
+                </ul>
+            </div>
+            <span class="navbar-brand mb-0 h1">Account: <%= acct %></span>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <% if (!loading) { %>
+            <% if (petData) { %>
+                <!-- Main content -->
+                <div class="row">
+                    <!-- Left column - Pet image and basic info -->
+                    <div class="col-md-4">
+                        <div class="sticky-sidebar">
+                            <div class="details-card p-3 text-center">
+                                <img src="../images/<%= petData.petInfo.name %>.jpeg" class="pet-image mb-3" alt="<%= petData.petInfo.name %>">
+                                <h2><%= petData.name %></h2>
+                                <div class="text-start mt-3">
+                                    <p><strong>Date of Birth:</strong> <%= petData.petInfo.dateOfBirth %></p>
+                                    <p><strong>Gender:</strong> <%= petData.petInfo.gender %></p>
+                                    <p> <strong> Pet Price: </strong > <%= petData.petInfo.price %> Eth </p>
+                                </div>      
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right column - Records -->
+                    <div class="col-md-8">
+                        <!-- Ownership Records -->
+                        <div class="details-card mb-4">
+                            <div class="details-card-header d-flex justify-content-between align-items-center">
+                                <h3 class="m-0">Ownership Records</h3>
+                                <a href="/addOwner/<%= petData.id %>" class="btn btn-custom">Add Record</a>                                
+                            </div>
+                            <div class="p-3">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Owner Id</th>
+                                            <th>Owner Name</th>
+                                            <th>Transfer Date</th>
+                                            <th>Phone</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% if (petData.ownership && petData.ownership.length > 0) { %>
+                                            <% for (i= 0; i < petData.ownership.length; i++)  { %>
+                                                <tr> 
+                                                    <td> <%= petData.ownership[i].ownerId %></td>
+                                                    <td> <%= petData.ownership[i].ownerName %></td>
+                                                    <td> <%= petData.ownership[i].transferDate %></td>
+                                                    <td> <%= petData.ownership[i].phone %></td>
+                                                    <td> <%= petData.ownership[i].email %></td>
+                                                    
+                                                </tr> 
+                                            <% }
+                                        } else { %>
+                                            <tr>
+                                                <td colspan="3">No ownership records available</td>
+                                            </tr>
+                                        <% } %>
+                                        <tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Vaccination Records -->
+                        <div class="details-card mb-4">
+                            <div class="details-card-header d-flex justify-content-between align-items-center">
+                                <h3 class="m-0">Vaccination Records</h3>
+                                <a href="/addVaccination/<%= petData.id %>" class="btn btn-custom">Add Vaccination</a> 
+                            </div>
+                            <div class="p-3">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Vaccine Name</th>
+                                            <th>Date Administered</th>
+                                            <th>Veterinarian</th>
+                                            <th>Clinic</th>
+                                            <th>Phone</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                     <% if (petData.vaccinations && petData.vaccinations.length > 0) { %>
+                                            <% for (i= 0; i < petData.vaccinations.length; i++)  { %>
+                                            <tr> 
+                                                <td> <%= petData.vaccinations[i].vaccineName %></td>
+                                                <td> <%= petData.vaccinations[i].dateAdministered %></td>
+                                                <td> <%= petData.vaccinations[i].doctorname %></td>
+                                                <td> <%= petData.vaccinations[i].clinic %></td>
+                                                <td> <%= petData.vaccinations[i].phone %></td>
+                                                <td> <%= petData.vaccinations[i].email %></td>
+                                            </tr> 
+                                            <% }
+                                        } else { %>
+                                            <tr>
+                                                <td colspan="3">No Vaccination records available</td>
+                                            </tr>
+                                        <% } %>                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                       
+                        <!-- Training Records -->
+                        <div class="details-card mb-4">
+                            <div class="details-card-header d-flex justify-content-between align-items-center">
+                                <h3 class="m-0">Training Records</h3>
+                                <a href="/addTraining/<%= petData.id %>" class="btn btn-custom">Add Training</a> 
+                            </div>
+                            <div class="p-3">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Training Type</th>
+                                            <th>Trainer Name</th>
+                                            <th>organization</th>
+                                            <th>Contact</th>
+                                            <th>Training</th>
+                                            <th>Progress</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% if (petData.training && petData.training.length > 0) { %>
+                                            <% for (i= 0; i < petData.training.length; i++)  { %>
+                                            <tr> 
+                                                <td> <%= petData.training[i].trainingType %></td>
+                                                <td> <%= petData.training[i].traninerName %></td>
+                                                <td> <%= petData.training[i].organization %></td>
+                                                <td> <%= petData.training[i].phone %></td>
+                                                <td> <%= petData.training[i].training %></td>
+                                                <td> <%= petData.training[i].progress %></td>    
+                                            </tr> 
+                                            <% }
+                                        } else { %>
+                                            <tr>
+                                                <td colspan="3">No Training records available</td>
+                                            </tr>
+                                        <% } %>                                
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="alert alert-warning">No Pet found.</div>
+            <% } %>
+        <% } else { %>
+            <div class="text-center">
+                <h1>Loading Data...</h1>
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

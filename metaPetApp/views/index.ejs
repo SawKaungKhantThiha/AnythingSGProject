@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+    <style>
+    
+        .navbar-custom {
+            background-color: lightgreen;
+        }
+            
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .pet-box {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .pet-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .pet-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .pet-box:hover img {
+            transform: scale(1.05);
+        }
+
+        .pet-name {
+            padding: 1rem;
+            background: white;
+        }
+
+        .pet-name h4 {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--primary-color);
+        }
+
+        .stats-container {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .account-badge {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        .loading-indicator {
+            padding: 20px;
+            text-align: center;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+
+        .vertical-center {
+            display: block;
+            margin: 10px auto;
+            padding: 8px 20px;
+            background-color: lightgreen;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .vertical-center:hover {
+            background-color: lightblue;
+        }
+
+        .vertical-center {
+            margin: 10px auto;  /* Adds some vertical spacing and centers horizontally */
+        }
+
+        .vertical-center {
+            display: block;
+            margin: 10px auto;
+        }
+
+        #hiddenAddButton {
+            display: none;  /* Hides the button */
+        }
+    </style>
+    <title>Pete's Pet Shop</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-custom">
+        <div class="container-fluid">
+            <img src="/images/petshop.png" width="100" height="100" alt="Pet Shop Logo" />
+            <a class="navbar-brand" href="/">Pete's Pet Shop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                       data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/addPet">Add a Pet</a>
+                    </li>
+                   
+                </ul>
+            </div>
+            <span class="navbar-brand mb-0 h1">Account: <%= acct %></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <% if (!status) { %>        
+            <div class="page-header">
+                <h1>Welcome to Pete's Pet Shop</h1>
+            </div>
+
+            <div class="stats-container">
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <h4>Available Pets</h4>
+                        <h2><%= cnt %></h2>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Current Account</h4>
+                        <h2><%= acct %></h2>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="text-center mb-4">Pet Gallery</h2>
+
+            <div class="grid-container" id="petGallery">
+                  <% for(let i=0; i < pets.length; i++) { %>
+                    <div class="pet-box">   
+                        <a href="/pet/<%= pets[i].id %>" class="text-decoration-none">
+                            <img src="images/<%= pets[i].petInfo.name %>.jpeg" alt="<%= pets[i].petInfo.name %>">
+                            <div class="pet-name">
+                                <h4><%= pets[i].petInfo.name %></h4>
+                                <h4>Pet Price: <%= pets[i].petInfo.price %> Eth </h4>
+                                <% if ( pets[i].ownership.length) { 
+                                    let j = pets[i].ownership.length-1;
+                                %> 
+                                    <h4 style="font-size:1vw"> Pet Owner: <%= pets[i].ownership[j].ownerId %> </h4>
+                                    
+                                <% } %>
+                                <h4>Pet Status: <% if (JSON.parse(pets[i].petInfo.status)) { %>
+                                    Available 
+                                        <form action="/buyPet/<%= pets[i].id %>" method="POST">
+                                            <input type="hidden" name="petCost" value="<%= pets[i].petInfo.price %>">
+                                            <button class="vertical-center"  type="submit">Buy</button>
+                                        </form>
+                                    <%} else { %>
+                                        <h4>  Sold Out</h4>
+                                <% } %>  </h4>
+                                
+                            </div>
+                        </a>
+                    </div>
+                <% } %>
+            </div>           
+            
+        <% } else { %>
+            <h1> Connect to Ganache </h1>
+            
+           
+         <% } %>
+         <button id="connectButton">Connect to MetaMask</button>
+         
+         <div id="status"></div>
+    </div>
+    <button id="hiddenAddButton" >Hidden Add Button</button>
+
+    <script>  
+        //onclick="alert('Hidden button clicked!')
+        const connectButton = document.getElementById('connectButton');
+        const hiddenAddButton = document.getElementById('hiddenAddButton');
+        const statusDiv = document.getElementById('status');    
+                      
+   
+        document.addEventListener('DOMContentLoaded', () => {   
+            hiddenAddButton.addEventListener('click', addPetData); 
+            if (connectButton) {
+                connectButton.addEventListener('click', connectWallet);  
+            }
+   
+            // In index.ejs, update the connectWallet function:
+            async function connectWallet() {
+                // Check if MetaMask is installed
+                if (typeof window.ethereum !== 'undefined') {
+                    try {   // Request account access
+                            const accounts = await window.ethereum.request({ 
+                            method: 'eth_requestAccounts' 
+                        });                        
+                        let web3 = new Web3(window.ethereum);
+                        const address = accounts[0];                        
+                        // Get network information
+                        const networkId = await web3.eth.net.getId();
+                        const chainId = await web3.eth.getChainId();
+                        //console.log(web3);
+                        const petContractJson = await fetch(`../build/PetContract.json`);
+                        if (!petContractJson.ok) {
+                            throw new Error("Failed to fetch contract JSON");
+                        } 
+                        const contractData = await petContractJson.json();
+                        const contractAddress = contractData.networks[networkId]?.address;
+                        if (!contractAddress) {
+                            throw new Error('Pet contract not deployed to detected network');
+                        }                                            
+                        //Initialize the contract
+                        let contractInfo = new web3.eth.Contract(contractData.abi, contractAddress);
+                       
+                        console.log(contractInfo);
+                        //console.log(contractInfo.methods);
+                        const cnt = await contractInfo.methods.getNoOfPets().call();
+                        console.log("Pet count from blockchain:" +  cnt.toString());
+                        // read pet info based on count of the number of pets 
+                        const pets = [];
+                        for (let i = 1; i <= cnt; i++) {                           
+                            const [ petInfo,  ownershipInfo,  vaccinationInfo,  trainingInfo ] = 
+                            await Promise.all([
+                                contractInfo.methods.getPetInfo(i).call(),
+                                contractInfo.methods.getOwnershipRecords(i).call(),
+                                contractInfo.methods.getVaccinationRecords(i).call(),         
+                                contractInfo.methods.getTrainingRecords(i).call(),         
+                            ]);
+                            // Create an object with named keys instead of an array
+                            const petData = { petInfo, ownershipInfo, vaccinationInfo, trainingInfo };
+                            pets.push(petData);
+                        }   
+                        console.log(pets);                       
+                        // Send only necessary connection details to server
+                        const response = await fetch('/web3ConnectData', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',                              
+                            },
+                            //credentials: 'same-origin', // Helps prevent CSRF
+                            body: JSON.stringify({
+                                petDataRead : pets,
+                                contractAddress : address,
+                                acct : address,
+                                nPets : cnt
+                            })
+                        });
+                        console.log("fetch done");
+                        console.log(response);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        const data = await response.json();                                        
+                        if (data.success) {
+                            console.log("success reading data ")
+                            if (connectButton) {
+                                statusDiv.className = 'success';
+                                statusDiv.innerHTML = `Connected to MetaMask!<br>
+                                    Address: ${address}<br>
+                                    Network ID: ${networkId}<br>
+                                    Chain ID: ${chainId}
+                                `;
+                                connectButton.disabled = true;
+                                connectButton.textContent = 'Connected';          
+                            }                  
+                            // Listen for account changes
+                            window.ethereum.on('accountsChanged', handleAccountsChanged);
+                            // Listen for chain changes
+                            window.ethereum.on('chainChanged', handleChainChanged);
+                            window.location.reload();
+                        } else {
+                            throw new Error(data.message || 'Failed to connect to blockchain');
+                        }
+                    } catch (error) {
+                        statusDiv.className = 'error';
+                        statusDiv.textContent = `Error: ${error.message}`;
+                    }
+                } else {
+                    statusDiv.className = 'error';
+                    statusDiv.innerHTML = 'MetaMask is not installed. Please install MetaMask to continue.';
+                }        
+            }
+
+            function handleAccountsChanged(accounts) {
+                if (accounts.length === 0) {
+                    statusDiv.className = 'error';
+                    statusDiv.textContent = 'Please connect to MetaMask.';
+                    connectButton.disabled = false;
+                    connectButton.textContent = 'Connect to MetaMask';
+                } else {
+                    statusDiv.textContent = `Connected to: ${accounts[0]}`;
+                }
+            }
+
+            function handleChainChanged(_chainId) {
+                // Reload the page when the chain changes
+                window.location.reload();
+            }
+            
+            
+            (async function() {
+            try {
+                    console.log('<%= addStatus%>')    
+                    // Get the hidden button and the trigger button
+                    let statusToAdd = `<%= addStatus%>`;                   
+                    if ( statusToAdd ) {
+                        console.log("add function ");
+                        //set the addFunction back to null
+                        // Send only necessary connection details to server
+                        const response = await fetch('/setFunc', {
+                                    method: 'POST',
+                                    headers: {'Content-Type': 'application/json',  },                           
+                                    body: JSON.stringify({  })
+                        });
+                        const data = await response.json();                                        
+                        if (data.success) {
+                            //trigger the button 
+                            hiddenAddButton.click();
+                        } 
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+        })();
+
+
+       async function addPetData() {
+                console.log("addPetData");
+                console.log(`<%= addObject%>`);
+                const funcToAddObject = `<%= addFunction%>`;
+                 //alert("add Pet Data");
+                 statusDiv.enabled = true;
+                if (typeof window.ethereum !== 'undefined') {
+                    try {   // Request account access
+                        const accounts = await window.ethereum.request({ 
+                            method: 'eth_requestAccounts' 
+                        });                        
+                        let web3 = new Web3(window.ethereum);
+                        const address = accounts[0];                        
+                        // Get network information
+                        const networkId = await web3.eth.net.getId();
+                        const chainId = await web3.eth.getChainId();
+                        //console.log(web3);
+                        const petContractJson = await fetch(`../build/PetContract.json`);
+                        if (!petContractJson.ok) {
+                            throw new Error("Failed to fetch contract JSON");
+                        } 
+                        const contractData = await petContractJson.json();
+                        const contractAddress = contractData.networks[networkId]?.address;
+                        if (!contractAddress) {
+                            throw new Error('Pet contract not deployed to detected network');
+                        } 
+                        let contractInfo = new web3.eth.Contract(contractData.abi, contractAddress);
+                        const cnt = await contractInfo.methods.getNoOfPets().call();
+                        console.log(cnt);
+                        
+                        dataToAdd = `<%= addObject %>`;
+                        console.log(dataToAdd);
+                        const cleanData = dataToAdd.replace(/^"|"$/g, '');
+
+                        // Decode HTML entities
+                        const decodedString = new DOMParser()
+                            .parseFromString(`<!doctype html><body>${cleanData}`, 'text/html')
+                            .body.textContent;
+
+                        try {
+                            const petData = JSON.parse(decodedString);
+                            console.log('Parsed data:', petData);
+                            console.log(funcToAddObject);
+                            switch (funcToAddObject) {
+                                case "addPetInfo":
+                                    console.log("addPetInfo");
+                                    // First estimate gas for the registration
+                                    const registerGasEstimate = await contractInfo.methods.registerPet()
+                                                    .estimateGas({ from: address });
+
+                                    console.log('Estimated gas for registration:', registerGasEstimate);
+                                    // Register pet on blockchain
+                                    const regData = await contractInfo.methods.registerPet().send({ 
+                                                                from: address,
+                                                                gas: String(Math.ceil(Number(registerGasEstimate) * 1.2))
+                                                            });
+                                    console.log(regData);
+                                    if (!regData) {
+                                    throw new Error('Failed to register pet on blockchain' );
+                                    };   
+                                    //Get current pet count
+                                    const petCount = await contractInfo.methods.getNoOfPets().call();
+
+                                    // Estimate gas for transaction
+                                    const gasEstimate = await contractInfo.methods
+                                                            .addPetInfo(petCount, petData.petId, petData.name, 
+                                                                        petData.gender, petData.dob, petData.price)
+                                                            .estimateGas({ from: address });
+
+                                    // Add pet info to blockchain
+                                    const addPetTransaction = await contractInfo.methods
+                                                                .addPetInfo(petCount, petData.petId, petData.name, 
+                                                                petData.gender, petData.dob, petData.price)
+                                                                .send({ 
+                                                                from: address, 
+                                                                gas: String(Math.ceil(Number(gasEstimate) * 1.2)) 
+                                                                // Add 20% buffer to gas estimate
+                                                                });
+                                    // Log successful transaction
+                                    console.log('Pet added successfully:', {
+                                    transactionHash: addPetTransaction.transactionHash,    petCount: petCount.toString()
+                                    });   
+                                    break;
+
+                                case "addVaccination":
+                                    console.log("addVaccination");
+                                     // First estimate gas for the registration
+                                    const gasEstimateVacc = await contractInfo.methods.
+                                                                 addVaccinationRecord(Number(petData.petId), petData.vaccine, 
+                                                                 petData.dateOfVaccine, petData.doctor, petData.clinic, 
+                                                                 petData.contact, petData.emailId)
+                                                                        .estimateGas({ from: address });
+                                    console.log('Estimated gas for registration:', gasEstimateVacc);
+                                    // Add owner info or the  pet on blockchain
+                                    const vaccineDataTransactionHash = await contractInfo.methods.addVaccinationRecord(Number(petData.petId),
+                                                             petData.vaccine,  petData.dateOfVaccine, petData.doctor, petData.clinic, 
+                                                             petData.contact, petData.emailId ).send ({
+                                                                                from: address,
+                                                                                gas: String(Math.ceil(Number(gasEstimateVacc) * 1.2))
+                                                                                });
+                                    // Log successful transaction
+                                    console.log('Pet Vaccination added successfully:', {
+                                        transactionHash: vaccineDataTransactionHash.transactionHash });
+                                    break;
+
+                                case "addTraining":
+                                    console.log("addTraining");
+                                     // First estimate gas for the registration
+                                    const gasEstimateTraining = await contractInfo.methods
+                                                                .addTrainingRecord(Number(petData.petId), 
+                                                                petData.trainingType, petData.name, petData.org, 
+                                                                petData.contact, petData.trainingDate, petData.progress)
+                                                                            .estimateGas({ from: address });                                    
+                                        console.log('Estimated gas for registration:', gasEstimateTraining);
+                                        // Add owner info or the  pet on blockchain
+                                        const trainingDataTransactionHash = await contractInfo.methods.addTrainingRecord(Number(petData.petId), 
+                                                                                            petData.trainingType, petData.name, petData.org, 
+                                                                                            petData.contact, petData.trainingDate, petData.progress)
+                                                                                        .send({
+                                                                                        from: address,
+                                                                                        gas: String(Math.ceil(Number(gasEstimateTraining) * 1.2))
+                                                                                        });
+                                        // Log successful transaction
+                                        console.log('Pet Training added successfully:', {
+                                            transactionHash: trainingDataTransactionHash.transactionHash });
+                                    break;
+
+                                case "addOwner":
+                                    console.log("addOwner");
+                                    // First estimate gas for the registration
+                                    const gasEstimateOwner = await contractInfo.methods
+                                                                        .addOwnerShipRecord(Number(petData.petId), 
+                                                                        petData.name, petData.transferDate, 
+                                                                        petData.contact, petData.emailId)
+                                                                        .estimateGas({ from: address });
+                                    console.log('Estimated gas for registration:', gasEstimateOwner);
+                                    
+                                    // Add owner info or the  pet on blockchain
+                                    const ownerDataTransactionHash = await contractInfo.methods.addOwnerShipRecord(Number(petData.petId),
+                                                                                petData.name, petData.transferDate, 
+                                                                                petData.contact, petData.emailId)
+                                                            .send ({
+                                                                from: address,
+                                                                gas: String(Math.ceil(Number(gasEstimateOwner) * 1.2))
+                                                            });
+                                    // Log successful transaction
+                                    console.log('Pet Owner added successfully:', {
+                                            transactionHash: ownerDataTransactionHash.transactionHash });
+                                    break;
+
+                                case "buyPet":
+                                    console.log("buyPet");
+                                    console.log(petData.petId);
+                                    const priceInWei = web3.utils.toWei(petData.petCost.toString(), 'Ether');
+    
+                                  
+                                    const buyPetTransactionHash = await contractInfo.methods.purchasePet(petData.petId)
+                                                                    .send ({
+                                                                        from: address,
+                                                                        value:priceInWei                                                                      
+                                                                    }) .once('receipt', (receipt) => {
+                                                                            console.log(receipt);
+                                                                    });
+                                    // Log successful transaction
+                                    console.log('Buy pet successfully:', {
+                                            transactionHash: buyPetTransactionHash.transactionHash });
+                                    var date_time = new Date();
+
+                                     // First estimate gas for the registration
+                                     const gasEstimateOwnerbuy = await contractInfo.methods
+                                                                        .addOwnerShipRecord(Number(petData.petId), 
+                                                                        "updatedOwner", date_time.toString, "phone", "email")
+                                                                        .estimateGas({ from: address });
+                                    //console.log('Estimated gas for registration:', gasEstimateOwnerbuy);
+                                    
+                                    // Add owner info or the  pet on blockchain
+                                    const ownerDataTransactionHashBuy = await contractInfo.methods.addOwnerShipRecord(Number(petData.petId),
+                                                                "updatedOwner", date_time.toString, "phone", "email")
+                                                            .send ({
+                                                                from: address,
+                                                                gas: String(Math.ceil(Number(gasEstimateOwnerbuy) * 1.2))
+                                                            });
+                                    // Log successful transaction
+                                    console.log('Pet Owner added successfully:', {
+                                            transactionHash: ownerDataTransactionHashBuy.transactionHash });
+                                    break;
+
+                                default:
+                                    throw new Error('add Data not Detected');
+                                    break;
+                            }
+                            connectWallet();              
+                        } catch (error) {
+                                console.log('Error parsing:', error);
+                                console.log('Decoded string:', decodedString);
+                        }               
+                    } catch (error) {
+                        statusDiv.className = 'error';
+                        statusDiv.textContent = `Error: ${error.message}`;
+                    }
+                } else {
+                    statusDiv.className = 'error';
+                    statusDiv.innerHTML = 'MetaMask is not installed. Please install MetaMask to continue.';
+                }   
+            }            
+       });
+    </script>
+</body>
+</html>
