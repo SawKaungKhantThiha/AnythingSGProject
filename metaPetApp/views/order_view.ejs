@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Order Viewer</title>
+</head>
+<body>
+  <% const summary = typeof orderSummary !== 'undefined' ? orderSummary : null; %>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">Order Viewer</div>
+      <div class="nav-links">
+        <a href="/shop">Home</a>
+        <a href="/orders/manage">Order Actions</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">View_Function.sol</span>
+        <h1>Read order and escrow status</h1>
+        <p>Use view calls to fetch order status and escrowed amount.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Latest read</div>
+        <div class="status-row">
+          <strong>Order ID</strong>
+          <span id="summaryOrderId"><%= summary ? summary.orderId : 'Not loaded' %></span>
+        </div>
+        <div class="status-row">
+          <strong>Status</strong>
+          <span id="summaryStatus"><%= summary ? summary.status : 'Unknown' %></span>
+        </div>
+        <div class="status-row">
+          <strong>Escrow</strong>
+          <span id="summaryAmount"><%= summary ? summary.amount : '0' %></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Check Order</h3>
+      <form id="orderViewForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="orderId">Order ID</label>
+            <input id="orderId" name="orderId" placeholder="Order ID" required>
+          </div>
+        </div>
+        <button class="btn" type="submit">Fetch Status</button>
+      </form>
+      <div id="status" class="status-block"></div>
+    </section>
+  </div>
+  <script src="/js/shop-web3.js"></script>
+  <script>
+    const orderViewForm = document.getElementById("orderViewForm");
+    const statusEl = document.getElementById("status");
+    const summaryOrderId = document.getElementById("summaryOrderId");
+    const summaryStatus = document.getElementById("summaryStatus");
+    const summaryAmount = document.getElementById("summaryAmount");
+
+    const disputeStatusMap = {
+      "0": "None",
+      "1": "Paid",
+      "2": "Disputed",
+      "3": "Resolved"
+    };
+
+    orderViewForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        setStatus(statusEl, "Connecting wallet...", false);
+        await getAccount();
+        const web3 = await getWeb3();
+        const contract = await loadContract("OnlineStoreDisputes");
+        const orderId = orderViewForm.orderId.value.trim();
+
+        setStatus(statusEl, "Reading order...", false);
+        const order = await contract.methods.orders(orderId).call();
+        summaryOrderId.textContent = orderId;
+        summaryStatus.textContent = disputeStatusMap[order.status] || order.status;
+        summaryAmount.textContent = `${web3.utils.fromWei(order.amount, "ether")} ETH`;
+        setStatus(statusEl, "Order loaded.", false);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+  </script>
+</body>
+</html>

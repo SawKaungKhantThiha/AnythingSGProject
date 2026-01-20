@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Platform Admin</title>
+</head>
+<body>
+  <% const feeState = typeof platformState !== 'undefined' ? platformState : null; %>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">Platform Admin</div>
+      <div class="nav-links">
+        <a href="/shop">Home</a>
+        <a href="/orders/view">Order Viewer</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">Payment_escrow.sol</span>
+        <h1>Manage platform fees</h1>
+        <p>Owner controls <strong>setPlatformFee</strong> and <strong>withdrawPlatformFees</strong>.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Current stats</div>
+        <div class="status-row">
+          <strong>Fee BP</strong>
+          <span id="feeBPLabel"><%= feeState ? feeState.feeBP : '200' %></span>
+        </div>
+        <div class="status-row">
+          <strong>Balance (wei)</strong>
+          <span id="feeBalanceLabel"><%= feeState ? feeState.balance : '0' %></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Update Fee</h3>
+      <form id="setFeeForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="feeBP">Fee (basis points)</label>
+            <input id="feeBP" name="feeBP" placeholder="e.g. 200 = 2%" required>
+          </div>
+        </div>
+        <button class="btn" type="submit">Set Fee</button>
+      </form>
+    </section>
+
+    <section class="form-panel">
+      <h3>Withdraw Fees</h3>
+      <form id="withdrawFeeForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label>Platform Balance (wei)</label>
+            <input id="feeBalanceInput" value="<%= feeState ? feeState.balance : '0' %>" disabled>
+          </div>
+        </div>
+        <button class="btn secondary" type="submit">Withdraw</button>
+      </form>
+    </section>
+    <div id="status" class="status-block"></div>
+  </div>
+  <script src="/js/shop-web3.js"></script>
+  <script>
+    const setFeeForm = document.getElementById("setFeeForm");
+    const withdrawFeeForm = document.getElementById("withdrawFeeForm");
+    const statusEl = document.getElementById("status");
+    const feeBPLabel = document.getElementById("feeBPLabel");
+    const feeBalanceLabel = document.getElementById("feeBalanceLabel");
+    const feeBalanceInput = document.getElementById("feeBalanceInput");
+
+    async function refreshPlatformState() {
+      const contract = await loadContract("OnlineStoreDisputes");
+      const feeBP = await contract.methods.platformFeeBP().call();
+      const balance = await contract.methods.platformBalance().call();
+      feeBPLabel.textContent = feeBP;
+      feeBalanceLabel.textContent = balance;
+      feeBalanceInput.value = balance;
+    }
+
+    window.addEventListener("load", async () => {
+      try {
+        await getAccount();
+        await refreshPlatformState();
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    setFeeForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        setStatus(statusEl, "Connecting wallet...", false);
+        const account = await getAccount();
+        const contract = await loadContract("OnlineStoreDisputes");
+        const feeBP = setFeeForm.feeBP.value.trim();
+
+        setStatus(statusEl, "Updating fee...", false);
+        await contract.methods.setPlatformFee(feeBP).send({ from: account });
+        await refreshPlatformState();
+        setStatus(statusEl, "Fee updated.", false);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    withdrawFeeForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        setStatus(statusEl, "Connecting wallet...", false);
+        const account = await getAccount();
+        const contract = await loadContract("OnlineStoreDisputes");
+
+        setStatus(statusEl, "Withdrawing fees...", false);
+        await contract.methods.withdrawPlatformFees().send({ from: account });
+        await refreshPlatformState();
+        setStatus(statusEl, "Fees withdrawn.", false);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+  </script>
+</body>
+</html>

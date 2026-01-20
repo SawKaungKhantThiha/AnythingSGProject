@@ -1,0 +1,9 @@
+const OrderTracking = artifacts.require("OrderTracking");
+const OnlineStoreDisputes = artifacts.require("OnlineStoreDisputes");
+
+module.exports = async function (deployer) {
+  await deployer.deploy(OrderTracking);
+
+  await deployer.deploy(OnlineStoreDisputes);
+};
+

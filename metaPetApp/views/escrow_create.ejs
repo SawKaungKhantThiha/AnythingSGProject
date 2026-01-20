@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Escrow Checkout</title>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">Escrow Checkout</div>
+      <div class="nav-links">
+        <a href="/shop">Home</a>
+        <a href="/orders/complete">Complete Order</a>
+        <a href="/disputes/raise">Raise Dispute</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">OnlineStoreDisputes.sol</span>
+        <h1>Lock ETH into escrow</h1>
+        <p>Buyer calls <strong>createOrder(seller, amount)</strong> and sends ETH as <code>msg.value</code>.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Before you submit</div>
+        <p>Make sure the buyer wallet holds enough ETH for the amount.</p>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Escrow Order</h3>
+      <form id="escrowCreateForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="seller">Seller Address</label>
+            <input id="seller" name="seller" placeholder="0x..." required>
+          </div>
+          <div class="input-group">
+            <label for="amount">Amount (ETH)</label>
+            <input id="amount" name="amount" placeholder="e.g. 0.25" required>
+          </div>
+        </div>
+        <div class="status-block">
+          <div class="status-row">
+            <span>Result</span>
+        <span>Returns orderId from the smart contract.</span>
+          </div>
+        </div>
+        <button class="btn" type="submit">Lock Escrow</button>
+      </form>
+      <div id="status" class="status-block"></div>
+    </section>
+  </div>
+  <script src="/js/shop-web3.js"></script>
+  <script>
+    const escrowCreateForm = document.getElementById("escrowCreateForm");
+    const statusEl = document.getElementById("status");
+
+    escrowCreateForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        setStatus(statusEl, "Connecting wallet...", false);
+        const account = await getAccount();
+        const web3 = await getWeb3();
+        const contract = await loadContract("OnlineStoreDisputes");
+        const seller = escrowCreateForm.seller.value.trim();
+        const amount = escrowCreateForm.amount.value.trim();
+        const amountWei = web3.utils.toWei(amount, "ether");
+
+        setStatus(statusEl, "Locking escrow...", false);
+        const receipt = await contract.methods
+          .createOrder(seller, amountWei)
+          .send({ from: account, value: amountWei });
+        const orderId = receipt?.events?.OrderCreated?.returnValues?.orderId;
+        setStatus(statusEl, `Escrow locked. Order ID: ${orderId || "check transaction log"}`, false);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+  </script>
+</body>
+</html>

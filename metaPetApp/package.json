@@ -1,5 +1,5 @@
 {
-  "name": "metapetapp",
+  "name": "anythingsg-shop",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -12,8 +12,6 @@
   "dependencies": {
     "@metamask/sdk": "^0.34.0",
     "ejs": "^3.1.10",
-    "express": "^5.2.1",
-    "multer": "^2.0.2",
-    "web3": "^4.16.0"
+    "express": "^5.2.1"
   }
 }

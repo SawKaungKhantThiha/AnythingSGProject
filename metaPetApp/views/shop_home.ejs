@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <title>AnythingSG - Commerce Control</title>
+</head>
+<body>
+  <% const account = typeof acct !== 'undefined' ? acct : ''; %>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">AnythingSG Commerce Desk</div>
+      <div class="nav-links">
+        <a href="/orders/new">Create Order</a>
+        <a href="/orders/manage">Track Order</a>
+        <a href="/escrow/new">Escrow Checkout</a>
+        <a href="/disputes/raise">Raise Dispute</a>
+        <a href="/platform/admin">Platform Admin</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">On-chain order flow</span>
+        <h1>Run marketplace orders, escrow, and disputes like a pro.</h1>
+        <p>These pages map directly to your OrderTracking and OnlineStoreDisputes contracts so the website can create orders, lock escrow, and resolve disputes with clarity.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Connected wallet</div>
+        <div class="status-row">
+          <strong>Account</strong>
+          <span><%= account || 'Connect wallet in your UI' %></span>
+        </div>
+        <div class="status-row">
+          <strong>Network</strong>
+          <span>Ganache / local RPC</span>
+        </div>
+        <div class="status-row">
+          <strong>ETH</strong>
+          <span>Send with escrow call</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="cards">
+      <a class="card" href="/orders/new">
+        <h3>Create Order</h3>
+        <p>Matches OrderTracking.createOrder(orderId, buyer, seller).</p>
+      </a>
+      <a class="card" href="/orders/manage">
+        <h3>Order Actions</h3>
+        <p>Set courier and confirm shipped or delivered.</p>
+      </a>
+      <a class="card" href="/escrow/new">
+        <h3>Escrow Checkout</h3>
+        <p>Buyer locks USDC with OnlineStoreDisputes.createOrder.</p>
+      </a>
+      <a class="card" href="/orders/complete">
+        <h3>Complete Order</h3>
+        <p>Buyer releases escrow with completeOrder.</p>
+      </a>
+      <a class="card" href="/disputes/raise">
+        <h3>Raise Dispute</h3>
+        <p>Buyer or seller opens a dispute with reason.</p>
+      </a>
+      <a class="card" href="/disputes/resolve">
+        <h3>Resolve Dispute</h3>
+        <p>Arbitrator resolves to refund or release.</p>
+      </a>
+      <a class="card" href="/orders/view">
+        <h3>Read Status</h3>
+        <p>Read order status and escrow amount via view calls.</p>
+      </a>
+      <a class="card" href="/platform/admin">
+        <h3>Platform Admin</h3>
+        <p>Update fee basis points and withdraw fees.</p>
+      </a>
+    </section>
+  </div>
+</body>
+</html>

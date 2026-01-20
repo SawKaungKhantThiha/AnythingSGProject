@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Order Actions</title>
+</head>
+<body>
+  <% const order = typeof orderData !== 'undefined' ? orderData : null; %>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">Order Actions</div>
+      <div class="nav-links">
+        <a href="/shop">Home</a>
+        <a href="/orders/new">Create Order</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">OrderTracking.sol</span>
+        <h1>Manage courier and delivery</h1>
+        <p>These actions map to <strong>setCourier</strong>, <strong>confirmShipped</strong>, and <strong>confirmDelivery</strong>.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Current order</div>
+        <div class="status-row">
+          <strong>Order ID</strong>
+          <span><%= order ? order.orderId : 'Enter below' %></span>
+        </div>
+        <div class="status-row">
+          <strong>Status</strong>
+          <span><%= order ? order.status : 'Unknown' %></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Assign Courier</h3>
+      <form id="setCourierForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="courierOrderId">Order ID</label>
+            <input id="courierOrderId" name="orderId" placeholder="Order ID" required>
+          </div>
+          <div class="input-group">
+            <label for="courier">Courier Address</label>
+            <input id="courier" name="courier" placeholder="0x..." required>
+          </div>
+        </div>
+        <button class="btn" type="submit">Set Courier</button>
+      </form>
+    </section>
+
+    <section class="form-panel">
+      <h3>Shipping Status</h3>
+      <div class="form-grid">
+        <form id="confirmShippedForm">
+          <div class="input-group">
+            <label for="shippedOrderId">Order ID</label>
+            <input id="shippedOrderId" name="orderId" placeholder="Order ID" required>
+          </div>
+          <button class="btn" type="submit">Confirm Shipped</button>
+        </form>
+        <form id="confirmDeliveredForm">
+          <div class="input-group">
+            <label for="deliveredOrderId">Order ID</label>
+            <input id="deliveredOrderId" name="orderId" placeholder="Order ID" required>
+          </div>
+          <button class="btn secondary" type="submit">Confirm Delivered</button>
+        </form>
+      </div>
+    </section>
+    <div id="status" class="status-block"></div>
+  </div>
+  <script src="/js/shop-web3.js"></script>
+  <script>
+    const statusEl = document.getElementById("status");
+    const setCourierForm = document.getElementById("setCourierForm");
+    const confirmShippedForm = document.getElementById("confirmShippedForm");
+    const confirmDeliveredForm = document.getElementById("confirmDeliveredForm");
+
+    async function withOrderTracking(action) {
+      setStatus(statusEl, "Connecting wallet...", false);
+      const account = await getAccount();
+      const contract = await loadContract("OrderTracking");
+      return action(contract, account);
+    }
+
+    setCourierForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        await withOrderTracking(async (contract, account) => {
+          const orderId = setCourierForm.orderId.value.trim();
+          const courier = setCourierForm.courier.value.trim();
+          setStatus(statusEl, "Submitting setCourier...", false);
+          await contract.methods.setCourier(orderId, courier).send({ from: account });
+        });
+        setStatus(statusEl, "Courier assigned.", false);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    confirmShippedForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        await withOrderTracking(async (contract, account) => {
+          const orderId = confirmShippedForm.orderId.value.trim();
+          setStatus(statusEl, "Submitting confirmShipped...", false);
+          await contract.methods.confirmShipped(orderId).send({ from: account });
+        });
+        setStatus(statusEl, "Order marked as shipped.", false);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    confirmDeliveredForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        await withOrderTracking(async (contract, account) => {
+          const orderId = confirmDeliveredForm.orderId.value.trim();
+          setStatus(statusEl, "Submitting confirmDelivery...", false);
+          await contract.methods.confirmDelivery(orderId).send({ from: account });
+        });
+        setStatus(statusEl, "Order marked as delivered.", false);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+  </script>
+</body>
+</html>

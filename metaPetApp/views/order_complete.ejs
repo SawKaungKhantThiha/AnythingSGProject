@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Complete Order</title>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">Complete Order</div>
+      <div class="nav-links">
+        <a href="/shop">Home</a>
+        <a href="/escrow/new">Escrow Checkout</a>
+        <a href="/disputes/raise">Raise Dispute</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">OnlineStoreDisputes.sol</span>
+        <h1>Release escrow after delivery</h1>
+        <p>Buyer calls <strong>completeOrder(orderId)</strong> to release USDC to the seller.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Buyer only</div>
+        <p>This action is restricted to the buyer address saved on-chain.</p>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Confirm Delivery</h3>
+      <form id="completeOrderForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="orderId">Order ID</label>
+            <input id="orderId" name="orderId" placeholder="Order ID" required>
+          </div>
+        </div>
+        <button class="btn" type="submit">Release Escrow</button>
+      </form>
+      <div id="status" class="status-block"></div>
+    </section>
+  </div>
+  <script src="/js/shop-web3.js"></script>
+  <script>
+    const completeOrderForm = document.getElementById("completeOrderForm");
+    const statusEl = document.getElementById("status");
+
+    completeOrderForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        setStatus(statusEl, "Connecting wallet...", false);
+        const account = await getAccount();
+        const contract = await loadContract("OnlineStoreDisputes");
+        const orderId = completeOrderForm.orderId.value.trim();
+
+        setStatus(statusEl, "Submitting completion...", false);
+        await contract.methods.completeOrder(orderId).send({ from: account });
+        setStatus(statusEl, "Escrow released.", false);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+  </script>
+</body>
+</html>
