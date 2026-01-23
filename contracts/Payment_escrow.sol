@@ -21,8 +21,13 @@ abstract contract EscrowPayment {
         address buyer;
         address seller;
         uint256 amount;
+        uint256 feeBPAtLock;
         EscrowStatus status;
     }
+
+    event PlatformFeeCollected(uint256 indexed orderId, uint256 feeAmount, uint256 orderAmount, address indexed seller);
+    event PlatformFeeUpdated(uint256 previousFeeBP, uint256 newFeeBP);
+    event PlatformFeesWithdrawn(uint256 amount, address indexed to);
 
     // Mapping of orderId to Escrow struct stored in permanent blockchain storage
     mapping(uint256 => Escrow) public escrows;
@@ -50,6 +55,8 @@ abstract contract EscrowPayment {
             buyer: buyer,
             seller: seller,
             amount: amount,
+            // Fee rate is locked at escrow creation; changes apply only to new escrows.
+            feeBPAtLock: platformFeeBP,
             status: EscrowStatus.Locked
         });
     }
@@ -59,13 +66,17 @@ abstract contract EscrowPayment {
         Escrow storage escrow = escrows[orderId];
         require(escrow.status == EscrowStatus.Locked, "Escrow not locked");
 
-        uint256 fee = calculatePlatformFee(escrow.amount);
+        // Platform fee is success-only: calculated only when escrow is released.
+        // Seller bears the platform fee; buyer pays only the listed price (escrow.amount).
+        // Fee supports platform sustainability: infrastructure, dispute handling, and operations.
+        uint256 fee = (escrow.amount * escrow.feeBPAtLock) / 10000;
         require(escrow.amount >= fee, "Fee exceeds amount");
         uint256 payout = escrow.amount - fee;
 
         escrow.status = EscrowStatus.Released;
         if (fee > 0) {
             platformBalance += fee;
+            emit PlatformFeeCollected(orderId, fee, escrow.amount, escrow.seller);
         }
 
         if (payout > 0) {
@@ -74,11 +85,12 @@ abstract contract EscrowPayment {
         }
     }
 
-    // Refunds buyer if necessary
+    // Refunds buyer if necessary (no platform fee on refunds)
     function _refundEscrow(uint256 orderId) internal {
         Escrow storage escrow = escrows[orderId];
         require(escrow.status == EscrowStatus.Locked, "Escrow not locked");
 
+        // No platform fee on disputes resolved in favor of buyers.
         escrow.status = EscrowStatus.Refunded;
         (bool success, ) = payable(escrow.buyer).call{value: escrow.amount}("");
         require(success, "ETH refund failed");
@@ -97,13 +109,16 @@ abstract contract EscrowPayment {
     // Platform fee in basis points (e.g. 200 = 2%)
     uint256 public platformFeeBP = 200;
 
-    // Accumulated platform earnings
+    // Accumulated platform earnings (platform-owned revenue, not user escrowed funds)
     uint256 public platformBalance;
 
     // Allows platform owner to update fee percentage
     function setPlatformFee(uint256 _feeBP) external onlyOwner {
-        require(_feeBP <= 1000, "Fee too high");
+        // Governance cap: max 5% (500 bp) to protect sellers and prevent abuse.
+        require(_feeBP <= 500, "Fee too high");
+        uint256 previousFeeBP = platformFeeBP;
         platformFeeBP = _feeBP;
+        emit PlatformFeeUpdated(previousFeeBP, _feeBP);
     }
 
     // Calculates platform fee for a given transaction amount
@@ -112,13 +127,16 @@ abstract contract EscrowPayment {
     }
 
     // Allows platform owner to withdraw accumulated platform fees
+    // Only platform fees can be withdrawn; active escrow balances are never touched.
     function withdrawPlatformFees() external onlyOwner {
         require(platformBalance > 0, "No platform fees");
 
+        // Single-purpose withdrawal: platform owner withdraws platform revenue only.
         uint256 amount = platformBalance;
         platformBalance = 0;
 
         (bool success, ) = owner.call{value: amount}("");
         require(success, "Platform withdrawal failed");
+        emit PlatformFeesWithdrawn(amount, owner);
     }
 }

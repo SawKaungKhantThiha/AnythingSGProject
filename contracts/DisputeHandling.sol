@@ -138,6 +138,7 @@ contract OnlineStoreDisputes is EscrowPayment {
         order.payoutDone = true;
 
         if (outcome == DisputeOutcome.RefundBuyer) {
+            // Dispute resolved in favor of buyer: no platform fee on refund.
             _refundEscrow(orderId);
         }
 
