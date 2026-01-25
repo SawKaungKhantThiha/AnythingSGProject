@@ -72,6 +72,10 @@ app.get('/orders/view', (req, res) => {
   res.render('order_view', { orderSummary: null });
 });
 
+app.get('/delivery/track', (req, res) => {
+  res.render('delivery_tracking', { trackingSummary: null });
+});
+
 app.get('/platform/admin', (req, res) => {
   res.render('platform_admin', { platformState: null });
 });
