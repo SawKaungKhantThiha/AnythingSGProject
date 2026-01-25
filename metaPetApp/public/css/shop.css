@@ -69,6 +69,13 @@ a {
   margin: 40px 0 28px;
 }
 
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
 .hero h1 {
   font-family: "Fraunces", serif;
   font-size: clamp(2.2rem, 4vw, 3.2rem);
@@ -92,6 +99,14 @@ a {
   align-content: center;
 }
 
+.wallet-panel {
+  align-content: start;
+}
+
+.wallet-panel .btn {
+  margin-top: 6px;
+}
+
 .pill {
   display: inline-flex;
   align-items: center;
@@ -108,6 +123,118 @@ a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 18px;
+}
+
+.market-section {
+  margin-top: 16px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.section-head h2 {
+  margin: 0 0 6px;
+  font-family: "Fraunces", serif;
+}
+
+.section-head p {
+  margin: 0;
+  color: var(--graphite);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--stroke);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(27, 26, 23, 0.12);
+  display: grid;
+  animation: rise 0.6s ease both;
+}
+
+.product-thumb {
+  position: relative;
+  background: linear-gradient(140deg, rgba(255, 107, 74, 0.12), rgba(177, 201, 255, 0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.product-thumb img {
+  width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+}
+
+.tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #1f2b3a;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.product-body {
+  padding: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.product-body h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.sku {
+  margin: 0;
+  color: var(--graphite);
+  font-size: 0.9rem;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-weight: 700;
+  color: #c53a1d;
+}
+
+.rating {
+  color: #f4b740;
+  font-size: 0.9rem;
+}
+
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ghost-link {
+  font-size: 0.9rem;
+  color: #1f2b3a;
+  text-decoration: underline;
 }
 
 .card {

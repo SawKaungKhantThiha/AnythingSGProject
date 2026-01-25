@@ -7,79 +7,146 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/shop.css">
-  <title>AnythingSG - Commerce Control</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>AnythingSG Marketplace</title>
 </head>
 <body>
   <% const account = typeof acct !== 'undefined' ? acct : ''; %>
+  <% const products = [
+    {
+      id: "P-1001",
+      name: "MetaPet Smart Feeder",
+      price: "0.18 ETH",
+      image: "/images/metapet-feeder.svg",
+      tag: "Best seller"
+    },
+    {
+      id: "P-1002",
+      name: "PawLink GPS Collar",
+      price: "0.12 ETH",
+      image: "/images/pawlink-collar.svg",
+      tag: "New"
+    },
+    {
+      id: "P-1003",
+      name: "VetCare Telehealth Pack",
+      price: "0.25 ETH",
+      image: "/images/vetcare-pack.svg",
+      tag: "Service"
+    }
+  ]; %>
   <div class="app-shell">
     <nav class="nav">
-      <div class="nav-title">AnythingSG Commerce Desk</div>
+      <div class="nav-title">AnythingSG Marketplace</div>
       <div class="nav-links">
-        <a href="/orders/new">Create Order</a>
-        <a href="/orders/manage">Track Order</a>
+        <a href="/shop">Marketplace</a>
         <a href="/escrow/new">Escrow Checkout</a>
-        <a href="/disputes/raise">Raise Dispute</a>
-        <a href="/platform/admin">Platform Admin</a>
+        <a href="/delivery/track">Delivery Tracking</a>
+        <a href="/orders/new">Create Order</a>
+        <a href="/orders/manage">Order Actions</a>
       </div>
     </nav>
 
     <section class="hero">
       <div>
-        <span class="pill">On-chain order flow</span>
-        <h1>Run marketplace orders, escrow, and disputes like a pro.</h1>
-        <p>These pages map directly to your OrderTracking and OnlineStoreDisputes contracts so the website can create orders, lock escrow, and resolve disputes with clarity.</p>
+        <span class="pill">Shopee-style DApp</span>
+        <h1>Buy with escrow, track delivery on-chain.</h1>
+        <p>AnythingSG blends marketplace shopping with smart contracts: escrow protects buyers and sellers, while delivery tracking updates order status in real time.</p>
+        <div class="hero-actions">
+          <a class="btn" href="/escrow/new">Pay with Escrow</a>
+          <a class="btn secondary" href="/delivery/track">Track Delivery</a>
+        </div>
       </div>
-      <div class="hero-card">
-        <div class="pill">Connected wallet</div>
+      <div class="hero-card wallet-panel">
+        <div class="pill">Wallet status</div>
         <div class="status-row">
           <strong>Account</strong>
-          <span><%= account || 'Connect wallet in your UI' %></span>
+          <span id="walletAccount"><%= account || 'Not connected' %></span>
+        </div>
+        <div class="status-row">
+          <strong>Balance</strong>
+          <span id="walletBalance">--</span>
         </div>
         <div class="status-row">
           <strong>Network</strong>
-          <span>Ganache / local RPC</span>
+          <span id="walletNetwork">Local / Testnet</span>
         </div>
-        <div class="status-row">
-          <strong>ETH</strong>
-          <span>Send with escrow call</span>
+        <button class="btn" id="connectWallet" type="button">Connect MetaMask</button>
+      </div>
+    </section>
+
+    <section class="market-section">
+      <div class="section-head">
+        <div>
+          <h2>Featured listings</h2>
+          <p>Each purchase uses escrow and can be tracked with a delivery status update.</p>
         </div>
+        <a class="btn secondary" href="/orders/new">Seller: Create Listing</a>
+      </div>
+      <div class="product-grid">
+        <% products.forEach((product) => { %>
+          <article class="product-card">
+            <div class="product-thumb">
+              <img src="<%= product.image %>" alt="<%= product.name %>">
+              <span class="tag"><%= product.tag %></span>
+            </div>
+            <div class="product-body">
+              <h3><%= product.name %></h3>
+              <p class="sku">Item ID: <%= product.id %></p>
+              <div class="meta-row">
+                <span class="price"><%= product.price %></span>
+                <span class="rating">5-star</span>
+              </div>
+              <div class="action-row">
+                <a class="btn" href="/escrow/new">Buy with Escrow</a>
+                <a class="ghost-link" href="/delivery/track">Track Delivery</a>
+              </div>
+            </div>
+          </article>
+        <% }); %>
       </div>
     </section>
 
     <section class="cards">
-      <a class="card" href="/orders/new">
-        <h3>Create Order</h3>
-        <p>Matches OrderTracking.createOrder(orderId, buyer, seller).</p>
-      </a>
-      <a class="card" href="/orders/manage">
-        <h3>Order Actions</h3>
-        <p>Set courier and confirm shipped or delivered.</p>
+      <a class="card" href="/delivery/track">
+        <h3>Delivery Tracking</h3>
+        <p>Read order details and update courier/shipping status.</p>
       </a>
       <a class="card" href="/escrow/new">
         <h3>Escrow Checkout</h3>
-        <p>Buyer locks USDC with OnlineStoreDisputes.createOrder.</p>
+        <p>Lock ETH for a buyer purchase in OnlineStoreDisputes.</p>
       </a>
-      <a class="card" href="/orders/complete">
-        <h3>Complete Order</h3>
-        <p>Buyer releases escrow with completeOrder.</p>
-      </a>
-      <a class="card" href="/disputes/raise">
-        <h3>Raise Dispute</h3>
-        <p>Buyer or seller opens a dispute with reason.</p>
-      </a>
-      <a class="card" href="/disputes/resolve">
-        <h3>Resolve Dispute</h3>
-        <p>Arbitrator resolves to refund or release.</p>
-      </a>
-      <a class="card" href="/orders/view">
-        <h3>Read Status</h3>
-        <p>Read order status and escrow amount via view calls.</p>
-      </a>
-      <a class="card" href="/platform/admin">
-        <h3>Platform Admin</h3>
-        <p>Update fee basis points and withdraw fees.</p>
+      <a class="card" href="/orders/manage">
+        <h3>Order Actions</h3>
+        <p>Seller or courier confirms shipped and delivered.</p>
       </a>
     </section>
   </div>
+  <script src="/js/shop-web3.js"></script>
+  <script>
+    const connectBtn = document.getElementById("connectWallet");
+    const walletAccount = document.getElementById("walletAccount");
+    const walletBalance = document.getElementById("walletBalance");
+    const walletNetwork = document.getElementById("walletNetwork");
+
+    async function loadWallet() {
+      try {
+        const account = await getAccount();
+        const web3 = await getWeb3();
+        const balanceWei = await web3.eth.getBalance(account);
+        walletAccount.textContent = account;
+        walletBalance.textContent = `${web3.utils.fromWei(balanceWei, "ether")} ETH`;
+        const netId = await web3.eth.net.getId();
+        walletNetwork.textContent = `Network ${netId}`;
+      } catch (error) {
+        walletBalance.textContent = "Connect to view";
+        walletNetwork.textContent = "Not connected";
+      }
+    }
+
+    connectBtn.addEventListener("click", async () => {
+      await loadWallet();
+    });
+  </script>
 </body>
 </html>
