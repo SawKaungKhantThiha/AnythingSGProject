@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Delivery Tracking</title>
+</head>
+<body>
+  <% const summary = typeof trackingSummary !== 'undefined' ? trackingSummary : null; %>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">Delivery Tracking</div>
+      <div class="nav-links">
+        <a href="/shop">Home</a>
+        <a href="/orders/new">Create Order</a>
+        <a href="/orders/manage">Order Actions</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">OrderTracking.sol</span>
+        <h1>Track the full delivery journey</h1>
+        <p>Read order details and update courier, shipped, and delivered status directly from the smart contract.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Latest tracking</div>
+        <div class="status-row">
+          <strong>Order ID</strong>
+          <span id="summaryOrderId"><%= summary ? summary.orderId : 'Not loaded' %></span>
+        </div>
+        <div class="status-row">
+          <strong>Status</strong>
+          <span id="summaryStatus"><%= summary ? summary.status : 'Unknown' %></span>
+        </div>
+        <div class="status-row">
+          <strong>Courier</strong>
+          <span id="summaryCourier"><%= summary ? summary.courier : 'Unassigned' %></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Find Delivery Status</h3>
+      <form id="trackForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="orderId">Order ID</label>
+            <input id="orderId" name="orderId" placeholder="Order ID" required>
+          </div>
+        </div>
+        <button class="btn" type="submit">Refresh Status</button>
+      </form>
+      <div class="status-block" id="orderDetails">
+        <div class="status-row">
+          <span>Buyer</span>
+          <span id="detailBuyer">-</span>
+        </div>
+        <div class="status-row">
+          <span>Seller</span>
+          <span id="detailSeller">-</span>
+        </div>
+        <div class="status-row">
+          <span>Created</span>
+          <span id="detailCreatedAt">-</span>
+        </div>
+      </div>
+      <div id="status" class="status-block"></div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Update Delivery</h3>
+      <div class="form-grid">
+        <form id="setCourierForm">
+          <div class="input-group">
+            <label for="courierOrderId">Order ID</label>
+            <input id="courierOrderId" name="orderId" placeholder="Order ID" required>
+          </div>
+          <div class="input-group">
+            <label for="courier">Courier Address</label>
+            <input id="courier" name="courier" placeholder="0x..." required>
+          </div>
+          <button class="btn" type="submit">Assign Courier</button>
+        </form>
+
+        <form id="confirmShippedForm">
+          <div class="input-group">
+            <label for="shippedOrderId">Order ID</label>
+            <input id="shippedOrderId" name="orderId" placeholder="Order ID" required>
+          </div>
+          <button class="btn" type="submit">Confirm Shipped</button>
+        </form>
+
+        <form id="confirmDeliveredForm">
+          <div class="input-group">
+            <label for="deliveredOrderId">Order ID</label>
+            <input id="deliveredOrderId" name="orderId" placeholder="Order ID" required>
+          </div>
+          <button class="btn secondary" type="submit">Confirm Delivered</button>
+        </form>
+      </div>
+    </section>
+  </div>
+  <script src="/js/shop-web3.js"></script>
+  <script>
+    const trackForm = document.getElementById("trackForm");
+    const statusEl = document.getElementById("status");
+    const summaryOrderId = document.getElementById("summaryOrderId");
+    const summaryStatus = document.getElementById("summaryStatus");
+    const summaryCourier = document.getElementById("summaryCourier");
+    const detailBuyer = document.getElementById("detailBuyer");
+    const detailSeller = document.getElementById("detailSeller");
+    const detailCreatedAt = document.getElementById("detailCreatedAt");
+    const setCourierForm = document.getElementById("setCourierForm");
+    const confirmShippedForm = document.getElementById("confirmShippedForm");
+    const confirmDeliveredForm = document.getElementById("confirmDeliveredForm");
+
+    const statusMap = {
+      "0": "None",
+      "1": "Created",
+      "2": "Shipped",
+      "3": "Delivered"
+    };
+
+    async function loadTracking(orderId) {
+      setStatus(statusEl, "Connecting wallet...", false);
+      await getAccount();
+      const contract = await loadContract("OrderTracking");
+      setStatus(statusEl, "Fetching on-chain order...", false);
+      const order = await contract.methods.getOrder(orderId).call();
+      summaryOrderId.textContent = orderId;
+      summaryStatus.textContent = statusMap[order.status] || order.status;
+      summaryCourier.textContent = order.courier;
+      detailBuyer.textContent = order.buyer;
+      detailSeller.textContent = order.seller;
+      const createdDate = new Date(Number(order.createdAt) * 1000);
+      detailCreatedAt.textContent = createdDate.toLocaleString();
+      setStatus(statusEl, "Order loaded.", false);
+    }
+
+    trackForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        const orderId = trackForm.orderId.value.trim();
+        await loadTracking(orderId);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    setCourierForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        setStatus(statusEl, "Connecting wallet...", false);
+        const account = await getAccount();
+        const contract = await loadContract("OrderTracking");
+        const orderId = setCourierForm.orderId.value.trim();
+        const courier = setCourierForm.courier.value.trim();
+        setStatus(statusEl, "Assigning courier...", false);
+        await contract.methods.setCourier(orderId, courier).send({ from: account });
+        await loadTracking(orderId);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    confirmShippedForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        setStatus(statusEl, "Connecting wallet...", false);
+        const account = await getAccount();
+        const contract = await loadContract("OrderTracking");
+        const orderId = confirmShippedForm.orderId.value.trim();
+        setStatus(statusEl, "Confirming shipped...", false);
+        await contract.methods.confirmShipped(orderId).send({ from: account });
+        await loadTracking(orderId);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    confirmDeliveredForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        setStatus(statusEl, "Connecting wallet...", false);
+        const account = await getAccount();
+        const contract = await loadContract("OrderTracking");
+        const orderId = confirmDeliveredForm.orderId.value.trim();
+        setStatus(statusEl, "Confirming delivery...", false);
+        await contract.methods.confirmDelivery(orderId).send({ from: account });
+        await loadTracking(orderId);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+  </script>
+</body>
+</html>
