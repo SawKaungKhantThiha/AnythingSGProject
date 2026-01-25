@@ -66,6 +66,10 @@
           <span id="detailSeller">-</span>
         </div>
         <div class="status-row">
+          <span>Status</span>
+          <span id="detailStatus">-</span>
+        </div>
+        <div class="status-row">
           <span>Created</span>
           <span id="detailCreatedAt">-</span>
         </div>
@@ -115,6 +119,7 @@
     const summaryCourier = document.getElementById("summaryCourier");
     const detailBuyer = document.getElementById("detailBuyer");
     const detailSeller = document.getElementById("detailSeller");
+    const detailStatus = document.getElementById("detailStatus");
     const detailCreatedAt = document.getElementById("detailCreatedAt");
     const setCourierForm = document.getElementById("setCourierForm");
     const confirmShippedForm = document.getElementById("confirmShippedForm");
@@ -138,6 +143,7 @@
       summaryCourier.textContent = order.courier;
       detailBuyer.textContent = order.buyer;
       detailSeller.textContent = order.seller;
+      detailStatus.textContent = statusMap[order.status] || order.status;
       const createdDate = new Date(Number(order.createdAt) * 1000);
       detailCreatedAt.textContent = createdDate.toLocaleString();
       setStatus(statusEl, "Order loaded.", false);
