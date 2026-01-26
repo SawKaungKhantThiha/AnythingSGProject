@@ -38,15 +38,6 @@ contract OrderTracking {
         _;
     }
 
-    modifier onlySellerOrCourier(uint256 orderId) {
-        Order memory o = orders[orderId];
-        require(
-            msg.sender == o.seller || (o.courier != address(0) && msg.sender == o.courier),
-            "Not seller/courier"
-        );
-        _;
-    }
-
     /// @notice Create an order (platform/backend can call this, or you can allow buyers to call it)
     function createOrder(uint256 orderId, address buyer, address seller) external {
         require(orderId != 0, "Invalid orderId");
