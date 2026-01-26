@@ -14,13 +14,30 @@ pragma solidity ^0.8.19;
 
 import "./Payment_escrow.sol";
 
+interface IOrderTracking {
+    enum Status {
+        None,
+        Created,
+        Shipped,
+        Delivered
+    }
+
+    function getOrderStatus(uint256 orderId) external view returns (Status);
+}
+
 contract OnlineStoreDisputes is EscrowPayment {
 
     // Who can resolve disputes
     address public arbitrator;
+    IOrderTracking public orderTracking;
 
     constructor() EscrowPayment() {
         arbitrator = msg.sender;
+    }
+
+    function setOrderTracking(address orderTrackingAddress) external onlyOwner {
+        require(orderTrackingAddress != address(0), "Invalid order tracking address");
+        orderTracking = IOrderTracking(orderTrackingAddress);
     }
 
     function changeArbitrator(address newArbitrator) public {
@@ -143,6 +160,7 @@ contract OnlineStoreDisputes is EscrowPayment {
         }
 
         if (outcome == DisputeOutcome.ReleaseToSeller) {
+            _requireDelivered(orderId);
             _releaseEscrow(orderId);
         }
 
@@ -161,6 +179,7 @@ contract OnlineStoreDisputes is EscrowPayment {
         order.status = OrderStatus.Resolved;
         order.payoutDone = true;
 
+        _requireDelivered(orderId);
         _releaseEscrow(orderId);
         emit OrderCompleted(orderId);
     }
@@ -173,5 +192,10 @@ contract OnlineStoreDisputes is EscrowPayment {
         bool noDisputeYet = (disputes[orderId].exists == false);
 
         return isParty && isPaid && noDisputeYet;
+    }
+
+    function _requireDelivered(uint256 orderId) internal view {
+        require(address(orderTracking) != address(0), "Order tracking not set");
+        require(orderTracking.getOrderStatus(orderId) == IOrderTracking.Status.Delivered, "Order not delivered");
     }
 }
