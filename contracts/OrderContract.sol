@@ -38,11 +38,11 @@ contract OrderTracking {
         _;
     }
 
-    modifier onlyCourierOrBuyer(uint256 orderId) {
+    modifier onlySellerOrCourier(uint256 orderId) {
         Order memory o = orders[orderId];
         require(
-            msg.sender == o.buyer || (o.courier != address(0) && msg.sender == o.courier),
-            "Not buyer/courier"
+            msg.sender == o.seller || (o.courier != address(0) && msg.sender == o.courier),
+            "Not seller/courier"
         );
         _;
     }
@@ -84,7 +84,7 @@ contract OrderTracking {
     }
 
     /// ✅ confirmDelivery(orderId): Courier or buyer confirms delivery
-    function confirmDelivery(uint256 orderId) external orderExists(orderId) onlyCourierOrBuyer(orderId) {
+    function confirmDelivery(uint256 orderId) external orderExists(orderId) onlySellerOrCourier(orderId) {
         Order storage o = orders[orderId];
         require(o.status == Status.Shipped, "Order not in Shipped state");
 
