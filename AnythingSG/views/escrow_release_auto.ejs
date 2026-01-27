@@ -25,7 +25,7 @@
       <div>
         <span class="pill">OnlineStoreDisputes.sol</span>
         <h1>Release escrow after delivery</h1>
-        <p>Buyer calls <strong>completeOrder(orderId)</strong> to release funds to the seller.</p>
+        <p>Buyer, seller, or courier calls <strong>completeOrder(orderId)</strong> to release funds to the seller after delivery.</p>
       </div>
       <div class="hero-card">
         <div class="pill">Auto release</div>
@@ -166,16 +166,34 @@
         const account = await getAccount();
         const contract = await loadContract("OnlineStoreDisputes");
 
+        let buyer = "";
+        let seller = "";
+        let courier = "";
+
         try {
           const escrow = await contract.methods.getEscrow(orderId).call();
-          const buyer = (escrow[0] || "").toLowerCase();
-          if (buyer && account.toLowerCase() !== buyer) {
-            setStatus(statusEl, "Connect the buyer wallet to release escrow.", true);
-            await loadDebug(orderId);
-            return;
-          }
+          buyer = (escrow[0] || "").toLowerCase();
+          seller = (escrow[1] || "").toLowerCase();
         } catch (error) {
           setStatus(statusEl, `Escrow read failed: ${error.message}`, true);
+          await loadDebug(orderId);
+          return;
+        }
+
+        try {
+          const tracking = await loadContract("OrderTracking");
+          const trackingOrder = await tracking.methods.getOrder(orderId).call();
+          courier = (trackingOrder.courier || "").toLowerCase();
+        } catch (error) {
+          setStatus(statusEl, `Order tracking read failed: ${error.message}`, true);
+          await loadDebug(orderId);
+          return;
+        }
+
+        const accountLower = account.toLowerCase();
+        const allowed = [buyer, seller, courier].filter(Boolean);
+        if (!allowed.includes(accountLower)) {
+          setStatus(statusEl, "Connect the buyer, seller, or courier wallet to release escrow.", true);
           await loadDebug(orderId);
           return;
         }

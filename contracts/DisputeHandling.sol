@@ -23,6 +23,13 @@ interface IOrderTracking {
     }
 
     function getOrderStatus(uint256 orderId) external view returns (Status);
+    function getOrder(uint256 orderId) external view returns (
+        address buyer,
+        address seller,
+        address courier,
+        Status status,
+        uint256 createdAt
+    );
 }
 
 contract OnlineStoreDisputes is EscrowPayment {
@@ -172,7 +179,10 @@ contract OnlineStoreDisputes is EscrowPayment {
     function completeOrder(uint256 orderId) public {
         Order storage order = orders[orderId];
 
-        require(msg.sender == order.buyer, "Only buyer can complete");
+        require(
+            msg.sender == order.buyer || msg.sender == order.seller || _isCourier(orderId, msg.sender),
+            "Only buyer/seller/courier can complete"
+        );
         require(order.status == OrderStatus.Paid, "Order not in Paid state");
         require(disputes[orderId].exists == false, "Dispute already exists");
         require(order.payoutDone == false, "Payout already done");
@@ -198,5 +208,14 @@ contract OnlineStoreDisputes is EscrowPayment {
     function _requireDelivered(uint256 orderId) internal view {
         require(address(orderTracking) != address(0), "Order tracking not set");
         require(orderTracking.getOrderStatus(orderId) == IOrderTracking.Status.Delivered, "Order not delivered");
+    }
+
+    function _isCourier(uint256 orderId, address user) internal view returns (bool) {
+        if (address(orderTracking) == address(0)) {
+            return false;
+        }
+
+        (, , address courier, ,) = orderTracking.getOrder(orderId);
+        return courier != address(0) && user == courier;
     }
 }
