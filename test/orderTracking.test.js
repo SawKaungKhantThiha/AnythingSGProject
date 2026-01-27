@@ -66,12 +66,12 @@ contract("OrderTracking", (accounts) => {
     await contract.setCourier(4, courier, { from: seller });
 
     await expectRevert(
-      contract.confirmDelivery(4, { from: buyer }),
+      contract.confirmDelivery(4, { from: courier }),
       "Order not in Shipped state"
     );
 
     await contract.confirmShipped(4, { from: courier });
-    await contract.confirmDelivery(4, { from: buyer });
+    await contract.confirmDelivery(4, { from: courier });
     const status = await contract.getOrderStatus(4);
     assert.equal(status.toString(), "3");
   });

@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 //Set up view engine from ejs library
 const app = express();
 //Set up view engine
@@ -6,6 +7,11 @@ app.set('view engine', 'ejs');
 //This line of code tells Express to serve static files (such as images, CSS, JavaScript files, or PDFs)
 //from the public directory
 app.use(express.static('public'))
+// Serve contract build artifacts from the metaPetApp build output
+app.use(
+  '/build',
+  express.static(path.join(__dirname, '..', 'metaPetApp', 'public', 'build'))
+);
 //enable form processing
 app.use(express.urlencoded({
     extended: false
@@ -58,6 +64,10 @@ app.get('/escrow/new', (req, res) => {
 
 app.get('/orders/complete', (req, res) => {
   res.render('order_complete');
+});
+
+app.get('/escrow/release', (req, res) => {
+  res.render('escrow_release_auto');
 });
 
 app.get('/disputes/raise', (req, res) => {

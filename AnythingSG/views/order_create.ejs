@@ -25,7 +25,7 @@
       <div>
         <span class="pill">OrderTracking.sol</span>
         <h1>Create a new order</h1>
-        <p>This matches <strong>OrderTracking.createOrder(orderId, buyer, seller)</strong>. Use your backend or admin panel to call it.</p>
+        <p>Orders are now created automatically when escrow is locked.</p>
       </div>
       <div class="hero-card">
         <div class="pill">Active account</div>
@@ -37,55 +37,61 @@
     </section>
 
     <section class="form-panel">
-      <h3>Order Creation</h3>
-      <form id="orderCreateForm">
-        <div class="form-grid">
-          <div class="input-group">
-            <label for="orderId">Order ID</label>
-            <input id="orderId" name="orderId" placeholder="e.g. 100024" required>
-          </div>
-          <div class="input-group">
-            <label for="buyer">Buyer Address</label>
-            <input id="buyer" name="buyer" placeholder="0x..." required>
-          </div>
-          <div class="input-group">
-            <label for="seller">Seller Address</label>
-            <input id="seller" name="seller" placeholder="0x..." required>
-          </div>
+      <h3>Linked Order</h3>
+      <div class="form-grid">
+        <div class="input-group">
+          <label>Order ID</label>
+          <input id="orderId" placeholder="-" readonly>
         </div>
-        <div class="status-block">
-          <div class="status-row">
-            <span>Tip</span>
-            <span>Set courier and shipment status on the next screen.</span>
-          </div>
+        <div class="input-group">
+          <label>Buyer Address</label>
+          <input id="buyer" placeholder="-" readonly>
         </div>
-        <button class="btn" type="submit">Create Order</button>
-      </form>
+        <div class="input-group">
+          <label>Seller Address</label>
+          <input id="seller" placeholder="-" readonly>
+        </div>
+      </div>
+      <div class="status-block">
+        <div class="status-row">
+          <span>Tip</span>
+          <span>Go to Order Actions to set courier and delivery status.</span>
+        </div>
+      </div>
+      <button id="goActions" class="btn" type="button">Go to Order Actions</button>
       <div id="status" class="status-block"></div>
     </section>
   </div>
   <script src="/js/shop-web3.js"></script>
   <script>
-    const orderCreateForm = document.getElementById("orderCreateForm");
     const statusEl = document.getElementById("status");
+    const orderIdEl = document.getElementById("orderId");
+    const buyerEl = document.getElementById("buyer");
+    const sellerEl = document.getElementById("seller");
+    const goActionsBtn = document.getElementById("goActions");
 
-    orderCreateForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      try {
-        setStatus(statusEl, "Connecting wallet...", false);
-        const account = await getAccount();
-        const contract = await loadContract("OrderTracking");
-        const orderId = orderCreateForm.orderId.value.trim();
-        const buyer = orderCreateForm.buyer.value.trim();
-        const seller = orderCreateForm.seller.value.trim();
-
-        setStatus(statusEl, "Submitting transaction...", false);
-        await contract.methods.createOrder(orderId, buyer, seller).send({ from: account });
-        setStatus(statusEl, "Order created on-chain.", false);
-      } catch (error) {
-        setStatus(statusEl, error.message, true);
+    function loadLinkedOrder() {
+      const raw = localStorage.getItem("lastEscrowOrder");
+      if (!raw) {
+        setStatus(statusEl, "No linked escrow order found. Lock escrow first.", true);
+        return;
       }
+      try {
+        const data = JSON.parse(raw);
+        orderIdEl.value = data.orderId || "-";
+        buyerEl.value = data.buyer || "-";
+        sellerEl.value = data.seller || "-";
+        setStatus(statusEl, "Linked order loaded from escrow.", false);
+      } catch (error) {
+        setStatus(statusEl, "Linked order data is invalid. Lock escrow again.", true);
+      }
+    }
+
+    goActionsBtn.addEventListener("click", () => {
+      window.location = "/orders/manage";
     });
+
+    window.addEventListener("DOMContentLoaded", loadLinkedOrder);
   </script>
 </body>
 </html>

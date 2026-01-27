@@ -33,6 +33,7 @@ contract OnlineStoreDisputes is EscrowPayment {
 
     constructor() EscrowPayment() {
         arbitrator = msg.sender;
+        nextOrderId = 1;
     }
 
     function setOrderTracking(address orderTrackingAddress) external onlyOwner {

@@ -38,7 +38,7 @@
       <form id="escrowCreateForm">
         <div class="form-grid">
           <div class="input-group">
-            <label for="seller">Seller Address</label>
+            <label for="seller">Buyer Address</label>
             <input id="seller" name="seller" placeholder="0x..." required>
           </div>
           <div class="input-group">
@@ -73,11 +73,39 @@
         const amount = escrowCreateForm.amount.value.trim();
         const amountWei = web3.utils.toWei(amount, "ether");
 
+        if (!seller || !amount) {
+          setStatus(statusEl, "Please enter a seller address and amount.", true);
+          return;
+        }
+
+        if (seller.toLowerCase() === account.toLowerCase()) {
+          setStatus(statusEl, "Buyer and seller addresses must be different.", true);
+          return;
+        }
+
         setStatus(statusEl, "Locking escrow...", false);
         const receipt = await contract.methods
           .createOrder(seller, amountWei)
           .send({ from: account, value: amountWei });
         const orderId = receipt?.events?.OrderCreated?.returnValues?.orderId;
+        if (orderId !== undefined && orderId !== null) {
+          try {
+            const orderTracking = await loadContract("OrderTracking");
+            setStatus(statusEl, "Creating tracking order...", false);
+            await orderTracking.methods.createOrder(orderId, account, seller).send({ from: account });
+            localStorage.setItem("lastEscrowOrderId", String(orderId));
+            localStorage.setItem("lastEscrowOrder", JSON.stringify({
+              orderId: String(orderId),
+              buyer: account,
+              seller,
+              amountWei: amountWei,
+              amountEth: amount
+            }));
+          } catch (trackingError) {
+            setStatus(statusEl, `Escrow locked, but tracking setup failed: ${trackingError.message}`, true);
+            return;
+          }
+        }
         setStatus(statusEl, `Escrow locked. Order ID: ${orderId || "check transaction log"}`, false);
       } catch (error) {
         setStatus(statusEl, error.message, true);

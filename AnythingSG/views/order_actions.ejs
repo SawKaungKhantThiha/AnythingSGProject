@@ -84,6 +84,9 @@
     const setCourierForm = document.getElementById("setCourierForm");
     const confirmShippedForm = document.getElementById("confirmShippedForm");
     const confirmDeliveredForm = document.getElementById("confirmDeliveredForm");
+    const courierOrderIdInput = document.getElementById("courierOrderId");
+    const shippedOrderIdInput = document.getElementById("shippedOrderId");
+    const deliveredOrderIdInput = document.getElementById("deliveredOrderId");
 
     async function withOrderTracking(action) {
       setStatus(statusEl, "Connecting wallet...", false);
@@ -129,9 +132,25 @@
           setStatus(statusEl, "Submitting confirmDelivery...", false);
           await contract.methods.confirmDelivery(orderId).send({ from: account });
         });
-        setStatus(statusEl, "Order marked as delivered.", false);
+        const orderId = confirmDeliveredForm.orderId.value.trim();
+        setStatus(statusEl, "Order marked as delivered. Releasing escrow...", false);
+        window.location = `/escrow/release?orderId=${encodeURIComponent(orderId)}`;
       } catch (error) {
         setStatus(statusEl, error.message, true);
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const lastOrderId = localStorage.getItem("lastEscrowOrderId");
+      if (!lastOrderId) return;
+      if (courierOrderIdInput && !courierOrderIdInput.value) {
+        courierOrderIdInput.value = lastOrderId;
+      }
+      if (shippedOrderIdInput && !shippedOrderIdInput.value) {
+        shippedOrderIdInput.value = lastOrderId;
+      }
+      if (deliveredOrderIdInput && !deliveredOrderIdInput.value) {
+        deliveredOrderIdInput.value = lastOrderId;
       }
     });
   </script>

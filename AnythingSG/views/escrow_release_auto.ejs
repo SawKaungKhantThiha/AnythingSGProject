@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Release Escrow</title>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">Complete Order</div>
+      <div class="nav-links">
+        <a href="/shop">Home</a>
+        <a href="/escrow/new">Escrow Checkout</a>
+        <a href="/disputes/raise">Raise Dispute</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">OnlineStoreDisputes.sol</span>
+        <h1>Release escrow after delivery</h1>
+        <p>Buyer calls <strong>completeOrder(orderId)</strong> to release funds to the seller.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Auto release</div>
+        <p>This page automatically submits the release for the delivered order.</p>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Confirm Delivery</h3>
+      <div class="form-grid">
+        <div class="input-group">
+          <label>Order ID</label>
+          <input id="orderIdValue" value="-" readonly>
+        </div>
+      </div>
+      <div id="status" class="status-block"></div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Audit Log</h3>
+      <div id="auditLog" class="status-block"></div>
+    </section>
+    <section class="form-panel">
+      <h3>Debug Panel</h3>
+      <div id="debugPanel" class="status-block"></div>
+    </section>
+  </div>
+
+  <script src="/js/shop-web3.js"></script>
+  <script>
+    const statusEl = document.getElementById("status");
+    const auditEl = document.getElementById("auditLog");
+    const debugEl = document.getElementById("debugPanel");
+    const orderIdInput = document.getElementById("orderIdValue");
+    const auditKey = "escrowReleaseAudit";
+    const releasedKey = "escrowReleasedOrderIds";
+
+    function getReleasedSet() {
+      const raw = localStorage.getItem(releasedKey);
+      if (!raw) return new Set();
+      try {
+        return new Set(JSON.parse(raw));
+      } catch (error) {
+        return new Set();
+      }
+    }
+
+    function saveReleasedSet(releasedSet) {
+      localStorage.setItem(releasedKey, JSON.stringify(Array.from(releasedSet)));
+    }
+
+    function loadAudit() {
+      const raw = localStorage.getItem(auditKey);
+      if (!raw) return [];
+      try {
+        return JSON.parse(raw);
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveAudit(entries) {
+      localStorage.setItem(auditKey, JSON.stringify(entries));
+    }
+
+    function addAudit(entry) {
+      const entries = loadAudit();
+      entries.unshift(entry);
+      saveAudit(entries.slice(0, 25));
+      renderAudit();
+    }
+
+    function renderAudit() {
+      const entries = loadAudit();
+      if (!entries.length) {
+        auditEl.textContent = "No audit entries yet.";
+        auditEl.className = "status-block";
+        return;
+      }
+      auditEl.className = "status-block success";
+      auditEl.innerHTML = entries.map((entry) => {
+        const time = new Date(entry.timestamp).toLocaleString();
+        const tx = entry.txHash ? ` | Tx: ${entry.txHash}` : "";
+        return `<div>${time} | Order ${entry.orderId} | ${entry.action}${tx}</div>`;
+      }).join("");
+    }
+
+    function renderDebug(lines) {
+      if (!lines.length) {
+        debugEl.textContent = "No debug info yet.";
+        debugEl.className = "status-block";
+        return;
+      }
+      debugEl.className = "status-block success";
+      debugEl.innerHTML = lines.map((line) => `<div>${line}</div>`).join("");
+    }
+
+    async function loadDebug(orderId) {
+      const lines = [];
+      try {
+        const disputesContract = await loadContract("OnlineStoreDisputes");
+        lines.push(`Disputes contract: ${disputesContract.options.address}`);
+
+        try {
+          const escrow = await disputesContract.methods.getEscrow(orderId).call();
+          lines.push(`Escrow buyer: ${escrow[0]}`);
+          lines.push(`Escrow seller: ${escrow[1]}`);
+          lines.push(`Escrow amount (wei): ${escrow[2]}`);
+          lines.push(`Escrow status: ${escrow[3]}`);
+        } catch (error) {
+          lines.push(`Escrow read failed: ${error.message}`);
+        }
+
+        try {
+          const orderTracking = await loadContract("OrderTracking");
+          lines.push(`OrderTracking contract: ${orderTracking.options.address}`);
+          const status = await orderTracking.methods.getOrderStatus(orderId).call();
+          lines.push(`OrderTracking status: ${status}`);
+        } catch (error) {
+          lines.push(`OrderTracking read failed: ${error.message}`);
+        }
+      } catch (error) {
+        lines.push(`Debug load failed: ${error.message}`);
+      }
+      renderDebug(lines);
+    }
+
+    async function autoRelease(orderId) {
+      const releasedSet = getReleasedSet();
+      if (releasedSet.has(orderId)) {
+        setStatus(statusEl, "Escrow already released for this order ID.", true);
+        await loadDebug(orderId);
+        return;
+      }
+
+      try {
+        setStatus(statusEl, "Connecting wallet...", false);
+        const account = await getAccount();
+        const contract = await loadContract("OnlineStoreDisputes");
+
+        try {
+          const escrow = await contract.methods.getEscrow(orderId).call();
+          const buyer = (escrow[0] || "").toLowerCase();
+          if (buyer && account.toLowerCase() !== buyer) {
+            setStatus(statusEl, "Connect the buyer wallet to release escrow.", true);
+            await loadDebug(orderId);
+            return;
+          }
+        } catch (error) {
+          setStatus(statusEl, `Escrow read failed: ${error.message}`, true);
+          await loadDebug(orderId);
+          return;
+        }
+
+        setStatus(statusEl, "Releasing escrow...", false);
+        const receipt = await contract.methods.completeOrder(orderId).send({ from: account });
+
+        releasedSet.add(orderId);
+        saveReleasedSet(releasedSet);
+
+        addAudit({
+          orderId,
+          action: "Escrow released",
+          txHash: receipt.transactionHash || null,
+          timestamp: new Date().toISOString()
+        });
+
+        setStatus(statusEl, "Escrow released to seller.", false);
+        await loadDebug(orderId);
+      } catch (error) {
+        addAudit({
+          orderId,
+          action: `Release failed: ${error.message}`,
+          txHash: null,
+          timestamp: new Date().toISOString()
+        });
+        setStatus(statusEl, error.message, true);
+        await loadDebug(orderId);
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      renderAudit();
+      const params = new URLSearchParams(window.location.search);
+      const orderId = (params.get("orderId") || "").trim();
+      orderIdInput.value = orderId || "-";
+
+      if (!orderId) {
+        setStatus(statusEl, "Missing order ID. Return to delivery confirmation.", true);
+        return;
+      }
+
+      autoRelease(orderId);
+    });
+  </script>
+</body>
+</html>
