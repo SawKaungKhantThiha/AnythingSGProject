@@ -42,6 +42,18 @@
           <input id="orderIdValue" value="-" readonly>
         </div>
       </div>
+      <div class="status-row">
+        <strong>Wallet</strong>
+        <span id="walletStatus">Not connected</span>
+      </div>
+      <div class="status-row">
+        <strong>Allowed</strong>
+        <span id="allowedStatus">Buyer / Seller / Courier</span>
+      </div>
+      <div class="form-grid">
+        <button id="releaseBtn" class="btn" type="button">Release Escrow</button>
+        <button id="refreshWalletBtn" class="btn secondary" type="button">Refresh Wallet</button>
+      </div>
       <div id="status" class="status-block"></div>
     </section>
 
@@ -61,8 +73,13 @@
     const auditEl = document.getElementById("auditLog");
     const debugEl = document.getElementById("debugPanel");
     const orderIdInput = document.getElementById("orderIdValue");
+    const walletStatusEl = document.getElementById("walletStatus");
+    const allowedStatusEl = document.getElementById("allowedStatus");
+    const releaseBtn = document.getElementById("releaseBtn");
+    const refreshWalletBtn = document.getElementById("refreshWalletBtn");
     const auditKey = "escrowReleaseAudit";
     const releasedKey = "escrowReleasedOrderIds";
+    let cachedAllowed = [];
 
     function getReleasedSet() {
       const raw = localStorage.getItem(releasedKey);
@@ -165,6 +182,7 @@
       try {
         setStatus(statusEl, "Connecting wallet...", false);
         const account = await getAccount();
+        walletStatusEl.textContent = account || "Not connected";
         const contract = await loadContract("OnlineStoreDisputes");
 
         let buyer = "";
@@ -191,8 +209,10 @@
           return;
         }
 
-        const accountLower = account.toLowerCase();
+        const accountLower = (account || "").toLowerCase();
         const allowed = [buyer, seller, courier].filter(Boolean);
+        cachedAllowed = allowed;
+        allowedStatusEl.textContent = allowed.length ? allowed.join(" / ") : "Buyer / Seller / Courier";
         if (!allowed.includes(accountLower)) {
           setStatus(statusEl, "Connect the buyer, seller, or courier wallet to release escrow.", true);
           await loadDebug(orderId);
@@ -230,6 +250,7 @@
       renderAudit();
       const params = new URLSearchParams(window.location.search);
       const orderId = (params.get("orderId") || "").trim();
+      const autostart = (params.get("autostart") || "").trim();
       orderIdInput.value = orderId || "-";
 
       if (!orderId) {
@@ -237,7 +258,46 @@
         return;
       }
 
-      autoRelease(orderId);
+      if (autostart === "1") {
+        autoRelease(orderId);
+      } else {
+        setStatus(
+          statusEl,
+          "Switch to buyer/seller/courier wallet, then click Release Escrow.",
+          false
+        );
+      }
+    });
+
+    releaseBtn.addEventListener("click", async () => {
+      const orderId = (orderIdInput.value || "").trim();
+      if (!orderId || orderId === "-") {
+        setStatus(statusEl, "Missing order ID. Return to delivery confirmation.", true);
+        return;
+      }
+      await autoRelease(orderId);
+    });
+
+    refreshWalletBtn.addEventListener("click", async () => {
+      try {
+        setStatus(statusEl, "Refreshing wallet...", false);
+        const account = await getAccount();
+        walletStatusEl.textContent = account || "Not connected";
+        const orderId = (orderIdInput.value || "").trim();
+        if (cachedAllowed.length) {
+          const accountLower = (account || "").toLowerCase();
+          if (!cachedAllowed.includes(accountLower)) {
+            setStatus(statusEl, "Connected wallet is not allowed to release escrow.", true);
+            return;
+          }
+        }
+        setStatus(statusEl, "Wallet refreshed. Releasing escrow...", false);
+        if (orderId && orderId !== "-") {
+          await autoRelease(orderId);
+        }
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
     });
   </script>
 </body>

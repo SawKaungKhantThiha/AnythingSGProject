@@ -133,8 +133,12 @@
           await contract.methods.confirmDelivery(orderId).send({ from: account });
         });
         const orderId = confirmDeliveredForm.orderId.value.trim();
-        setStatus(statusEl, "Order marked as delivered. Releasing escrow...", false);
-        window.location = `/escrow/release?orderId=${encodeURIComponent(orderId)}`;
+        setStatus(
+          statusEl,
+          "Order marked as delivered. Switch to buyer/seller/courier wallet, then release escrow.",
+          false
+        );
+        window.location = `/escrow/release?orderId=${encodeURIComponent(orderId)}&autostart=1`;
       } catch (error) {
         setStatus(statusEl, error.message, true);
       }

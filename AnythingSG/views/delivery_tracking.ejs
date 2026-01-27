@@ -200,8 +200,12 @@
         setStatus(statusEl, "Confirming delivery...", false);
         await contract.methods.confirmDelivery(orderId).send({ from: account });
         await loadTracking(orderId);
-        setStatus(statusEl, "Delivery confirmed. Releasing escrow...", false);
-        window.location = `/escrow/release?orderId=${encodeURIComponent(orderId)}`;
+        setStatus(
+          statusEl,
+          "Delivery confirmed. Switch to buyer/seller/courier wallet, then release escrow.",
+          false
+        );
+        window.location = `/escrow/release?orderId=${encodeURIComponent(orderId)}&autostart=1`;
       } catch (error) {
         setStatus(statusEl, error.message, true);
       }
