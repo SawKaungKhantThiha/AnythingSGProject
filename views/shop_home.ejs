@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>AnythingSG Marketplace</title>
+</head>
+<body>
+  <% const account = typeof acct !== 'undefined' ? acct : ''; %>
+  <% const products = [
+    {
+      id: "P-1001",
+      name: "MetaPet Smart Feeder",
+      price: "0.18 ETH",
+      image: "/images/metapet-feeder.svg",
+      tag: "Best seller"
+    },
+    {
+      id: "P-1002",
+      name: "PawLink GPS Collar",
+      price: "0.12 ETH",
+      image: "/images/pawlink-collar.svg",
+      tag: "New"
+    },
+    {
+      id: "P-1003",
+      name: "VetCare Telehealth Pack",
+      price: "0.25 ETH",
+      image: "/images/vetcare-pack.svg",
+      tag: "Service"
+    }
+  ]; %>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">AnythingSG Marketplace</div>
+      <div class="nav-links">
+        <a href="/shop">Marketplace</a>
+        <a href="/orders/view">My Order</a>
+        <a href="/platform/admin">Admin</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">Shopee-style DApp</span>
+        <h1>Buy with escrow, track delivery on-chain.</h1>
+        <p>AnythingSG blends marketplace shopping with smart contracts: escrow protects buyers and sellers, while delivery tracking updates order status in real time.</p>
+        <div class="hero-actions">
+          <a class="btn" href="/orders/new">Start Order</a>
+          <a class="btn secondary" href="/orders/view">View Order</a>
+        </div>
+      </div>
+      <div class="hero-card wallet-panel">
+        <div class="pill">Wallet status</div>
+        <div class="status-row">
+          <strong>Account</strong>
+          <span id="walletAccount"><%= account || 'Not connected' %></span>
+        </div>
+        <div class="status-row">
+          <strong>Balance</strong>
+          <span id="walletBalance">--</span>
+        </div>
+        <div class="status-row">
+          <strong>Network</strong>
+          <span id="walletNetwork">Local / Testnet</span>
+        </div>
+        <button class="btn" id="connectWallet" type="button">Connect MetaMask</button>
+      </div>
+    </section>
+
+    <section class="market-section">
+      <div class="section-head">
+        <div>
+          <h2>Featured listings</h2>
+          <p>Each purchase uses escrow and can be tracked with a delivery status update.</p>
+        </div>
+        <a class="btn secondary" href="/orders/new">Seller: Create Listing</a>
+      </div>
+      <div class="product-grid">
+        <% products.forEach((product) => { %>
+          <article class="product-card">
+            <div class="product-thumb">
+              <img src="<%= product.image %>" alt="<%= product.name %>">
+              <span class="tag"><%= product.tag %></span>
+            </div>
+            <div class="product-body">
+              <h3><%= product.name %></h3>
+              <p class="sku">Item ID: <%= product.id %></p>
+              <div class="meta-row">
+                <span class="price"><%= product.price %></span>
+                <span class="rating">5-star</span>
+              </div>
+              <div class="action-row">
+                <a class="btn" href="/orders/new">Start Order</a>
+                <a class="ghost-link" href="/orders/view">View Order</a>
+              </div>
+            </div>
+          </article>
+        <% }); %>
+      </div>
+    </section>
+
+    <section class="cards">
+      <a class="card" href="/orders/view">
+        <h3>Order Hub</h3>
+        <p>See payment, delivery, and next steps in one place.</p>
+      </a>
+      <a class="card" href="/delivery/track">
+        <h3>Delivery Tracking</h3>
+        <p>View courier status and shipment progress.</p>
+      </a>
+      <a class="card" href="/platform/admin">
+        <h3>Platform Admin</h3>
+        <p>Fee controls and platform revenue management.</p>
+      </a>
+    </section>
+  </div>
+  <script src="/js/shop-web3.js"></script>
+  <script>
+    const connectBtn = document.getElementById("connectWallet");
+    const walletAccount = document.getElementById("walletAccount");
+    const walletBalance = document.getElementById("walletBalance");
+    const walletNetwork = document.getElementById("walletNetwork");
+
+    async function loadWallet() {
+      try {
+        const account = await getAccount();
+        const web3 = await getWeb3();
+        const balanceWei = await web3.eth.getBalance(account);
+        walletAccount.textContent = account;
+        walletBalance.textContent = `${web3.utils.fromWei(balanceWei, "ether")} ETH`;
+        const netId = await web3.eth.net.getId();
+        walletNetwork.textContent = `Network ${netId}`;
+      } catch (error) {
+        walletBalance.textContent = "Connect to view";
+        walletNetwork.textContent = "Not connected";
+      }
+    }
+
+    connectBtn.addEventListener("click", async () => {
+      await loadWallet();
+    });
+  </script>
+</body>
+</html>

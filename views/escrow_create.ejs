@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Escrow Checkout</title>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">Secure Payment</div>
+      <div class="nav-links">
+        <a href="/shop">Marketplace</a>
+        <a href="/orders/view">Order Hub</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">Step 2 of 3</span>
+        <h1>Pay & lock funds</h1>
+        <p>Your payment is held securely until delivery is confirmed.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Before you submit</div>
+        <p>Make sure the buyer wallet holds enough ETH for the amount.</p>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Secure Payment</h3>
+      <form id="escrowCreateForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="seller">Seller Address</label>
+            <input id="seller" name="seller" placeholder="0x..." required>
+          </div>
+          <div class="input-group">
+            <label for="amount">Amount (ETH)</label>
+            <input id="amount" name="amount" placeholder="e.g. 0.25" required>
+          </div>
+        </div>
+        <div class="status-block">
+          <div class="status-row">
+            <span>Result</span>
+        <span>After payment is locked, continue to your order hub.</span>
+          </div>
+        </div>
+        <button class="btn" type="submit">Lock Payment</button>
+      </form>
+      <a class="btn secondary" id="orderHubLink" href="/orders/view" style="display: none;">Go to Order Hub</a>
+      <div id="status" class="status-block"></div>
+    </section>
+  </div>
+  <script src="/js/shop-web3.js"></script>
+  <script>
+    const escrowCreateForm = document.getElementById("escrowCreateForm");
+    const statusEl = document.getElementById("status");
+    const orderHubLink = document.getElementById("orderHubLink");
+
+    escrowCreateForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        setStatus(statusEl, "Connecting wallet...", false);
+        const account = await getAccount();
+        const web3 = await getWeb3();
+        const contract = await loadContract("OnlineStoreDisputes");
+        const seller = escrowCreateForm.seller.value.trim();
+        const amount = escrowCreateForm.amount.value.trim();
+        const amountWei = web3.utils.toWei(amount, "ether");
+
+        setStatus(statusEl, "Locking escrow...", false);
+        const receipt = await contract.methods
+          .createOrder(seller, amountWei)
+          .send({ from: account, value: amountWei });
+        const orderId = receipt?.events?.OrderCreated?.returnValues?.orderId;
+        setStatus(statusEl, `Payment locked. Order ID: ${orderId || "check transaction log"}`, false);
+        if (orderId) {
+          orderHubLink.href = `/orders/view?orderId=${encodeURIComponent(orderId)}`;
+        }
+        orderHubLink.style.display = "inline-flex";
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    window.addEventListener("load", () => {
+      const params = new URLSearchParams(window.location.search);
+      const orderId = params.get("orderId");
+      if (orderId) {
+        orderHubLink.href = `/orders/view?orderId=${encodeURIComponent(orderId)}`;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Order Viewer</title>
+</head>
+<body>
+  <% const summary = typeof orderSummary !== 'undefined' ? orderSummary : null; %>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">Order Hub</div>
+      <div class="nav-links">
+        <a href="/shop">Marketplace</a>
+        <a href="/orders/new">Start Order</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">Order Journey</span>
+        <h1>See your order in one place</h1>
+        <p>Track payment, delivery, and next steps without jumping between tools.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Current order</div>
+        <div class="status-row">
+          <strong>Order ID</strong>
+          <span id="summaryOrderId"><%= summary ? summary.orderId : 'Not loaded' %></span>
+        </div>
+        <div class="status-row">
+          <strong>Payment</strong>
+          <span id="summaryEscrowStatus"><%= summary ? summary.status : 'Unknown' %></span>
+        </div>
+        <div class="status-row">
+          <strong>Delivery</strong>
+          <span id="summaryDeliveryStatus">Not loaded</span>
+        </div>
+        <div class="status-row">
+          <strong>Escrow</strong>
+          <span id="summaryAmount"><%= summary ? summary.amount : '0' %></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Load Order</h3>
+      <form id="orderViewForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="orderId">Order ID</label>
+            <input id="orderId" name="orderId" placeholder="Order ID" required>
+          </div>
+        </div>
+        <button class="btn" type="submit">Fetch Status</button>
+      </form>
+      <div id="status" class="status-block"></div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Next Steps</h3>
+      <div class="form-grid">
+        <div class="input-group">
+          <button class="btn" id="trackDeliveryBtn" type="button" data-href="/delivery/track">Track Delivery</button>
+          <small>View courier progress and shipment updates.</small>
+        </div>
+        <div class="input-group">
+          <button class="btn secondary" id="completeOrderBtn" type="button" data-href="/orders/complete">Confirm Delivery &amp; Complete Order</button>
+          <small>Available after delivery is confirmed.</small>
+        </div>
+        <div class="input-group">
+          <button class="btn secondary" id="raiseDisputeBtn" type="button" data-href="/disputes/raise">Raise Dispute</button>
+          <small>Only available while payment is active.</small>
+        </div>
+      </div>
+      <div id="actionNotes" class="status-block"></div>
+    </section>
+  </div>
+  <script src="/js/shop-web3.js"></script>
+  <script>
+    const orderViewForm = document.getElementById("orderViewForm");
+    const statusEl = document.getElementById("status");
+    const summaryOrderId = document.getElementById("summaryOrderId");
+    const summaryEscrowStatus = document.getElementById("summaryEscrowStatus");
+    const summaryDeliveryStatus = document.getElementById("summaryDeliveryStatus");
+    const summaryAmount = document.getElementById("summaryAmount");
+    const trackDeliveryBtn = document.getElementById("trackDeliveryBtn");
+    const completeOrderBtn = document.getElementById("completeOrderBtn");
+    const raiseDisputeBtn = document.getElementById("raiseDisputeBtn");
+    const actionNotes = document.getElementById("actionNotes");
+
+    const disputeStatusMap = {
+      "0": "None",
+      "1": "Paid",
+      "2": "Disputed",
+      "3": "Resolved"
+    };
+
+    const deliveryStatusMap = {
+      "0": "None",
+      "1": "Created",
+      "2": "Shipped",
+      "3": "Delivered"
+    };
+
+    function setActionState(orderId, escrowStatusLabel, deliveryStatusLabel) {
+      const canTrack = Boolean(orderId);
+      const canComplete = deliveryStatusLabel === "Delivered";
+      const canDispute = escrowStatusLabel === "Paid";
+
+      trackDeliveryBtn.disabled = !canTrack;
+      completeOrderBtn.disabled = !canComplete;
+      raiseDisputeBtn.disabled = !canDispute;
+
+      trackDeliveryBtn.dataset.href = `/delivery/track?orderId=${encodeURIComponent(orderId || "")}`;
+      completeOrderBtn.dataset.href = `/orders/complete?orderId=${encodeURIComponent(orderId || "")}`;
+      raiseDisputeBtn.dataset.href = `/disputes/raise?orderId=${encodeURIComponent(orderId || "")}`;
+
+      if (!orderId) {
+        setStatus(actionNotes, "Enter an order ID to unlock next steps.", true);
+        return;
+      }
+      if (!canComplete) {
+        setStatus(actionNotes, "Completion is available after delivery is confirmed.", true);
+        return;
+      }
+      if (!canDispute) {
+        setStatus(actionNotes, "Disputes are available only while payment is active.", true);
+        return;
+      }
+      setStatus(actionNotes, "All steps are available.", false);
+    }
+
+    async function loadOrder(orderId) {
+      setStatus(statusEl, "Connecting wallet...", false);
+      await getAccount();
+      const web3 = await getWeb3();
+      const disputesContract = await loadContract("OnlineStoreDisputes");
+      let escrowStatusLabel = "Unknown";
+      let deliveryStatusLabel = "Unknown";
+
+      setStatus(statusEl, "Reading payment status...", false);
+      const order = await disputesContract.methods.orders(orderId).call();
+      escrowStatusLabel = disputeStatusMap[order.status] || order.status;
+      summaryOrderId.textContent = orderId;
+      summaryEscrowStatus.textContent = escrowStatusLabel;
+      summaryAmount.textContent = `${web3.utils.fromWei(order.amount, "ether")} ETH`;
+
+      try {
+        const trackingContract = await loadContract("OrderTracking");
+        setStatus(statusEl, "Reading delivery status...", false);
+        const deliveryOrder = await trackingContract.methods.getOrder(orderId).call();
+        deliveryStatusLabel = deliveryStatusMap[deliveryOrder.status] || deliveryOrder.status;
+        summaryDeliveryStatus.textContent = deliveryStatusLabel;
+      } catch (error) {
+        summaryDeliveryStatus.textContent = "Unavailable";
+      }
+
+      setActionState(orderId, escrowStatusLabel, deliveryStatusLabel);
+      setStatus(statusEl, "Order loaded.", false);
+    }
+
+    orderViewForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        const orderId = orderViewForm.orderId.value.trim();
+        await loadOrder(orderId);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    [trackDeliveryBtn, completeOrderBtn, raiseDisputeBtn].forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.disabled) return;
+        window.location.href = btn.dataset.href;
+      });
+    });
+
+    window.addEventListener("load", async () => {
+      const params = new URLSearchParams(window.location.search);
+      const orderId = params.get("orderId");
+      if (orderId) {
+        orderViewForm.orderId.value = orderId;
+        try {
+          await loadOrder(orderId);
+        } catch (error) {
+          setStatus(statusEl, error.message, true);
+        }
+      } else {
+        setActionState("", "Unknown", "Unknown");
+      }
+    });
+  </script>
+</body>
+</html>

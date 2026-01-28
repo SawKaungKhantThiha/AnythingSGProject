@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Raise Dispute</title>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">Dispute Center</div>
+      <div class="nav-links">
+        <a href="/shop">Marketplace</a>
+        <a href="/orders/view">Order Hub</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">OnlineStoreDisputes.sol</span>
+        <h1>Raise a dispute</h1>
+        <p>Buyer or seller calls <strong>raiseDispute(orderId, reason)</strong>. Order must be in Paid state.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Required</div>
+        <p>Provide a clear reason to help the arbitrator resolve quickly.</p>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Open Dispute</h3>
+      <form id="raiseDisputeForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="orderId">Order ID</label>
+            <input id="orderId" name="orderId" placeholder="Order ID" required>
+          </div>
+          <div class="input-group">
+            <label for="reason">Reason</label>
+            <textarea id="reason" name="reason" placeholder="Describe the issue" required></textarea>
+          </div>
+        </div>
+        <button class="btn" type="submit">Raise Dispute</button>
+      </form>
+      <a class="btn secondary" id="backToOrder" href="/orders/view">Back to Order Hub</a>
+      <div id="status" class="status-block"></div>
+    </section>
+  </div>
+  <script src="/js/shop-web3.js"></script>
+  <script>
+    const raiseDisputeForm = document.getElementById("raiseDisputeForm");
+    const statusEl = document.getElementById("status");
+    const backToOrder = document.getElementById("backToOrder");
+
+    raiseDisputeForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        setStatus(statusEl, "Connecting wallet...", false);
+        const account = await getAccount();
+        const contract = await loadContract("OnlineStoreDisputes");
+        const orderId = raiseDisputeForm.orderId.value.trim();
+        const reason = raiseDisputeForm.reason.value.trim();
+
+        setStatus(statusEl, "Submitting dispute...", false);
+        await contract.methods.raiseDispute(orderId, reason).send({ from: account });
+        setStatus(statusEl, "Dispute raised.", false);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    window.addEventListener("load", () => {
+      const params = new URLSearchParams(window.location.search);
+      const orderId = params.get("orderId");
+      if (orderId) {
+        raiseDisputeForm.orderId.value = orderId;
+        backToOrder.href = `/orders/view?orderId=${encodeURIComponent(orderId)}`;
+      }
+    });
+  </script>
+</body>
+</html>
