@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>AnythingSG Login</title>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">AnythingSG Marketplace</div>
+      <div class="nav-links">
+        <a href="/shop">Marketplace</a>
+        <a href="/escrow/new">Escrow Checkout</a>
+        <a href="/delivery/track">Delivery Tracking</a>
+        <a href="/orders/new">Create Order</a>
+        <a href="/orders/manage">Order Actions</a>
+      </div>
+      <div class="nav-actions">
+        <span id="navUserLabel" class="nav-user" data-auth="user" hidden></span>
+        <a href="/auth/login" data-auth="guest">Log in</a>
+        <a href="/auth/register" data-auth="guest">Register</a>
+        <a href="/auth/register?role=seller" id="registerSellerLink" data-role="buyer" hidden>Register as Seller</a>
+        <a href="#" id="logoutBtn" data-auth="user" hidden>Log out</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">Welcome back</span>
+        <h1>Log in with your email and wallet.</h1>
+        <p>Match the email + MetaMask wallet you registered as buyer or seller.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Tip</div>
+        <p>If you have not registered yet, create an account first so we can map your wallet.</p>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Log in</h3>
+      <form id="loginForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+          </div>
+          <div class="input-group">
+            <label for="role">Role</label>
+            <select id="role" name="role" required>
+              <option value="buyer">Buyer</option>
+              <option value="seller">Seller</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="wallet">Connected Wallet</label>
+            <input id="wallet" name="wallet" placeholder="Connect MetaMask" readonly required>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn secondary" id="connectWallet" type="button">Connect MetaMask</button>
+          <button class="btn" type="submit">Log in</button>
+        </div>
+      </form>
+      <div id="status" class="status-block" hidden></div>
+    </section>
+  </div>
+
+  <script src="/js/shop-web3.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const walletField = document.getElementById("wallet");
+    const connectWalletBtn = document.getElementById("connectWallet");
+    const statusEl = document.getElementById("status");
+
+    connectWalletBtn.addEventListener("click", async () => {
+      try {
+        const account = await getAccount();
+        walletField.value = account;
+        statusEl.hidden = true;
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+        statusEl.hidden = false;
+      }
+    });
+
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const email = AnythingSGAuth.normalizeEmail(loginForm.email.value);
+      const role = loginForm.role.value;
+      const wallet = AnythingSGAuth.normalizeWallet(walletField.value);
+
+      if (!email || !role || !wallet) {
+        setStatus(statusEl, "Please enter email, role, and connect MetaMask.", true);
+        statusEl.hidden = false;
+        return;
+      }
+
+      const users = AnythingSGAuth.loadUsers();
+      const matched = users.find(
+        (user) =>
+          AnythingSGAuth.normalizeEmail(user.email) === email &&
+          user.role === role &&
+          AnythingSGAuth.normalizeWallet(user.wallet) === wallet
+      );
+
+      if (!matched) {
+        setStatus(statusEl, "No matching account. Check email, role, and wallet.", true);
+        statusEl.hidden = false;
+        return;
+      }
+
+      AnythingSGAuth.saveSession({ email, role, wallet });
+      window.location.href = role === "seller" ? "/orders/new" : "/shop";
+    });
+  </script>
+</body>
+</html>

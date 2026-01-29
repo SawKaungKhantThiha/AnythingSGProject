@@ -20,6 +20,13 @@
         <a href="/orders/new">Create Order</a>
         <a href="/orders/manage">Order Actions</a>
       </div>
+      <div class="nav-actions">
+        <span id="navUserLabel" class="nav-user" data-auth="user" hidden></span>
+        <a href="/auth/login" data-auth="guest">Log in</a>
+        <a href="/auth/register" data-auth="guest">Register</a>
+        <a href="/auth/register?role=seller" id="registerSellerLink" data-role="buyer" hidden>Register as Seller</a>
+        <a href="#" id="logoutBtn" data-auth="user" hidden>Log out</a>
+      </div>
     </nav>
 
     <section class="hero">
@@ -60,6 +67,7 @@
     </section>
   </div>
   <script src="/js/shop-web3.js"></script>
+  <script src="/js/auth.js"></script>
   <script>
     const orderViewForm = document.getElementById("orderViewForm");
     const statusEl = document.getElementById("status");

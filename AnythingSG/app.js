@@ -47,6 +47,14 @@ app.get('/shop', async (req, res) => {
   }
 });
 
+app.get('/auth/login', (req, res) => {
+  res.render('auth_login');
+});
+
+app.get('/auth/register', (req, res) => {
+  res.render('auth_register');
+});
+
 
 app.get('/orders/new', (req, res) => {
   res.render('order_create', { acct: account });

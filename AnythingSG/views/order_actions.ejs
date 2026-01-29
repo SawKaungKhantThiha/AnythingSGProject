@@ -19,6 +19,13 @@
         <a href="/shop">Home</a>
         <a href="/orders/new">Create Order</a>
       </div>
+      <div class="nav-actions">
+        <span id="navUserLabel" class="nav-user" data-auth="user" hidden></span>
+        <a href="/auth/login" data-auth="guest">Log in</a>
+        <a href="/auth/register" data-auth="guest">Register</a>
+        <a href="/auth/register?role=seller" id="registerSellerLink" data-role="buyer" hidden>Register as Seller</a>
+        <a href="#" id="logoutBtn" data-auth="user" hidden>Log out</a>
+      </div>
     </nav>
 
     <section class="hero">
@@ -79,6 +86,7 @@
     <div id="status" class="status-block"></div>
   </div>
   <script src="/js/shop-web3.js"></script>
+  <script src="/js/auth.js"></script>
   <script>
     const statusEl = document.getElementById("status");
     const setCourierForm = document.getElementById("setCourierForm");

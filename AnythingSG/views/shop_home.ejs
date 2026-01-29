@@ -45,6 +45,13 @@
         <a href="/orders/new">Create Order</a>
         <a href="/orders/manage">Order Actions</a>
       </div>
+      <div class="nav-actions">
+        <span id="navUserLabel" class="nav-user" data-auth="user" hidden></span>
+        <a href="/auth/login" data-auth="guest">Log in</a>
+        <a href="/auth/register" data-auth="guest">Register</a>
+        <a href="/auth/register?role=seller" id="registerSellerLink" data-role="buyer" hidden>Register as Seller</a>
+        <a href="#" id="logoutBtn" data-auth="user" hidden>Log out</a>
+      </div>
     </nav>
 
     <section class="hero">
@@ -53,8 +60,8 @@
         <h1>Buy with escrow, track delivery on-chain.</h1>
         <p>AnythingSG blends marketplace shopping with smart contracts: escrow protects buyers and sellers, while delivery tracking updates order status in real time.</p>
         <div class="hero-actions">
-          <a class="btn" href="/escrow/new">Pay with Escrow</a>
-          <a class="btn secondary" href="/delivery/track">Track Delivery</a>
+          <a class="btn" href="/escrow/new" data-requires-login="true">Pay with Escrow</a>
+          <a class="btn secondary" href="/delivery/track" data-requires-login="true">Track Delivery</a>
         </div>
       </div>
       <div class="hero-card wallet-panel">
@@ -74,6 +81,7 @@
         <button class="btn" id="connectWallet" type="button">Connect MetaMask</button>
       </div>
     </section>
+    <div id="loginPrompt" class="status-block error" hidden></div>
 
     <section class="market-section">
       <div class="section-head">
@@ -81,7 +89,7 @@
           <h2>Featured listings</h2>
           <p>Each purchase uses escrow and can be tracked with a delivery status update.</p>
         </div>
-        <a class="btn secondary" href="/orders/new">Seller: Create Listing</a>
+        <a class="btn secondary" href="/orders/new" data-role="seller" hidden>Seller: Create Listing</a>
       </div>
       <div class="product-grid">
         <% products.forEach((product) => { %>
@@ -98,8 +106,8 @@
                 <span class="rating">5-star</span>
               </div>
               <div class="action-row">
-                <a class="btn" href="/escrow/new">Buy with Escrow</a>
-                <a class="ghost-link" href="/delivery/track">Track Delivery</a>
+                <a class="btn" href="/escrow/new" data-requires-login="true">Buy with Escrow</a>
+                <a class="ghost-link" href="/delivery/track" data-requires-login="true">Track Delivery</a>
               </div>
             </div>
           </article>
@@ -108,26 +116,28 @@
     </section>
 
     <section class="cards">
-      <a class="card" href="/delivery/track">
+      <a class="card" href="/delivery/track" data-requires-login="true">
         <h3>Delivery Tracking</h3>
         <p>Read order details and update courier/shipping status.</p>
       </a>
-      <a class="card" href="/escrow/new">
+      <a class="card" href="/escrow/new" data-requires-login="true">
         <h3>Escrow Checkout</h3>
         <p>Lock ETH for a buyer purchase in OnlineStoreDisputes.</p>
       </a>
-      <a class="card" href="/orders/manage">
+      <a class="card" href="/orders/manage" data-requires-login="true">
         <h3>Order Actions</h3>
         <p>Seller or courier confirms shipped and delivered.</p>
       </a>
     </section>
   </div>
   <script src="/js/shop-web3.js"></script>
+  <script src="/js/auth.js"></script>
   <script>
     const connectBtn = document.getElementById("connectWallet");
     const walletAccount = document.getElementById("walletAccount");
     const walletBalance = document.getElementById("walletBalance");
     const walletNetwork = document.getElementById("walletNetwork");
+    const loginPrompt = document.getElementById("loginPrompt");
 
     async function loadWallet() {
       try {
@@ -147,6 +157,8 @@
     connectBtn.addEventListener("click", async () => {
       await loadWallet();
     });
+
+    AnythingSGAuth.guardRequiresLogin('[data-requires-login="true"]', loginPrompt);
   </script>
 </body>
 </html>

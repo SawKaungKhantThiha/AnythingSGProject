@@ -82,12 +82,51 @@ a {
   font-size: 0.95rem;
 }
 
+.nav-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
 .nav-links a {
   position: relative;
+  display: inline-flex;
+  align-items: center;
   padding: 6px 10px;
+  min-height: 34px;
   border-radius: 999px;
   background: rgba(17, 24, 39, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.nav-actions a {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  min-height: 34px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(27, 26, 23, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-actions a:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.12);
+}
+
+.nav-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(183, 240, 210, 0.5);
+  border: 1px solid rgba(13, 59, 46, 0.15);
+  font-weight: 600;
+  font-size: 0.85rem;
 }
 
 .nav-links a:hover {
@@ -307,6 +346,55 @@ a {
   box-shadow: 0 30px 70px rgba(27, 26, 23, 0.18);
   position: relative;
   overflow: hidden;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 50;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 22px;
+  border: 1px solid var(--stroke);
+  box-shadow: 0 30px 70px rgba(17, 24, 39, 0.25);
+  max-width: 520px;
+  width: 100%;
+  display: grid;
+  gap: 12px;
+}
+
+.modal h3 {
+  margin: 0;
+  font-family: "Fraunces", serif;
+}
+
+.modal p {
+  margin: 0;
+  color: var(--graphite);
+  line-height: 1.5;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .form-panel::before {
