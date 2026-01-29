@@ -23,9 +23,17 @@ async function getWeb3() {
 }
 
 async function loadContract(contractName) {
-  const response = await fetch(`/build/${contractName}.json`);
+  const artifactUrl = new URL(`/build/${contractName}.json`, window.location.origin);
+  let response;
+  try {
+    response = await fetch(artifactUrl);
+  } catch (error) {
+    throw new Error(
+      `Failed to fetch contract artifact at ${artifactUrl}. Make sure the AnythingSG server is running and /build is accessible.`
+    );
+  }
   if (!response.ok) {
-    throw new Error(`Missing build artifact for ${contractName}`);
+    throw new Error(`Missing build artifact for ${contractName} at ${artifactUrl}`);
   }
   const data = await response.json();
   const web3 = await getWeb3();

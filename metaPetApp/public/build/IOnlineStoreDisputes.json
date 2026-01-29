@@ -1,0 +1,1174 @@
+{
+  "contractName": "IOnlineStoreDisputes",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "orderId",
+          "type": "uint256"
+        }
+      ],
+      "name": "orders",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "buyer",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum IOnlineStoreDisputes.OrderStatus",
+          "name": "status",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bool",
+          "name": "payoutDone",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"orderId\",\"type\":\"uint256\"}],\"name\":\"orders\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"buyer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"seller\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"enum IOnlineStoreDisputes.OrderStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"payoutDone\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/View_Function.sol\":\"IOnlineStoreDisputes\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/View_Function.sol\":{\"keccak256\":\"0xe08a2c9f394be4749b88e32c975696e9b9a06dcf851a3d8713d1ab9ed91a6af4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a93b13b0a5f37236b7b409f58badb3cdeae1a3aae561c41fcffdcec194caec8a\",\"dweb:/ipfs/QmVJ7oysDT9magUwJaUtgKpVJj7ag1aHayHKRvwnk9AKdk\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.19;\n\n/*\nI declare that this code was written by me.\nI will not copy or allow others to copy my code.\nI understand that copying code is considered as plagiarism.\n\nStudent Name: Arut\nStudent ID: 24027003\nClass: C372-003\nDate created: 16/01/2026\n*/\n\ninterface IOnlineStoreDisputes {\n    enum OrderStatus {\n        None,\n        Paid,\n        Disputed,\n        Resolved\n    }\n\n    function orders(uint256 orderId)\n        external\n        view\n        returns (\n            address buyer,\n            address seller,\n            uint256 amount,\n            OrderStatus status,\n            bool payoutDone\n        );\n}\n\ncontract EscrowView {\n\n    IOnlineStoreDisputes public disputes;\n\n    constructor(address disputesAddress) {\n        require(disputesAddress != address(0), \"Invalid disputes address\");\n        disputes = IOnlineStoreDisputes(disputesAddress);\n    }\n\n    // ---------------------------------\n    // VIEW (READ-ONLY) FUNCTIONS\n    // ---------------------------------\n\n    // Returns current order status\n    function getOrderStatus(uint256 orderId)\n        external\n        view\n        returns (IOnlineStoreDisputes.OrderStatus)\n    {\n        (, , , IOnlineStoreDisputes.OrderStatus status, ) = disputes.orders(orderId);\n        return status;\n    }\n\n    // Returns escrowed USDC amount for the order\n    function getEscrowAmount(uint256 orderId)\n        external\n        view\n        returns (uint256)\n    {\n        (, , uint256 amount, , ) = disputes.orders(orderId);\n        return amount;\n    }\n}\n",
+  "sourcePath": "C:\\republic polytechnic\\A2025 semester 2\\C373 Distributed Ledger Technology Solutioning\\FA\\Testing\\AnythingSGProject-main\\contracts\\View_Function.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/View_Function.sol",
+    "exportedSymbols": {
+      "EscrowView": [
+        1767
+      ],
+      "IOnlineStoreDisputes": [
+        1703
+      ]
+    },
+    "id": 1768,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1681,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".19"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:24:6"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IOnlineStoreDisputes",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 1703,
+        "linearizedBaseContracts": [
+          1703
+        ],
+        "name": "IOnlineStoreDisputes",
+        "nameLocation": "310:20:6",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IOnlineStoreDisputes.OrderStatus",
+            "id": 1686,
+            "members": [
+              {
+                "id": 1682,
+                "name": "None",
+                "nameLocation": "364:4:6",
+                "nodeType": "EnumValue",
+                "src": "364:4:6"
+              },
+              {
+                "id": 1683,
+                "name": "Paid",
+                "nameLocation": "378:4:6",
+                "nodeType": "EnumValue",
+                "src": "378:4:6"
+              },
+              {
+                "id": 1684,
+                "name": "Disputed",
+                "nameLocation": "392:8:6",
+                "nodeType": "EnumValue",
+                "src": "392:8:6"
+              },
+              {
+                "id": 1685,
+                "name": "Resolved",
+                "nameLocation": "410:8:6",
+                "nodeType": "EnumValue",
+                "src": "410:8:6"
+              }
+            ],
+            "name": "OrderStatus",
+            "nameLocation": "342:11:6",
+            "nodeType": "EnumDefinition",
+            "src": "337:87:6"
+          },
+          {
+            "functionSelector": "a85c38ef",
+            "id": 1702,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "orders",
+            "nameLocation": "439:6:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1689,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1688,
+                  "mutability": "mutable",
+                  "name": "orderId",
+                  "nameLocation": "454:7:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1702,
+                  "src": "446:15:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1687,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "446:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "445:17:6"
+            },
+            "returnParameters": {
+              "id": 1701,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1691,
+                  "mutability": "mutable",
+                  "name": "buyer",
+                  "nameLocation": "531:5:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1702,
+                  "src": "523:13:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1690,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "523:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1693,
+                  "mutability": "mutable",
+                  "name": "seller",
+                  "nameLocation": "558:6:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1702,
+                  "src": "550:14:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1692,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "550:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1695,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "586:6:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1702,
+                  "src": "578:14:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1694,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "578:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1698,
+                  "mutability": "mutable",
+                  "name": "status",
+                  "nameLocation": "618:6:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1702,
+                  "src": "606:18:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_OrderStatus_$1686",
+                    "typeString": "enum IOnlineStoreDisputes.OrderStatus"
+                  },
+                  "typeName": {
+                    "id": 1697,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1696,
+                      "name": "OrderStatus",
+                      "nameLocations": [
+                        "606:11:6"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1686,
+                      "src": "606:11:6"
+                    },
+                    "referencedDeclaration": 1686,
+                    "src": "606:11:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_OrderStatus_$1686",
+                      "typeString": "enum IOnlineStoreDisputes.OrderStatus"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1700,
+                  "mutability": "mutable",
+                  "name": "payoutDone",
+                  "nameLocation": "643:10:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1702,
+                  "src": "638:15:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1699,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "638:4:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "509:154:6"
+            },
+            "scope": 1703,
+            "src": "430:234:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1768,
+        "src": "300:366:6",
+        "usedErrors": []
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "EscrowView",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 1767,
+        "linearizedBaseContracts": [
+          1767
+        ],
+        "name": "EscrowView",
+        "nameLocation": "677:10:6",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "d4c5b252",
+            "id": 1706,
+            "mutability": "mutable",
+            "name": "disputes",
+            "nameLocation": "723:8:6",
+            "nodeType": "VariableDeclaration",
+            "scope": 1767,
+            "src": "695:36:6",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_IOnlineStoreDisputes_$1703",
+              "typeString": "contract IOnlineStoreDisputes"
+            },
+            "typeName": {
+              "id": 1705,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 1704,
+                "name": "IOnlineStoreDisputes",
+                "nameLocations": [
+                  "695:20:6"
+                ],
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 1703,
+                "src": "695:20:6"
+              },
+              "referencedDeclaration": 1703,
+              "src": "695:20:6",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IOnlineStoreDisputes_$1703",
+                "typeString": "contract IOnlineStoreDisputes"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1727,
+              "nodeType": "Block",
+              "src": "775:141:6",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 1717,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 1712,
+                          "name": "disputesAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1708,
+                          "src": "793:15:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "hexValue": "30",
+                              "id": 1715,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "820:1:6",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 1714,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "812:7:6",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 1713,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "812:7:6",
+                              "typeDescriptions": {}
+                            }
+                          },
+                          "id": 1716,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "812:10:6",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "793:29:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "496e76616c69642064697370757465732061646472657373",
+                        "id": 1718,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "824:26:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_a5f812a3f4e5b20c4992a3afbf68c7188e3d08d52400412750f21848139229f5",
+                          "typeString": "literal_string \"Invalid disputes address\""
+                        },
+                        "value": "Invalid disputes address"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_a5f812a3f4e5b20c4992a3afbf68c7188e3d08d52400412750f21848139229f5",
+                          "typeString": "literal_string \"Invalid disputes address\""
+                        }
+                      ],
+                      "id": 1711,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "785:7:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 1719,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "785:66:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1720,
+                  "nodeType": "ExpressionStatement",
+                  "src": "785:66:6"
+                },
+                {
+                  "expression": {
+                    "id": 1725,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 1721,
+                      "name": "disputes",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1706,
+                      "src": "861:8:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IOnlineStoreDisputes_$1703",
+                        "typeString": "contract IOnlineStoreDisputes"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 1723,
+                          "name": "disputesAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1708,
+                          "src": "893:15:6",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 1722,
+                        "name": "IOnlineStoreDisputes",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1703,
+                        "src": "872:20:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_IOnlineStoreDisputes_$1703_$",
+                          "typeString": "type(contract IOnlineStoreDisputes)"
+                        }
+                      },
+                      "id": 1724,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "872:37:6",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IOnlineStoreDisputes_$1703",
+                        "typeString": "contract IOnlineStoreDisputes"
+                      }
+                    },
+                    "src": "861:48:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IOnlineStoreDisputes_$1703",
+                      "typeString": "contract IOnlineStoreDisputes"
+                    }
+                  },
+                  "id": 1726,
+                  "nodeType": "ExpressionStatement",
+                  "src": "861:48:6"
+                }
+              ]
+            },
+            "id": 1728,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1709,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1708,
+                  "mutability": "mutable",
+                  "name": "disputesAddress",
+                  "nameLocation": "758:15:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1728,
+                  "src": "750:23:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1707,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "750:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "749:25:6"
+            },
+            "returnParameters": {
+              "id": 1710,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "775:0:6"
+            },
+            "scope": 1767,
+            "src": "738:178:6",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1748,
+              "nodeType": "Block",
+              "src": "1201:116:6",
+              "statements": [
+                {
+                  "assignments": [
+                    null,
+                    null,
+                    null,
+                    1740,
+                    null
+                  ],
+                  "declarations": [
+                    null,
+                    null,
+                    null,
+                    {
+                      "constant": false,
+                      "id": 1740,
+                      "mutability": "mutable",
+                      "name": "status",
+                      "nameLocation": "1251:6:6",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1748,
+                      "src": "1218:39:6",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_OrderStatus_$1686",
+                        "typeString": "enum IOnlineStoreDisputes.OrderStatus"
+                      },
+                      "typeName": {
+                        "id": 1739,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 1738,
+                          "name": "IOnlineStoreDisputes.OrderStatus",
+                          "nameLocations": [
+                            "1218:20:6",
+                            "1239:11:6"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 1686,
+                          "src": "1218:32:6"
+                        },
+                        "referencedDeclaration": 1686,
+                        "src": "1218:32:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_enum$_OrderStatus_$1686",
+                          "typeString": "enum IOnlineStoreDisputes.OrderStatus"
+                        }
+                      },
+                      "visibility": "internal"
+                    },
+                    null
+                  ],
+                  "id": 1745,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "id": 1743,
+                        "name": "orderId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1730,
+                        "src": "1279:7:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "id": 1741,
+                        "name": "disputes",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1706,
+                        "src": "1263:8:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IOnlineStoreDisputes_$1703",
+                          "typeString": "contract IOnlineStoreDisputes"
+                        }
+                      },
+                      "id": 1742,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1272:6:6",
+                      "memberName": "orders",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1702,
+                      "src": "1263:15:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$_t_uint256_$returns$_t_address_$_t_address_$_t_uint256_$_t_enum$_OrderStatus_$1686_$_t_bool_$",
+                        "typeString": "function (uint256) view external returns (address,address,uint256,enum IOnlineStoreDisputes.OrderStatus,bool)"
+                      }
+                    },
+                    "id": 1744,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1263:24:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_address_$_t_address_$_t_uint256_$_t_enum$_OrderStatus_$1686_$_t_bool_$",
+                      "typeString": "tuple(address,address,uint256,enum IOnlineStoreDisputes.OrderStatus,bool)"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1211:76:6"
+                },
+                {
+                  "expression": {
+                    "id": 1746,
+                    "name": "status",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 1740,
+                    "src": "1304:6:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_OrderStatus_$1686",
+                      "typeString": "enum IOnlineStoreDisputes.OrderStatus"
+                    }
+                  },
+                  "functionReturnParameters": 1735,
+                  "id": 1747,
+                  "nodeType": "Return",
+                  "src": "1297:13:6"
+                }
+              ]
+            },
+            "functionSelector": "45fa8aae",
+            "id": 1749,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getOrderStatus",
+            "nameLocation": "1084:14:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1731,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1730,
+                  "mutability": "mutable",
+                  "name": "orderId",
+                  "nameLocation": "1107:7:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1749,
+                  "src": "1099:15:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1729,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1099:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1098:17:6"
+            },
+            "returnParameters": {
+              "id": 1735,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1734,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1749,
+                  "src": "1163:32:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_OrderStatus_$1686",
+                    "typeString": "enum IOnlineStoreDisputes.OrderStatus"
+                  },
+                  "typeName": {
+                    "id": 1733,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1732,
+                      "name": "IOnlineStoreDisputes.OrderStatus",
+                      "nameLocations": [
+                        "1163:20:6",
+                        "1184:11:6"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1686,
+                      "src": "1163:32:6"
+                    },
+                    "referencedDeclaration": 1686,
+                    "src": "1163:32:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_OrderStatus_$1686",
+                      "typeString": "enum IOnlineStoreDisputes.OrderStatus"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1162:34:6"
+            },
+            "scope": 1767,
+            "src": "1075:242:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 1765,
+              "nodeType": "Block",
+              "src": "1475:91:6",
+              "statements": [
+                {
+                  "assignments": [
+                    null,
+                    null,
+                    1757,
+                    null,
+                    null
+                  ],
+                  "declarations": [
+                    null,
+                    null,
+                    {
+                      "constant": false,
+                      "id": 1757,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "nameLocation": "1498:6:6",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1765,
+                      "src": "1490:14:6",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 1756,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1490:7:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    },
+                    null,
+                    null
+                  ],
+                  "id": 1762,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "id": 1760,
+                        "name": "orderId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1751,
+                        "src": "1528:7:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "id": 1758,
+                        "name": "disputes",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1706,
+                        "src": "1512:8:6",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IOnlineStoreDisputes_$1703",
+                          "typeString": "contract IOnlineStoreDisputes"
+                        }
+                      },
+                      "id": 1759,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1521:6:6",
+                      "memberName": "orders",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1702,
+                      "src": "1512:15:6",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_view$_t_uint256_$returns$_t_address_$_t_address_$_t_uint256_$_t_enum$_OrderStatus_$1686_$_t_bool_$",
+                        "typeString": "function (uint256) view external returns (address,address,uint256,enum IOnlineStoreDisputes.OrderStatus,bool)"
+                      }
+                    },
+                    "id": 1761,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1512:24:6",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_address_$_t_address_$_t_uint256_$_t_enum$_OrderStatus_$1686_$_t_bool_$",
+                      "typeString": "tuple(address,address,uint256,enum IOnlineStoreDisputes.OrderStatus,bool)"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1485:51:6"
+                },
+                {
+                  "expression": {
+                    "id": 1763,
+                    "name": "amount",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 1757,
+                    "src": "1553:6:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1755,
+                  "id": 1764,
+                  "nodeType": "Return",
+                  "src": "1546:13:6"
+                }
+              ]
+            },
+            "functionSelector": "451ee191",
+            "id": 1766,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getEscrowAmount",
+            "nameLocation": "1382:15:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1752,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1751,
+                  "mutability": "mutable",
+                  "name": "orderId",
+                  "nameLocation": "1406:7:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1766,
+                  "src": "1398:15:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1750,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1398:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1397:17:6"
+            },
+            "returnParameters": {
+              "id": 1755,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1754,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1766,
+                  "src": "1462:7:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1753,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1462:7:6",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1461:9:6"
+            },
+            "scope": 1767,
+            "src": "1373:193:6",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1768,
+        "src": "668:900:6",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:1537:6"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2026-01-29T06:02:38.478Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

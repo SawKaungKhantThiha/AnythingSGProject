@@ -6,12 +6,10 @@ const app = express();
 app.set('view engine', 'ejs');
 //This line of code tells Express to serve static files (such as images, CSS, JavaScript files, or PDFs)
 //from the public directory
-app.use(express.static('public'))
-// Serve contract build artifacts from the metaPetApp build output
-app.use(
-  '/build',
-  express.static(path.join(__dirname, '..', 'metaPetApp', 'public', 'build'))
-);
+app.use(express.static(path.join(__dirname, 'public')));
+// Serve contract build artifacts from local public/build first, then metaPetApp build output
+app.use('/build', express.static(path.join(__dirname, 'public', 'build')));
+app.use('/build', express.static(path.join(__dirname, '..', 'metaPetApp', 'public', 'build')));
 //enable form processing
 app.use(express.urlencoded({
     extended: false
