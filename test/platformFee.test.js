@@ -149,3 +149,4 @@ contract("PlatformFee", (accounts) => {
     assert.equal(escrow.amount.toString(), toBN(activeAmount).toString());
   });
 });
+});
