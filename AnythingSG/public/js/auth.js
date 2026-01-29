@@ -21,7 +21,7 @@
 
   const loadSession = () => {
     try {
-      const raw = localStorage.getItem(SESSION_KEY);
+      const raw = sessionStorage.getItem(SESSION_KEY);
       return raw ? JSON.parse(raw) : null;
     } catch (error) {
       return null;
@@ -29,11 +29,11 @@
   };
 
   const saveSession = (session) => {
-    localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
   };
 
   const clearSession = () => {
-    localStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem(SESSION_KEY);
   };
 
   const truncateWallet = (wallet) => {
@@ -43,6 +43,7 @@
 
   const applyAuthUI = () => {
     const session = loadSession();
+    const users = loadUsers();
     document.querySelectorAll('[data-auth="guest"]').forEach((el) => {
       el.hidden = Boolean(session);
     });
@@ -67,10 +68,19 @@
       }
     }
 
-    const registerSellerLink = document.getElementById("registerSellerLink");
-    if (registerSellerLink && session && session.role === "buyer") {
-      const email = encodeURIComponent(session.email || "");
-      registerSellerLink.href = `/auth/register?role=seller&email=${email}`;
+    const switchRoleBtn = document.getElementById("switchRoleBtn");
+    if (switchRoleBtn) {
+      switchRoleBtn.hidden = !session;
+      if (session) {
+        const nextRole = session.role === "seller" ? "buyer" : "seller";
+        switchRoleBtn.textContent = `Switch to ${nextRole[0].toUpperCase()}${nextRole.slice(1)}`;
+        switchRoleBtn.addEventListener("click", (event) => {
+          event.preventDefault();
+          const updated = { ...session, role: nextRole };
+          saveSession(updated);
+          window.location.reload();
+        });
+      }
     }
 
     const logoutBtn = document.getElementById("logoutBtn");

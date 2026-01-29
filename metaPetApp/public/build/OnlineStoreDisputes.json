@@ -31736,12 +31736,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x9201D5d1d1B72C77f601a3eABb089de03A79b31c",
-      "transactionHash": "0x90f02a7f976ce371addd63951188e2e02bcb941cf10ffc4c6f328a246a51ffae"
+      "address": "0x82058b966f7df207c675a2c606f0327322749B55",
+      "transactionHash": "0x72d3cf751eb605ee4055e39a6b4faa184749ee197c1eeba4dadaaeabaf0be959"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2026-01-29T09:39:17.600Z",
+  "updatedAt": "2026-01-29T21:01:48.921Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

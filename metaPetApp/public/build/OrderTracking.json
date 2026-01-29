@@ -9799,12 +9799,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xBC9A644ddf5980F3f99242Eff145729717B5b634",
-      "transactionHash": "0x9e4768ee99459ad1a632dded5bb6096013d1d5e89411f847298fe6ee275ab2b5"
+      "address": "0x518E8fFf54d9b356D3bBF80C286B7DdbaeA938aF",
+      "transactionHash": "0xec95d9b435b557289f07efc821b114f2b586e7f4ed1659cef485c488e5f84608"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2026-01-29T09:39:17.624Z",
+  "updatedAt": "2026-01-29T21:01:48.955Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

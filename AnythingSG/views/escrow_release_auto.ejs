@@ -16,7 +16,7 @@
       <div class="nav-title">Complete Order</div>
       <div class="nav-links">
         <a href="/shop">Home</a>
-        <a href="/orders/new">Create Order</a>
+        <a href="/orders/new" data-role="seller" hidden>Create Order</a>
         <a href="/escrow/new">Escrow Checkout</a>
         <a href="/disputes/raise">Raise Dispute</a>
       </div>
@@ -24,8 +24,10 @@
         <span id="navUserLabel" class="nav-user" data-auth="user" hidden></span>
         <a href="/auth/login" data-auth="guest">Log in</a>
         <a href="/auth/register" data-auth="guest">Register</a>
-        <a href="/auth/register?role=seller" id="registerSellerLink" data-role="buyer" hidden>Register as Seller</a>
+
+        <a href="/auth/login?role=seller" id="switchSellerLink" data-role="buyer" hidden>Switch to Seller</a>
         <a href="#" id="logoutBtn" data-auth="user" hidden>Log out</a>
+
       </div>
     </nav>
 

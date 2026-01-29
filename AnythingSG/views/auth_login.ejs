@@ -18,15 +18,12 @@
         <a href="/shop">Marketplace</a>
         <a href="/escrow/new">Escrow Checkout</a>
         <a href="/delivery/track">Delivery Tracking</a>
-        <a href="/orders/new">Create Order</a>
+        <a href="/orders/new" data-role="seller" hidden>Create Order</a>
         <a href="/orders/manage">Order Actions</a>
       </div>
       <div class="nav-actions">
         <span id="navUserLabel" class="nav-user" data-auth="user" hidden></span>
-        <a href="/auth/login" data-auth="guest">Log in</a>
         <a href="/auth/register" data-auth="guest">Register</a>
-        <a href="/auth/register?role=seller" id="registerSellerLink" data-role="buyer" hidden>Register as Seller</a>
-        <a href="#" id="logoutBtn" data-auth="user" hidden>Log out</a>
       </div>
     </nav>
 
@@ -34,7 +31,7 @@
       <div>
         <span class="pill">Welcome back</span>
         <h1>Log in with your email and wallet.</h1>
-        <p>Match the email + MetaMask wallet you registered as buyer or seller.</p>
+        <p>Use the email + MetaMask wallet you registered. You can switch roles after signing in.</p>
       </div>
       <div class="hero-card">
         <div class="pill">Tip</div>
@@ -51,11 +48,8 @@
             <input id="email" name="email" type="email" placeholder="you@example.com" required>
           </div>
           <div class="input-group">
-            <label for="role">Role</label>
-            <select id="role" name="role" required>
-              <option value="buyer">Buyer</option>
-              <option value="seller">Seller</option>
-            </select>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Enter password" required>
           </div>
           <div class="input-group">
             <label for="wallet">Connected Wallet</label>
@@ -93,11 +87,11 @@
     loginForm.addEventListener("submit", (event) => {
       event.preventDefault();
       const email = AnythingSGAuth.normalizeEmail(loginForm.email.value);
-      const role = loginForm.role.value;
+      const password = (loginForm.password.value || "").trim();
       const wallet = AnythingSGAuth.normalizeWallet(walletField.value);
 
-      if (!email || !role || !wallet) {
-        setStatus(statusEl, "Please enter email, role, and connect MetaMask.", true);
+      if (!email || !password || !wallet) {
+        setStatus(statusEl, "Please enter email, password, and connect MetaMask.", true);
         statusEl.hidden = false;
         return;
       }
@@ -106,19 +100,25 @@
       const matched = users.find(
         (user) =>
           AnythingSGAuth.normalizeEmail(user.email) === email &&
-          user.role === role &&
+          user.password === password &&
           AnythingSGAuth.normalizeWallet(user.wallet) === wallet
       );
 
       if (!matched) {
-        setStatus(statusEl, "No matching account. Check email, role, and wallet.", true);
+        setStatus(statusEl, "No matching account. Check email, password, and wallet.", true);
         statusEl.hidden = false;
         return;
       }
 
-      AnythingSGAuth.saveSession({ email, role, wallet });
-      window.location.href = role === "seller" ? "/orders/new" : "/shop";
+      AnythingSGAuth.saveSession({ email, role: "buyer", wallet });
+      window.location.href = "/shop";
     });
+
+    const params = new URLSearchParams(window.location.search);
+    const emailParam = params.get("email");
+    if (emailParam) {
+      loginForm.email.value = emailParam;
+    }
   </script>
 </body>
 </html>

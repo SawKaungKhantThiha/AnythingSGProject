@@ -1915,12 +1915,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xAf0E203d7474bfB816De361bF8D5c62073e492FB",
-      "transactionHash": "0x3b4ad4dc0c7b6c11d88cdb599ff3fd4598a8a9f804468981fd3551f8dce7781e"
+      "address": "0xB2e5ca42263f4667fe90a2366ad79767C7227A40",
+      "transactionHash": "0x4dfa5b110f9a3cdadbdfb2a58dca20a4c12433434ccaa830a85d1e2d0b745e1f"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2026-01-29T09:39:17.618Z",
+  "updatedAt": "2026-01-29T21:01:48.944Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
