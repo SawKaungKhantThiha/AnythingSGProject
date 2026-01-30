@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Arbitrator Dashboard</title>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">Arbitrator Dashboard</div>
+      <div class="nav-links">
+        <a href="/shop">Marketplace</a>
+        <a href="/disputes/raise">Raise Dispute</a>
+        <a href="/disputes/resolve">Resolve Dispute</a>
+      </div>
+      <div class="nav-actions">
+        <span id="navUserLabel" class="nav-user" data-auth="user" hidden></span>
+        <a href="/auth/arbitrator" data-auth="guest">Arbitrator Login</a>
+        <a href="#" id="logoutBtn" data-auth="user" hidden>Log out</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">OnlineStoreDisputes.sol</span>
+        <h1>Approve or reject refunds</h1>
+        <p>Dispute status = Pending when an order is in Disputed state. Arbitrator approval executes the refund.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Wallet</div>
+        <p id="arbStatus">Connect MetaMask to verify arbitrator.</p>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Refund decision</h3>
+      <form id="refundForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="orderId">Order ID</label>
+            <input id="orderId" name="orderId" placeholder="Order ID" required>
+          </div>
+          <div class="input-group">
+            <label for="action">Action</label>
+            <select id="action" name="action" required>
+              <option value="" disabled selected>Select action</option>
+              <option value="approve">Approve Refund</option>
+              <option value="reject">Reject Refund (Release to Seller)</option>
+            </select>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn" type="submit">Submit Decision</button>
+          <button class="btn secondary" id="connectWallet" type="button">Connect MetaMask</button>
+        </div>
+      </form>
+      <div id="status" class="status-block"></div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Dispute details</h3>
+      <div class="form-grid">
+        <button class="btn secondary" id="loadDetails" type="button">Load Details</button>
+      </div>
+      <div id="details" class="status-block"></div>
+    </section>
+  </div>
+
+  <script src="/js/shop-web3.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    const statusEl = document.getElementById("status");
+    const detailsEl = document.getElementById("details");
+    const arbStatusEl = document.getElementById("arbStatus");
+    const connectWalletBtn = document.getElementById("connectWallet");
+    const refundForm = document.getElementById("refundForm");
+    const loadDetailsBtn = document.getElementById("loadDetails");
+
+    const orderStatusLabels = {
+      0: "None",
+      1: "Paid",
+      2: "Disputed (Pending)",
+      3: "Resolved"
+    };
+
+    const outcomeLabels = {
+      0: "None",
+      1: "RefundBuyer",
+      2: "ReleaseToSeller"
+    };
+
+    async function getArbContext() {
+      const account = await getAccount();
+      const contract = await loadContract("OnlineStoreDisputes");
+      const arbitrator = await contract.methods.arbitrator().call();
+      const isArb = account && arbitrator && account.toLowerCase() === arbitrator.toLowerCase();
+      arbStatusEl.textContent = isArb
+        ? `Arbitrator verified: ${account}`
+        : `Connected: ${account || "Not connected"} | Arbitrator: ${arbitrator || "Unknown"}`;
+      return { account, contract, arbitrator, isArb };
+    }
+
+    connectWalletBtn.addEventListener("click", async () => {
+      try {
+        await getArbContext();
+        setStatus(statusEl, "Wallet connected.", false);
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    refundForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        const orderId = refundForm.orderId.value.trim();
+        const action = refundForm.action.value.trim();
+        if (!orderId || !action) {
+          setStatus(statusEl, "Enter order ID and select an action.", true);
+          return;
+        }
+
+        const { account, contract, isArb } = await getArbContext();
+        if (!isArb) {
+          throw new Error("Connected wallet is not the arbitrator.");
+        }
+
+        setStatus(statusEl, "Submitting decision...", false);
+        if (action === "approve") {
+          await contract.methods.approveRefund(orderId).send({ from: account });
+          setStatus(statusEl, "Refund approved and executed.", false);
+        } else {
+          await contract.methods.rejectRefund(orderId).send({ from: account });
+          setStatus(statusEl, "Refund rejected. Funds released to seller.", false);
+        }
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    loadDetailsBtn.addEventListener("click", async () => {
+      try {
+        const orderId = refundForm.orderId.value.trim();
+        if (!orderId) {
+          setStatus(detailsEl, "Enter an order ID first.", true);
+          return;
+        }
+
+        const { contract } = await getArbContext();
+        const order = await contract.methods.orders(orderId).call();
+        const dispute = await contract.methods.disputes(orderId).call();
+
+        const lines = [
+          `Order status: ${orderStatusLabels[order.status] || order.status}`,
+          `Order buyer: ${order.buyer}`,
+          `Order seller: ${order.seller}`,
+          `Order amount (wei): ${order.amount}`,
+          `Dispute exists: ${dispute.exists}`,
+          `Dispute opened by: ${dispute.openedBy}`,
+          `Dispute reason: ${dispute.reason}`,
+          `Dispute outcome: ${outcomeLabels[dispute.outcome] || dispute.outcome}`
+        ];
+        detailsEl.className = "status-block success";
+        detailsEl.innerHTML = lines.map((line) => `<div>${line}</div>`).join("");
+      } catch (error) {
+        setStatus(detailsEl, error.message, true);
+      }
+    });
+  </script>
+</body>
+</html>

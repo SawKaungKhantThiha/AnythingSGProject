@@ -54,6 +54,12 @@ contract OnlineStoreDisputes is EscrowPayment {
         arbitrator = newArbitrator;
     }
 
+    // ADDED FOR ARBITRATOR / REFUND HISTORY
+    modifier onlyArbitrator() {
+        require(msg.sender == arbitrator, "Only arbitrator");
+        _;
+    }
+
     enum OrderStatus {
         None,
         Paid,
@@ -173,6 +179,16 @@ contract OnlineStoreDisputes is EscrowPayment {
         }
 
         emit DisputeResolved(orderId, outcome);
+    }
+
+    // ADDED FOR ARBITRATOR / REFUND HISTORY
+    function approveRefund(uint256 orderId) external onlyArbitrator {
+        resolveDispute(orderId, DisputeOutcome.RefundBuyer);
+    }
+
+    // ADDED FOR ARBITRATOR / REFUND HISTORY
+    function rejectRefund(uint256 orderId) external onlyArbitrator {
+        resolveDispute(orderId, DisputeOutcome.ReleaseToSeller);
     }
 
     // Buyer confirms successful delivery; releases escrow to seller.

@@ -55,6 +55,11 @@ app.get('/auth/register', (req, res) => {
   res.render('auth_register');
 });
 
+// ADDED FOR ARBITRATOR / REFUND HISTORY
+app.get('/auth/arbitrator', (req, res) => {
+  res.render('arbitrator_login');
+});
+
 
 app.get('/orders/new', (req, res) => {
   res.render('order_create', { acct: account });
@@ -82,6 +87,11 @@ app.get('/disputes/raise', (req, res) => {
 
 app.get('/disputes/resolve', (req, res) => {
   res.render('dispute_resolve');
+});
+
+// ADDED FOR ARBITRATOR / REFUND HISTORY
+app.get('/arbitrator/dashboard', (req, res) => {
+  res.render('arbitrator_dashboard');
 });
 
 app.get('/orders/view', (req, res) => {

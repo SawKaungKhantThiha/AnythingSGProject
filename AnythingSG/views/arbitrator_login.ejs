@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Arbitrator Login</title>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">AnythingSG Arbitrator</div>
+      <div class="nav-links">
+        <a href="/shop">Marketplace</a>
+        <a href="/disputes/raise">Raise Dispute</a>
+        <a href="/disputes/resolve">Resolve Dispute</a>
+      </div>
+      <div class="nav-actions">
+        <span id="navUserLabel" class="nav-user" data-auth="user" hidden></span>
+        <a href="/auth/login" data-auth="guest">Log in</a>
+        <a href="/auth/register" data-auth="guest">Register</a>
+        <a href="#" id="logoutBtn" data-auth="user" hidden>Log out</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">MetaMask</span>
+        <h1>Arbitrator login</h1>
+        <p>Connect the arbitrator wallet and verify it against the contract.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Ganache</div>
+        <p>Use account[0] for the arbitrator role.</p>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Verify arbitrator</h3>
+      <div class="form-grid">
+        <div class="input-group">
+          <label>Connected Wallet</label>
+          <input id="wallet" placeholder="Connect MetaMask" readonly>
+        </div>
+        <div class="input-group">
+          <label>Contract Arbitrator</label>
+          <input id="contractArb" placeholder="Load from contract" readonly>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <button class="btn secondary" id="connectWallet" type="button">Connect MetaMask</button>
+        <button class="btn" id="verifyArb" type="button">Verify & Continue</button>
+      </div>
+      <div id="status" class="status-block" hidden></div>
+    </section>
+  </div>
+
+  <script src="/js/shop-web3.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    const walletField = document.getElementById("wallet");
+    const contractArbField = document.getElementById("contractArb");
+    const connectWalletBtn = document.getElementById("connectWallet");
+    const verifyBtn = document.getElementById("verifyArb");
+    const statusEl = document.getElementById("status");
+
+    async function loadArbitratorAddress(contract) {
+      const arbitrator = await contract.methods.arbitrator().call();
+      contractArbField.value = arbitrator || "";
+      return arbitrator;
+    }
+
+    connectWalletBtn.addEventListener("click", async () => {
+      try {
+        const account = await getAccount();
+        walletField.value = account;
+        const contract = await loadContract("OnlineStoreDisputes");
+        await loadArbitratorAddress(contract);
+        statusEl.hidden = true;
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+        statusEl.hidden = false;
+      }
+    });
+
+    verifyBtn.addEventListener("click", async () => {
+      try {
+        setStatus(statusEl, "Verifying arbitrator...", false);
+        statusEl.hidden = false;
+        const account = await getAccount();
+        walletField.value = account;
+        const contract = await loadContract("OnlineStoreDisputes");
+        const arbitrator = await loadArbitratorAddress(contract);
+        if (!arbitrator) {
+          throw new Error("Arbitrator not set in contract.");
+        }
+        if (account.toLowerCase() !== arbitrator.toLowerCase()) {
+          throw new Error("Connected wallet is not the arbitrator.");
+        }
+
+        AnythingSGAuth.saveSession({
+          email: "arbitrator@local",
+          role: "arbitrator",
+          wallet: account
+        });
+        window.location.href = "/arbitrator/dashboard";
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+  </script>
+</body>
+</html>
