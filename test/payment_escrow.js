@@ -18,6 +18,12 @@ contract("Payment Escrow (OnlineStoreDisputes)", (accounts) => {
   const toBN = web3.utils.toBN;
   const toWei = web3.utils.toWei;
 
+  function getOrderIdFromTx(tx) {
+    const event = tx.logs.find((log) => log.event === "OrderCreated");
+    assert(event, "OrderCreated event not found");
+    return event.args.orderId;
+  }
+
   it("creates escrow on order creation with Locked status", async () => {
     const contract = await OnlineStoreDisputes.new({ from: deployer });
     const amount = toWei("1", "ether");
@@ -74,20 +80,10 @@ contract("Payment Escrow (OnlineStoreDisputes)", (accounts) => {
     const contract = await OnlineStoreDisputes.new({ from: deployer });
     await contract.setOrderTracking(orderTracking.address, { from: deployer });
 
-    const dummyAmount = toWei("0.1", "ether");
-    await contract.createOrder(seller, dummyAmount, {
-      from: buyer,
-      value: dummyAmount,
-    });
-
-    await orderTracking.createOrder(1, buyer, seller, { from: deployer });
-
     const amount = toWei("1", "ether");
-    const orderId = await contract.createOrder.call(seller, amount, {
-      from: buyer,
-      value: amount,
-    });
-    await contract.createOrder(seller, amount, { from: buyer, value: amount });
+    const tx = await contract.createOrder(seller, amount, { from: buyer, value: amount });
+    const orderId = getOrderIdFromTx(tx);
+    await orderTracking.createOrder(orderId, buyer, seller, { from: deployer });
 
     await contract.raiseDispute(orderId, "item not delivered", { from: seller });
     await expectRevert(
@@ -101,23 +97,14 @@ contract("Payment Escrow (OnlineStoreDisputes)", (accounts) => {
     const contract = await OnlineStoreDisputes.new({ from: deployer });
     await contract.setOrderTracking(orderTracking.address, { from: deployer });
 
-    const dummyAmount = toWei("0.1", "ether");
-    await contract.createOrder(seller, dummyAmount, {
-      from: buyer,
-      value: dummyAmount,
-    });
-
-    await orderTracking.createOrder(1, buyer, seller, { from: deployer });
-    await orderTracking.setCourier(1, courier, { from: seller });
-    await orderTracking.confirmShipped(1, { from: courier });
-    await orderTracking.confirmDelivery(1, { from: courier });
-
     const amount = toWei("1", "ether");
-    const orderId = await contract.createOrder.call(seller, amount, {
-      from: buyer,
-      value: amount,
-    });
-    await contract.createOrder(seller, amount, { from: buyer, value: amount });
+    const tx = await contract.createOrder(seller, amount, { from: buyer, value: amount });
+    const orderId = getOrderIdFromTx(tx);
+
+    await orderTracking.createOrder(orderId, buyer, seller, { from: deployer });
+    await orderTracking.setCourier(orderId, courier, { from: seller });
+    await orderTracking.confirmShipped(orderId, { from: courier });
+    await orderTracking.confirmDelivery(orderId, { from: courier });
 
     await contract.completeOrder(orderId, { from: buyer });
 

@@ -43,13 +43,10 @@ contract("PlatformFee", (accounts) => {
   it("platform fee is correctly deducted on successful escrow release", async () => {
     const { disputes, tracking } = await setupDisputesWithTracking(owner);
 
-    await disputes.createOrder(seller, 1, { from: buyer, value: 1 });
-
-    const orderId = 1;
-    await markDelivered(tracking, orderId, buyer, seller);
-
     const amount = web3.utils.toWei("1", "ether");
-    await disputes.createOrder(seller, amount, { from: buyer, value: amount });
+    const tx = await disputes.createOrder(seller, amount, { from: buyer, value: amount });
+    const orderId = getOrderIdFromTx(tx);
+    await markDelivered(tracking, orderId, buyer, seller);
 
     const feeBP = await disputes.platformFeeBP();
     const fee = toBN(amount).mul(toBN(feeBP)).div(toBN(10000));
@@ -105,13 +102,10 @@ contract("PlatformFee", (accounts) => {
   it("only platform owner can withdraw accumulated platform fees", async () => {
     const { disputes, tracking } = await setupDisputesWithTracking(owner);
 
-    await disputes.createOrder(seller, 1, { from: buyer, value: 1 });
-
-    const orderId = 1;
-    await markDelivered(tracking, orderId, buyer, seller);
-
     const amount = web3.utils.toWei("1", "ether");
-    await disputes.createOrder(seller, amount, { from: buyer, value: amount });
+    const tx = await disputes.createOrder(seller, amount, { from: buyer, value: amount });
+    const orderId = getOrderIdFromTx(tx);
+    await markDelivered(tracking, orderId, buyer, seller);
     await disputes.completeOrder(orderId, { from: buyer });
 
     await expectRevert(
@@ -127,12 +121,11 @@ contract("PlatformFee", (accounts) => {
     const activeTx = await disputes.createOrder(seller, activeAmount, { from: buyer, value: activeAmount });
     const activeOrderId = getOrderIdFromTx(activeTx);
 
-    const orderId = 1;
-    await markDelivered(tracking, orderId, buyer, seller);
-
     const releaseAmount = web3.utils.toWei("1", "ether");
-    await disputes.createOrder(seller, releaseAmount, { from: buyer, value: releaseAmount });
-    await disputes.completeOrder(orderId, { from: buyer });
+    const releaseTx = await disputes.createOrder(seller, releaseAmount, { from: buyer, value: releaseAmount });
+    const releaseOrderId = getOrderIdFromTx(releaseTx);
+    await markDelivered(tracking, releaseOrderId, buyer, seller);
+    await disputes.completeOrder(releaseOrderId, { from: buyer });
 
     const platformBalance = await disputes.platformBalance();
     assert(platformBalance.gt(toBN(0)), "Platform balance should be positive");
@@ -148,5 +141,4 @@ contract("PlatformFee", (accounts) => {
     assert.equal(escrow.status.toString(), "1");
     assert.equal(escrow.amount.toString(), toBN(activeAmount).toString());
   });
-});
 });
