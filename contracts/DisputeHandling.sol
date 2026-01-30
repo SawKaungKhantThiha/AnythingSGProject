@@ -128,7 +128,10 @@ contract OnlineStoreDisputes is EscrowPayment {
     function raiseDispute(uint256 orderId, string memory reason) public {
         Order storage order = orders[orderId];
 
-        require(order.status == OrderStatus.Paid, "Order not in a disputable state");
+        require(
+            order.status == OrderStatus.Paid || order.status == OrderStatus.Resolved,
+            "Order not in a disputable state"
+        );
         require(msg.sender == order.buyer || msg.sender == order.seller, "Not buyer or seller");
         require(disputes[orderId].exists == false, "Dispute already exists");
 
@@ -216,9 +219,10 @@ contract OnlineStoreDisputes is EscrowPayment {
 
         bool isParty = (user == order.buyer) || (user == order.seller);
         bool isPaid = (order.status == OrderStatus.Paid);
+        bool isResolved = (order.status == OrderStatus.Resolved);
         bool noDisputeYet = (disputes[orderId].exists == false);
 
-        return isParty && isPaid && noDisputeYet;
+        return isParty && (isPaid || isResolved) && noDisputeYet;
     }
 
     function _requireDelivered(uint256 orderId) internal view {

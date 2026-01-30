@@ -236,15 +236,15 @@
     "absolutePath": "project:/contracts/Payment_escrow.sol",
     "exportedSymbols": {
       "EscrowPayment": [
-        1516
+        1534
       ]
     },
-    "id": 1517,
+    "id": 1535,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1105,
+        "id": 1123,
         "literals": [
           "solidity",
           "^",
@@ -261,9 +261,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 1516,
+        "id": 1534,
         "linearizedBaseContracts": [
-          1516
+          1534
         ],
         "name": "EscrowPayment",
         "nameLocation": "340:13:4",
@@ -272,12 +272,12 @@
           {
             "constant": false,
             "functionSelector": "8da5cb5b",
-            "id": 1107,
+            "id": 1125,
             "mutability": "mutable",
             "name": "owner",
             "nameLocation": "384:5:4",
             "nodeType": "VariableDeclaration",
-            "scope": 1516,
+            "scope": 1534,
             "src": "361:28:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -286,7 +286,7 @@
               "typeString": "address payable"
             },
             "typeName": {
-              "id": 1106,
+              "id": 1124,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "361:15:4",
@@ -300,31 +300,31 @@
           },
           {
             "canonicalName": "EscrowPayment.EscrowStatus",
-            "id": 1112,
+            "id": 1130,
             "members": [
               {
-                "id": 1108,
+                "id": 1126,
                 "name": "None",
                 "nameLocation": "418:4:4",
                 "nodeType": "EnumValue",
                 "src": "418:4:4"
               },
               {
-                "id": 1109,
+                "id": 1127,
                 "name": "Locked",
                 "nameLocation": "424:6:4",
                 "nodeType": "EnumValue",
                 "src": "424:6:4"
               },
               {
-                "id": 1110,
+                "id": 1128,
                 "name": "Released",
                 "nameLocation": "432:8:4",
                 "nodeType": "EnumValue",
                 "src": "432:8:4"
               },
               {
-                "id": 1111,
+                "id": 1129,
                 "name": "Refunded",
                 "nameLocation": "442:8:4",
                 "nodeType": "EnumValue",
@@ -338,16 +338,16 @@
           },
           {
             "canonicalName": "EscrowPayment.Escrow",
-            "id": 1124,
+            "id": 1142,
             "members": [
               {
                 "constant": false,
-                "id": 1114,
+                "id": 1132,
                 "mutability": "mutable",
                 "name": "buyer",
                 "nameLocation": "493:5:4",
                 "nodeType": "VariableDeclaration",
-                "scope": 1124,
+                "scope": 1142,
                 "src": "485:13:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -356,7 +356,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 1113,
+                  "id": 1131,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "485:7:4",
@@ -370,12 +370,12 @@
               },
               {
                 "constant": false,
-                "id": 1116,
+                "id": 1134,
                 "mutability": "mutable",
                 "name": "seller",
                 "nameLocation": "517:6:4",
                 "nodeType": "VariableDeclaration",
-                "scope": 1124,
+                "scope": 1142,
                 "src": "509:14:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -384,7 +384,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 1115,
+                  "id": 1133,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "509:7:4",
@@ -398,12 +398,12 @@
               },
               {
                 "constant": false,
-                "id": 1118,
+                "id": 1136,
                 "mutability": "mutable",
                 "name": "amount",
                 "nameLocation": "542:6:4",
                 "nodeType": "VariableDeclaration",
-                "scope": 1124,
+                "scope": 1142,
                 "src": "534:14:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -412,7 +412,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 1117,
+                  "id": 1135,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "534:7:4",
@@ -425,12 +425,12 @@
               },
               {
                 "constant": false,
-                "id": 1120,
+                "id": 1138,
                 "mutability": "mutable",
                 "name": "feeBPAtLock",
                 "nameLocation": "567:11:4",
                 "nodeType": "VariableDeclaration",
-                "scope": 1124,
+                "scope": 1142,
                 "src": "559:19:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -439,7 +439,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 1119,
+                  "id": 1137,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "559:7:4",
@@ -452,36 +452,36 @@
               },
               {
                 "constant": false,
-                "id": 1123,
+                "id": 1141,
                 "mutability": "mutable",
                 "name": "status",
                 "nameLocation": "602:6:4",
                 "nodeType": "VariableDeclaration",
-                "scope": 1124,
+                "scope": 1142,
                 "src": "589:19:4",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                  "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                   "typeString": "enum EscrowPayment.EscrowStatus"
                 },
                 "typeName": {
-                  "id": 1122,
+                  "id": 1140,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 1121,
+                    "id": 1139,
                     "name": "EscrowStatus",
                     "nameLocations": [
                       "589:12:4"
                     ],
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 1112,
+                    "referencedDeclaration": 1130,
                     "src": "589:12:4"
                   },
-                  "referencedDeclaration": 1112,
+                  "referencedDeclaration": 1130,
                   "src": "589:12:4",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                    "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                     "typeString": "enum EscrowPayment.EscrowStatus"
                   }
                 },
@@ -491,30 +491,30 @@
             "name": "Escrow",
             "nameLocation": "467:6:4",
             "nodeType": "StructDefinition",
-            "scope": 1516,
+            "scope": 1534,
             "src": "460:156:4",
             "visibility": "public"
           },
           {
             "anonymous": false,
             "eventSelector": "e1d1943d19c4af2a9ffc56164a2ef2dfb33fffe65fbdb87f91aa85593a4ad588",
-            "id": 1134,
+            "id": 1152,
             "name": "PlatformFeeCollected",
             "nameLocation": "630:20:4",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1133,
+              "id": 1151,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1126,
+                  "id": 1144,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "orderId",
                   "nameLocation": "667:7:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1134,
+                  "scope": 1152,
                   "src": "651:23:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -523,7 +523,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1125,
+                    "id": 1143,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "651:7:4",
@@ -536,13 +536,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 1128,
+                  "id": 1146,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "feeAmount",
                   "nameLocation": "684:9:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1134,
+                  "scope": 1152,
                   "src": "676:17:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -551,7 +551,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1127,
+                    "id": 1145,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "676:7:4",
@@ -564,13 +564,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 1130,
+                  "id": 1148,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "orderAmount",
                   "nameLocation": "703:11:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1134,
+                  "scope": 1152,
                   "src": "695:19:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -579,7 +579,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1129,
+                    "id": 1147,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "695:7:4",
@@ -592,13 +592,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 1132,
+                  "id": 1150,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "seller",
                   "nameLocation": "732:6:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1134,
+                  "scope": 1152,
                   "src": "716:22:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -607,7 +607,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1131,
+                    "id": 1149,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "716:7:4",
@@ -627,23 +627,23 @@
           {
             "anonymous": false,
             "eventSelector": "d347e206f25a89b917fc9482f1a2d294d749baa4dc9bde7fb495ee11fe491643",
-            "id": 1140,
+            "id": 1158,
             "name": "PlatformFeeUpdated",
             "nameLocation": "752:18:4",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1139,
+              "id": 1157,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1136,
+                  "id": 1154,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "previousFeeBP",
                   "nameLocation": "779:13:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1140,
+                  "scope": 1158,
                   "src": "771:21:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -652,7 +652,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1135,
+                    "id": 1153,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "771:7:4",
@@ -665,13 +665,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 1138,
+                  "id": 1156,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "newFeeBP",
                   "nameLocation": "802:8:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1140,
+                  "scope": 1158,
                   "src": "794:16:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -680,7 +680,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1137,
+                    "id": 1155,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "794:7:4",
@@ -699,23 +699,23 @@
           {
             "anonymous": false,
             "eventSelector": "ccd267390035d6e18d565c4ae4c0583fe1a7eab17993787dbb83a61c03c6c19a",
-            "id": 1146,
+            "id": 1164,
             "name": "PlatformFeesWithdrawn",
             "nameLocation": "824:21:4",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1145,
+              "id": 1163,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1142,
+                  "id": 1160,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "amount",
                   "nameLocation": "854:6:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1146,
+                  "scope": 1164,
                   "src": "846:14:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -724,7 +724,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1141,
+                    "id": 1159,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "846:7:4",
@@ -737,13 +737,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 1144,
+                  "id": 1162,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "to",
                   "nameLocation": "878:2:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1146,
+                  "scope": 1164,
                   "src": "862:18:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -752,7 +752,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1143,
+                    "id": 1161,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "862:7:4",
@@ -772,25 +772,25 @@
           {
             "constant": false,
             "functionSelector": "012f52ee",
-            "id": 1151,
+            "id": 1169,
             "mutability": "mutable",
             "name": "escrows",
             "nameLocation": "1007:7:4",
             "nodeType": "VariableDeclaration",
-            "scope": 1516,
+            "scope": 1534,
             "src": "973:41:4",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1124_storage_$",
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1142_storage_$",
               "typeString": "mapping(uint256 => struct EscrowPayment.Escrow)"
             },
             "typeName": {
-              "id": 1150,
+              "id": 1168,
               "keyName": "",
               "keyNameLocation": "-1:-1:-1",
               "keyType": {
-                "id": 1147,
+                "id": 1165,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
                 "src": "981:7:4",
@@ -802,28 +802,28 @@
               "nodeType": "Mapping",
               "src": "973:26:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1124_storage_$",
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1142_storage_$",
                 "typeString": "mapping(uint256 => struct EscrowPayment.Escrow)"
               },
               "valueName": "",
               "valueNameLocation": "-1:-1:-1",
               "valueType": {
-                "id": 1149,
+                "id": 1167,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 1148,
+                  "id": 1166,
                   "name": "Escrow",
                   "nameLocations": [
                     "992:6:4"
                   ],
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1124,
+                  "referencedDeclaration": 1142,
                   "src": "992:6:4"
                 },
-                "referencedDeclaration": 1124,
+                "referencedDeclaration": 1142,
                 "src": "992:6:4",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                  "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                   "typeString": "struct EscrowPayment.Escrow"
                 }
               }
@@ -832,7 +832,7 @@
           },
           {
             "body": {
-              "id": 1162,
+              "id": 1180,
               "nodeType": "Block",
               "src": "1044:81:4",
               "statements": [
@@ -844,14 +844,14 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 1157,
+                        "id": 1175,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 1154,
+                            "id": 1172,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -862,7 +862,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 1155,
+                          "id": 1173,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -879,11 +879,11 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-                          "id": 1156,
+                          "id": 1174,
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1107,
+                          "referencedDeclaration": 1125,
                           "src": "1077:5:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address_payable",
@@ -898,7 +898,7 @@
                       },
                       {
                         "hexValue": "4e6f7420706c6174666f726d206f776e6572",
-                        "id": 1158,
+                        "id": 1176,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -924,7 +924,7 @@
                           "typeString": "literal_string \"Not platform owner\""
                         }
                       ],
-                      "id": 1153,
+                      "id": 1171,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -938,7 +938,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1159,
+                    "id": 1177,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -954,23 +954,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1160,
+                  "id": 1178,
                   "nodeType": "ExpressionStatement",
                   "src": "1055:50:4"
                 },
                 {
-                  "id": 1161,
+                  "id": 1179,
                   "nodeType": "PlaceholderStatement",
                   "src": "1116:1:4"
                 }
               ]
             },
-            "id": 1163,
+            "id": 1181,
             "name": "onlyOwner",
             "nameLocation": "1032:9:4",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1152,
+              "id": 1170,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1041:2:4"
@@ -981,23 +981,23 @@
           },
           {
             "body": {
-              "id": 1174,
+              "id": 1192,
               "nodeType": "Block",
               "src": "1147:46:4",
               "statements": [
                 {
                   "expression": {
-                    "id": 1172,
+                    "id": 1190,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 1166,
+                      "id": 1184,
                       "name": "owner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1107,
+                      "referencedDeclaration": 1125,
                       "src": "1158:5:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address_payable",
@@ -1010,7 +1010,7 @@
                       "arguments": [
                         {
                           "expression": {
-                            "id": 1169,
+                            "id": 1187,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -1021,7 +1021,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 1170,
+                          "id": 1188,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1043,7 +1043,7 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 1168,
+                        "id": 1186,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1055,7 +1055,7 @@
                           "typeString": "type(address payable)"
                         },
                         "typeName": {
-                          "id": 1167,
+                          "id": 1185,
                           "name": "address",
                           "nodeType": "ElementaryTypeName",
                           "src": "1166:8:4",
@@ -1063,7 +1063,7 @@
                           "typeDescriptions": {}
                         }
                       },
-                      "id": 1171,
+                      "id": 1189,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1085,13 +1085,13 @@
                       "typeString": "address payable"
                     }
                   },
-                  "id": 1173,
+                  "id": 1191,
                   "nodeType": "ExpressionStatement",
                   "src": "1158:27:4"
                 }
               ]
             },
-            "id": 1175,
+            "id": 1193,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -1099,18 +1099,18 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1164,
+              "id": 1182,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1144:2:4"
             },
             "returnParameters": {
-              "id": 1165,
+              "id": 1183,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1147:0:4"
             },
-            "scope": 1516,
+            "scope": 1534,
             "src": "1133:60:4",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1118,7 +1118,7 @@
           },
           {
             "body": {
-              "id": 1250,
+              "id": 1268,
               "nodeType": "Block",
               "src": "1336:705:4",
               "statements": [
@@ -1130,17 +1130,17 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 1192,
+                        "id": 1210,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
-                          "id": 1187,
+                          "id": 1205,
                           "name": "buyer",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1179,
+                          "referencedDeclaration": 1197,
                           "src": "1355:5:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -1153,7 +1153,7 @@
                           "arguments": [
                             {
                               "hexValue": "30",
-                              "id": 1190,
+                              "id": 1208,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -1175,7 +1175,7 @@
                                 "typeString": "int_const 0"
                               }
                             ],
-                            "id": 1189,
+                            "id": 1207,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1187,14 +1187,14 @@
                               "typeString": "type(address)"
                             },
                             "typeName": {
-                              "id": 1188,
+                              "id": 1206,
                               "name": "address",
                               "nodeType": "ElementaryTypeName",
                               "src": "1364:7:4",
                               "typeDescriptions": {}
                             }
                           },
-                          "id": 1191,
+                          "id": 1209,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1218,7 +1218,7 @@
                       },
                       {
                         "hexValue": "496e76616c69642062757965722061646472657373",
-                        "id": 1193,
+                        "id": 1211,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1244,7 +1244,7 @@
                           "typeString": "literal_string \"Invalid buyer address\""
                         }
                       ],
-                      "id": 1186,
+                      "id": 1204,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -1258,7 +1258,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1194,
+                    "id": 1212,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1274,7 +1274,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1195,
+                  "id": 1213,
                   "nodeType": "ExpressionStatement",
                   "src": "1347:53:4"
                 },
@@ -1286,17 +1286,17 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 1202,
+                        "id": 1220,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
-                          "id": 1197,
+                          "id": 1215,
                           "name": "seller",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1181,
+                          "referencedDeclaration": 1199,
                           "src": "1419:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -1309,7 +1309,7 @@
                           "arguments": [
                             {
                               "hexValue": "30",
-                              "id": 1200,
+                              "id": 1218,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -1331,7 +1331,7 @@
                                 "typeString": "int_const 0"
                               }
                             ],
-                            "id": 1199,
+                            "id": 1217,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1343,14 +1343,14 @@
                               "typeString": "type(address)"
                             },
                             "typeName": {
-                              "id": 1198,
+                              "id": 1216,
                               "name": "address",
                               "nodeType": "ElementaryTypeName",
                               "src": "1429:7:4",
                               "typeDescriptions": {}
                             }
                           },
-                          "id": 1201,
+                          "id": 1219,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1374,7 +1374,7 @@
                       },
                       {
                         "hexValue": "496e76616c69642073656c6c65722061646472657373",
-                        "id": 1203,
+                        "id": 1221,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1400,7 +1400,7 @@
                           "typeString": "literal_string \"Invalid seller address\""
                         }
                       ],
-                      "id": 1196,
+                      "id": 1214,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -1414,7 +1414,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1204,
+                    "id": 1222,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1430,7 +1430,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1205,
+                  "id": 1223,
                   "nodeType": "ExpressionStatement",
                   "src": "1411:55:4"
                 },
@@ -1442,17 +1442,17 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 1209,
+                        "id": 1227,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
-                          "id": 1207,
+                          "id": 1225,
                           "name": "amount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1183,
+                          "referencedDeclaration": 1201,
                           "src": "1485:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1463,7 +1463,7 @@
                         "operator": ">",
                         "rightExpression": {
                           "hexValue": "30",
-                          "id": 1208,
+                          "id": 1226,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1485,7 +1485,7 @@
                       },
                       {
                         "hexValue": "416d6f756e74206d7573742062652067726561746572207468616e2030",
-                        "id": 1210,
+                        "id": 1228,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1511,7 +1511,7 @@
                           "typeString": "literal_string \"Amount must be greater than 0\""
                         }
                       ],
-                      "id": 1206,
+                      "id": 1224,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -1525,7 +1525,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1211,
+                    "id": 1229,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1541,7 +1541,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1212,
+                  "id": 1230,
                   "nodeType": "ExpressionStatement",
                   "src": "1477:52:4"
                 },
@@ -1553,14 +1553,14 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 1217,
+                        "id": 1235,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 1214,
+                            "id": 1232,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -1571,7 +1571,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 1215,
+                          "id": 1233,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1588,11 +1588,11 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-                          "id": 1216,
+                          "id": 1234,
                           "name": "amount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1183,
+                          "referencedDeclaration": 1201,
                           "src": "1561:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1607,7 +1607,7 @@
                       },
                       {
                         "hexValue": "496e636f72726563742045544820616d6f756e74",
-                        "id": 1218,
+                        "id": 1236,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1633,7 +1633,7 @@
                           "typeString": "literal_string \"Incorrect ETH amount\""
                         }
                       ],
-                      "id": 1213,
+                      "id": 1231,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -1647,7 +1647,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1219,
+                    "id": 1237,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1663,74 +1663,74 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1220,
+                  "id": 1238,
                   "nodeType": "ExpressionStatement",
                   "src": "1540:52:4"
                 },
                 {
                   "assignments": [
-                    1223
+                    1241
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1223,
+                      "id": 1241,
                       "mutability": "mutable",
                       "name": "escrow",
                       "nameLocation": "1620:6:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1250,
+                      "scope": 1268,
                       "src": "1605:21:4",
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                        "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                         "typeString": "struct EscrowPayment.Escrow"
                       },
                       "typeName": {
-                        "id": 1222,
+                        "id": 1240,
                         "nodeType": "UserDefinedTypeName",
                         "pathNode": {
-                          "id": 1221,
+                          "id": 1239,
                           "name": "Escrow",
                           "nameLocations": [
                             "1605:6:4"
                           ],
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 1124,
+                          "referencedDeclaration": 1142,
                           "src": "1605:6:4"
                         },
-                        "referencedDeclaration": 1124,
+                        "referencedDeclaration": 1142,
                         "src": "1605:6:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                          "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                           "typeString": "struct EscrowPayment.Escrow"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1227,
+                  "id": 1245,
                   "initialValue": {
                     "baseExpression": {
-                      "id": 1224,
+                      "id": 1242,
                       "name": "escrows",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1151,
+                      "referencedDeclaration": 1169,
                       "src": "1629:7:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1124_storage_$",
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1142_storage_$",
                         "typeString": "mapping(uint256 => struct EscrowPayment.Escrow storage ref)"
                       }
                     },
-                    "id": 1226,
+                    "id": 1244,
                     "indexExpression": {
-                      "id": 1225,
+                      "id": 1243,
                       "name": "orderId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1177,
+                      "referencedDeclaration": 1195,
                       "src": "1637:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1744,7 +1744,7 @@
                     "nodeType": "IndexAccess",
                     "src": "1629:16:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Escrow_$1124_storage",
+                      "typeIdentifier": "t_struct$_Escrow_$1142_storage",
                       "typeString": "struct EscrowPayment.Escrow storage ref"
                     }
                   },
@@ -1756,28 +1756,28 @@
                     "arguments": [
                       {
                         "commonType": {
-                          "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                          "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                           "typeString": "enum EscrowPayment.EscrowStatus"
                         },
-                        "id": 1233,
+                        "id": 1251,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 1229,
+                            "id": 1247,
                             "name": "escrow",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1223,
+                            "referencedDeclaration": 1241,
                             "src": "1664:6:4",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                              "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                               "typeString": "struct EscrowPayment.Escrow storage pointer"
                             }
                           },
-                          "id": 1230,
+                          "id": 1248,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
@@ -1785,10 +1785,10 @@
                           "memberLocation": "1671:6:4",
                           "memberName": "status",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1123,
+                          "referencedDeclaration": 1141,
                           "src": "1664:13:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                            "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                             "typeString": "enum EscrowPayment.EscrowStatus"
                           }
                         },
@@ -1796,18 +1796,18 @@
                         "operator": "==",
                         "rightExpression": {
                           "expression": {
-                            "id": 1231,
+                            "id": 1249,
                             "name": "EscrowStatus",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1112,
+                            "referencedDeclaration": 1130,
                             "src": "1681:12:4",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_EscrowStatus_$1112_$",
+                              "typeIdentifier": "t_type$_t_enum$_EscrowStatus_$1130_$",
                               "typeString": "type(enum EscrowPayment.EscrowStatus)"
                             }
                           },
-                          "id": 1232,
+                          "id": 1250,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1815,10 +1815,10 @@
                           "memberLocation": "1694:4:4",
                           "memberName": "None",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1108,
+                          "referencedDeclaration": 1126,
                           "src": "1681:17:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                            "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                             "typeString": "enum EscrowPayment.EscrowStatus"
                           }
                         },
@@ -1830,7 +1830,7 @@
                       },
                       {
                         "hexValue": "457363726f7720616c726561647920657869737473",
-                        "id": 1234,
+                        "id": 1252,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1856,7 +1856,7 @@
                           "typeString": "literal_string \"Escrow already exists\""
                         }
                       ],
-                      "id": 1228,
+                      "id": 1246,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -1870,7 +1870,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1235,
+                    "id": 1253,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1886,37 +1886,37 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1236,
+                  "id": 1254,
                   "nodeType": "ExpressionStatement",
                   "src": "1656:68:4"
                 },
                 {
                   "expression": {
-                    "id": 1248,
+                    "id": 1266,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 1237,
+                        "id": 1255,
                         "name": "escrows",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1151,
+                        "referencedDeclaration": 1169,
                         "src": "1737:7:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1124_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1142_storage_$",
                           "typeString": "mapping(uint256 => struct EscrowPayment.Escrow storage ref)"
                         }
                       },
-                      "id": 1239,
+                      "id": 1257,
                       "indexExpression": {
-                        "id": 1238,
+                        "id": 1256,
                         "name": "orderId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1177,
+                        "referencedDeclaration": 1195,
                         "src": "1745:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1930,7 +1930,7 @@
                       "nodeType": "IndexAccess",
                       "src": "1737:16:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Escrow_$1124_storage",
+                        "typeIdentifier": "t_struct$_Escrow_$1142_storage",
                         "typeString": "struct EscrowPayment.Escrow storage ref"
                       }
                     },
@@ -1939,11 +1939,11 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 1241,
+                          "id": 1259,
                           "name": "buyer",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1179,
+                          "referencedDeclaration": 1197,
                           "src": "1785:5:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -1951,11 +1951,11 @@
                           }
                         },
                         {
-                          "id": 1242,
+                          "id": 1260,
                           "name": "seller",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1181,
+                          "referencedDeclaration": 1199,
                           "src": "1813:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -1963,11 +1963,11 @@
                           }
                         },
                         {
-                          "id": 1243,
+                          "id": 1261,
                           "name": "amount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1183,
+                          "referencedDeclaration": 1201,
                           "src": "1842:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1975,11 +1975,11 @@
                           }
                         },
                         {
-                          "id": 1244,
+                          "id": 1262,
                           "name": "platformFeeBP",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1430,
+                          "referencedDeclaration": 1448,
                           "src": "1966:13:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1988,18 +1988,18 @@
                         },
                         {
                           "expression": {
-                            "id": 1245,
+                            "id": 1263,
                             "name": "EscrowStatus",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1112,
+                            "referencedDeclaration": 1130,
                             "src": "2002:12:4",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_EscrowStatus_$1112_$",
+                              "typeIdentifier": "t_type$_t_enum$_EscrowStatus_$1130_$",
                               "typeString": "type(enum EscrowPayment.EscrowStatus)"
                             }
                           },
-                          "id": 1246,
+                          "id": 1264,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -2007,10 +2007,10 @@
                           "memberLocation": "2015:6:4",
                           "memberName": "Locked",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1109,
+                          "referencedDeclaration": 1127,
                           "src": "2002:19:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                            "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                             "typeString": "enum EscrowPayment.EscrowStatus"
                           }
                         }
@@ -2034,22 +2034,22 @@
                             "typeString": "uint256"
                           },
                           {
-                            "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                            "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                             "typeString": "enum EscrowPayment.EscrowStatus"
                           }
                         ],
-                        "id": 1240,
+                        "id": 1258,
                         "name": "Escrow",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1124,
+                        "referencedDeclaration": 1142,
                         "src": "1756:6:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_Escrow_$1124_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_Escrow_$1142_storage_ptr_$",
                           "typeString": "type(struct EscrowPayment.Escrow storage pointer)"
                         }
                       },
-                      "id": 1247,
+                      "id": 1265,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -2073,23 +2073,23 @@
                       "src": "1756:277:4",
                       "tryCall": false,
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Escrow_$1124_memory_ptr",
+                        "typeIdentifier": "t_struct$_Escrow_$1142_memory_ptr",
                         "typeString": "struct EscrowPayment.Escrow memory"
                       }
                     },
                     "src": "1737:296:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Escrow_$1124_storage",
+                      "typeIdentifier": "t_struct$_Escrow_$1142_storage",
                       "typeString": "struct EscrowPayment.Escrow storage ref"
                     }
                   },
-                  "id": 1249,
+                  "id": 1267,
                   "nodeType": "ExpressionStatement",
                   "src": "1737:296:4"
                 }
               ]
             },
-            "id": 1251,
+            "id": 1269,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -2097,17 +2097,17 @@
             "nameLocation": "1251:11:4",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1184,
+              "id": 1202,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1177,
+                  "id": 1195,
                   "mutability": "mutable",
                   "name": "orderId",
                   "nameLocation": "1271:7:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1251,
+                  "scope": 1269,
                   "src": "1263:15:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2116,7 +2116,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1176,
+                    "id": 1194,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1263:7:4",
@@ -2129,12 +2129,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1179,
+                  "id": 1197,
                   "mutability": "mutable",
                   "name": "buyer",
                   "nameLocation": "1288:5:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1251,
+                  "scope": 1269,
                   "src": "1280:13:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2143,7 +2143,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1178,
+                    "id": 1196,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1280:7:4",
@@ -2157,12 +2157,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1181,
+                  "id": 1199,
                   "mutability": "mutable",
                   "name": "seller",
                   "nameLocation": "1303:6:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1251,
+                  "scope": 1269,
                   "src": "1295:14:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2171,7 +2171,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1180,
+                    "id": 1198,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1295:7:4",
@@ -2185,12 +2185,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1183,
+                  "id": 1201,
                   "mutability": "mutable",
                   "name": "amount",
                   "nameLocation": "1319:6:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1251,
+                  "scope": 1269,
                   "src": "1311:14:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2199,7 +2199,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1182,
+                    "id": 1200,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1311:7:4",
@@ -2214,12 +2214,12 @@
               "src": "1262:64:4"
             },
             "returnParameters": {
-              "id": 1185,
+              "id": 1203,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1336:0:4"
             },
-            "scope": 1516,
+            "scope": 1534,
             "src": "1242:799:4",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -2227,74 +2227,74 @@
           },
           {
             "body": {
-              "id": 1346,
+              "id": 1364,
               "nodeType": "Block",
               "src": "2151:971:4",
               "statements": [
                 {
                   "assignments": [
-                    1258
+                    1276
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1258,
+                      "id": 1276,
                       "mutability": "mutable",
                       "name": "escrow",
                       "nameLocation": "2177:6:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1346,
+                      "scope": 1364,
                       "src": "2162:21:4",
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                        "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                         "typeString": "struct EscrowPayment.Escrow"
                       },
                       "typeName": {
-                        "id": 1257,
+                        "id": 1275,
                         "nodeType": "UserDefinedTypeName",
                         "pathNode": {
-                          "id": 1256,
+                          "id": 1274,
                           "name": "Escrow",
                           "nameLocations": [
                             "2162:6:4"
                           ],
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 1124,
+                          "referencedDeclaration": 1142,
                           "src": "2162:6:4"
                         },
-                        "referencedDeclaration": 1124,
+                        "referencedDeclaration": 1142,
                         "src": "2162:6:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                          "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                           "typeString": "struct EscrowPayment.Escrow"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1262,
+                  "id": 1280,
                   "initialValue": {
                     "baseExpression": {
-                      "id": 1259,
+                      "id": 1277,
                       "name": "escrows",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1151,
+                      "referencedDeclaration": 1169,
                       "src": "2186:7:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1124_storage_$",
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1142_storage_$",
                         "typeString": "mapping(uint256 => struct EscrowPayment.Escrow storage ref)"
                       }
                     },
-                    "id": 1261,
+                    "id": 1279,
                     "indexExpression": {
-                      "id": 1260,
+                      "id": 1278,
                       "name": "orderId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1253,
+                      "referencedDeclaration": 1271,
                       "src": "2194:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2308,7 +2308,7 @@
                     "nodeType": "IndexAccess",
                     "src": "2186:16:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Escrow_$1124_storage",
+                      "typeIdentifier": "t_struct$_Escrow_$1142_storage",
                       "typeString": "struct EscrowPayment.Escrow storage ref"
                     }
                   },
@@ -2320,28 +2320,28 @@
                     "arguments": [
                       {
                         "commonType": {
-                          "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                          "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                           "typeString": "enum EscrowPayment.EscrowStatus"
                         },
-                        "id": 1268,
+                        "id": 1286,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 1264,
+                            "id": 1282,
                             "name": "escrow",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1258,
+                            "referencedDeclaration": 1276,
                             "src": "2221:6:4",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                              "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                               "typeString": "struct EscrowPayment.Escrow storage pointer"
                             }
                           },
-                          "id": 1265,
+                          "id": 1283,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
@@ -2349,10 +2349,10 @@
                           "memberLocation": "2228:6:4",
                           "memberName": "status",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1123,
+                          "referencedDeclaration": 1141,
                           "src": "2221:13:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                            "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                             "typeString": "enum EscrowPayment.EscrowStatus"
                           }
                         },
@@ -2360,18 +2360,18 @@
                         "operator": "==",
                         "rightExpression": {
                           "expression": {
-                            "id": 1266,
+                            "id": 1284,
                             "name": "EscrowStatus",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1112,
+                            "referencedDeclaration": 1130,
                             "src": "2238:12:4",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_EscrowStatus_$1112_$",
+                              "typeIdentifier": "t_type$_t_enum$_EscrowStatus_$1130_$",
                               "typeString": "type(enum EscrowPayment.EscrowStatus)"
                             }
                           },
-                          "id": 1267,
+                          "id": 1285,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -2379,10 +2379,10 @@
                           "memberLocation": "2251:6:4",
                           "memberName": "Locked",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1109,
+                          "referencedDeclaration": 1127,
                           "src": "2238:19:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                            "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                             "typeString": "enum EscrowPayment.EscrowStatus"
                           }
                         },
@@ -2394,7 +2394,7 @@
                       },
                       {
                         "hexValue": "457363726f77206e6f74206c6f636b6564",
-                        "id": 1269,
+                        "id": 1287,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2420,7 +2420,7 @@
                           "typeString": "literal_string \"Escrow not locked\""
                         }
                       ],
-                      "id": 1263,
+                      "id": 1281,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -2434,7 +2434,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1270,
+                    "id": 1288,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2450,23 +2450,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1271,
+                  "id": 1289,
                   "nodeType": "ExpressionStatement",
                   "src": "2213:66:4"
                 },
                 {
                   "assignments": [
-                    1273
+                    1291
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1273,
+                      "id": 1291,
                       "mutability": "mutable",
                       "name": "fee",
                       "nameLocation": "2576:3:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1346,
+                      "scope": 1364,
                       "src": "2568:11:4",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -2475,7 +2475,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 1272,
+                        "id": 1290,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
                         "src": "2568:7:4",
@@ -2487,13 +2487,13 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1282,
+                  "id": 1300,
                   "initialValue": {
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1281,
+                    "id": 1299,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2505,25 +2505,25 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 1278,
+                          "id": 1296,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
                             "expression": {
-                              "id": 1274,
+                              "id": 1292,
                               "name": "escrow",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1258,
+                              "referencedDeclaration": 1276,
                               "src": "2583:6:4",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                                "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                                 "typeString": "struct EscrowPayment.Escrow storage pointer"
                               }
                             },
-                            "id": 1275,
+                            "id": 1293,
                             "isConstant": false,
                             "isLValue": true,
                             "isPure": false,
@@ -2531,7 +2531,7 @@
                             "memberLocation": "2590:6:4",
                             "memberName": "amount",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1118,
+                            "referencedDeclaration": 1136,
                             "src": "2583:13:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -2542,18 +2542,18 @@
                           "operator": "*",
                           "rightExpression": {
                             "expression": {
-                              "id": 1276,
+                              "id": 1294,
                               "name": "escrow",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1258,
+                              "referencedDeclaration": 1276,
                               "src": "2599:6:4",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                                "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                                 "typeString": "struct EscrowPayment.Escrow storage pointer"
                               }
                             },
-                            "id": 1277,
+                            "id": 1295,
                             "isConstant": false,
                             "isLValue": true,
                             "isPure": false,
@@ -2561,7 +2561,7 @@
                             "memberLocation": "2606:11:4",
                             "memberName": "feeBPAtLock",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1120,
+                            "referencedDeclaration": 1138,
                             "src": "2599:18:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -2575,7 +2575,7 @@
                           }
                         }
                       ],
-                      "id": 1279,
+                      "id": 1297,
                       "isConstant": false,
                       "isInlineArray": false,
                       "isLValue": false,
@@ -2592,7 +2592,7 @@
                     "operator": "/",
                     "rightExpression": {
                       "hexValue": "3130303030",
-                      "id": 1280,
+                      "id": 1298,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2623,25 +2623,25 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 1287,
+                        "id": 1305,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 1284,
+                            "id": 1302,
                             "name": "escrow",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1258,
+                            "referencedDeclaration": 1276,
                             "src": "2645:6:4",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                              "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                               "typeString": "struct EscrowPayment.Escrow storage pointer"
                             }
                           },
-                          "id": 1285,
+                          "id": 1303,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
@@ -2649,7 +2649,7 @@
                           "memberLocation": "2652:6:4",
                           "memberName": "amount",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1118,
+                          "referencedDeclaration": 1136,
                           "src": "2645:13:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -2659,11 +2659,11 @@
                         "nodeType": "BinaryOperation",
                         "operator": ">=",
                         "rightExpression": {
-                          "id": 1286,
+                          "id": 1304,
                           "name": "fee",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1273,
+                          "referencedDeclaration": 1291,
                           "src": "2662:3:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -2678,7 +2678,7 @@
                       },
                       {
                         "hexValue": "466565206578636565647320616d6f756e74",
-                        "id": 1288,
+                        "id": 1306,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2704,7 +2704,7 @@
                           "typeString": "literal_string \"Fee exceeds amount\""
                         }
                       ],
-                      "id": 1283,
+                      "id": 1301,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -2718,7 +2718,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1289,
+                    "id": 1307,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2734,23 +2734,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1290,
+                  "id": 1308,
                   "nodeType": "ExpressionStatement",
                   "src": "2637:51:4"
                 },
                 {
                   "assignments": [
-                    1292
+                    1310
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1292,
+                      "id": 1310,
                       "mutability": "mutable",
                       "name": "payout",
                       "nameLocation": "2707:6:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1346,
+                      "scope": 1364,
                       "src": "2699:14:4",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -2759,7 +2759,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 1291,
+                        "id": 1309,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
                         "src": "2699:7:4",
@@ -2771,31 +2771,31 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1297,
+                  "id": 1315,
                   "initialValue": {
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1296,
+                    "id": 1314,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "expression": {
-                        "id": 1293,
+                        "id": 1311,
                         "name": "escrow",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1258,
+                        "referencedDeclaration": 1276,
                         "src": "2716:6:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                          "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                           "typeString": "struct EscrowPayment.Escrow storage pointer"
                         }
                       },
-                      "id": 1294,
+                      "id": 1312,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -2803,7 +2803,7 @@
                       "memberLocation": "2723:6:4",
                       "memberName": "amount",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1118,
+                      "referencedDeclaration": 1136,
                       "src": "2716:13:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2813,11 +2813,11 @@
                     "nodeType": "BinaryOperation",
                     "operator": "-",
                     "rightExpression": {
-                      "id": 1295,
+                      "id": 1313,
                       "name": "fee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1273,
+                      "referencedDeclaration": 1291,
                       "src": "2732:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2835,25 +2835,25 @@
                 },
                 {
                   "expression": {
-                    "id": 1303,
+                    "id": 1321,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "expression": {
-                        "id": 1298,
+                        "id": 1316,
                         "name": "escrow",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1258,
+                        "referencedDeclaration": 1276,
                         "src": "2748:6:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                          "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                           "typeString": "struct EscrowPayment.Escrow storage pointer"
                         }
                       },
-                      "id": 1300,
+                      "id": 1318,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -2861,10 +2861,10 @@
                       "memberLocation": "2755:6:4",
                       "memberName": "status",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1123,
+                      "referencedDeclaration": 1141,
                       "src": "2748:13:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                        "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                         "typeString": "enum EscrowPayment.EscrowStatus"
                       }
                     },
@@ -2872,18 +2872,18 @@
                     "operator": "=",
                     "rightHandSide": {
                       "expression": {
-                        "id": 1301,
+                        "id": 1319,
                         "name": "EscrowStatus",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1112,
+                        "referencedDeclaration": 1130,
                         "src": "2764:12:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_EscrowStatus_$1112_$",
+                          "typeIdentifier": "t_type$_t_enum$_EscrowStatus_$1130_$",
                           "typeString": "type(enum EscrowPayment.EscrowStatus)"
                         }
                       },
-                      "id": 1302,
+                      "id": 1320,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2891,20 +2891,20 @@
                       "memberLocation": "2777:8:4",
                       "memberName": "Released",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1110,
+                      "referencedDeclaration": 1128,
                       "src": "2764:21:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                        "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                         "typeString": "enum EscrowPayment.EscrowStatus"
                       }
                     },
                     "src": "2748:37:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                      "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                       "typeString": "enum EscrowPayment.EscrowStatus"
                     }
                   },
-                  "id": 1304,
+                  "id": 1322,
                   "nodeType": "ExpressionStatement",
                   "src": "2748:37:4"
                 },
@@ -2914,17 +2914,17 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1307,
+                    "id": 1325,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 1305,
+                      "id": 1323,
                       "name": "fee",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1273,
+                      "referencedDeclaration": 1291,
                       "src": "2800:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -2935,7 +2935,7 @@
                     "operator": ">",
                     "rightExpression": {
                       "hexValue": "30",
-                      "id": 1306,
+                      "id": 1324,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2955,27 +2955,27 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 1322,
+                  "id": 1340,
                   "nodeType": "IfStatement",
                   "src": "2796:146:4",
                   "trueBody": {
-                    "id": 1321,
+                    "id": 1339,
                     "nodeType": "Block",
                     "src": "2809:133:4",
                     "statements": [
                       {
                         "expression": {
-                          "id": 1310,
+                          "id": 1328,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftHandSide": {
-                            "id": 1308,
+                            "id": 1326,
                             "name": "platformBalance",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1432,
+                            "referencedDeclaration": 1450,
                             "src": "2824:15:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -2985,11 +2985,11 @@
                           "nodeType": "Assignment",
                           "operator": "+=",
                           "rightHandSide": {
-                            "id": 1309,
+                            "id": 1327,
                             "name": "fee",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1273,
+                            "referencedDeclaration": 1291,
                             "src": "2843:3:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -3002,7 +3002,7 @@
                             "typeString": "uint256"
                           }
                         },
-                        "id": 1311,
+                        "id": 1329,
                         "nodeType": "ExpressionStatement",
                         "src": "2824:22:4"
                       },
@@ -3010,11 +3010,11 @@
                         "eventCall": {
                           "arguments": [
                             {
-                              "id": 1313,
+                              "id": 1331,
                               "name": "orderId",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1253,
+                              "referencedDeclaration": 1271,
                               "src": "2887:7:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -3022,11 +3022,11 @@
                               }
                             },
                             {
-                              "id": 1314,
+                              "id": 1332,
                               "name": "fee",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1273,
+                              "referencedDeclaration": 1291,
                               "src": "2896:3:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -3035,18 +3035,18 @@
                             },
                             {
                               "expression": {
-                                "id": 1315,
+                                "id": 1333,
                                 "name": "escrow",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1258,
+                                "referencedDeclaration": 1276,
                                 "src": "2901:6:4",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                                  "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                                   "typeString": "struct EscrowPayment.Escrow storage pointer"
                                 }
                               },
-                              "id": 1316,
+                              "id": 1334,
                               "isConstant": false,
                               "isLValue": true,
                               "isPure": false,
@@ -3054,7 +3054,7 @@
                               "memberLocation": "2908:6:4",
                               "memberName": "amount",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 1118,
+                              "referencedDeclaration": 1136,
                               "src": "2901:13:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -3063,18 +3063,18 @@
                             },
                             {
                               "expression": {
-                                "id": 1317,
+                                "id": 1335,
                                 "name": "escrow",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1258,
+                                "referencedDeclaration": 1276,
                                 "src": "2916:6:4",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                                  "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                                   "typeString": "struct EscrowPayment.Escrow storage pointer"
                                 }
                               },
-                              "id": 1318,
+                              "id": 1336,
                               "isConstant": false,
                               "isLValue": true,
                               "isPure": false,
@@ -3082,7 +3082,7 @@
                               "memberLocation": "2923:6:4",
                               "memberName": "seller",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 1116,
+                              "referencedDeclaration": 1134,
                               "src": "2916:13:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
@@ -3109,18 +3109,18 @@
                                 "typeString": "address"
                               }
                             ],
-                            "id": 1312,
+                            "id": 1330,
                             "name": "PlatformFeeCollected",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1134,
+                            "referencedDeclaration": 1152,
                             "src": "2866:20:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$_t_uint256_$_t_address_$returns$__$",
                               "typeString": "function (uint256,uint256,uint256,address)"
                             }
                           },
-                          "id": 1319,
+                          "id": 1337,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3136,7 +3136,7 @@
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 1320,
+                        "id": 1338,
                         "nodeType": "EmitStatement",
                         "src": "2861:69:4"
                       }
@@ -3149,17 +3149,17 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1325,
+                    "id": 1343,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 1323,
+                      "id": 1341,
                       "name": "payout",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1292,
+                      "referencedDeclaration": 1310,
                       "src": "2958:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -3170,7 +3170,7 @@
                     "operator": ">",
                     "rightExpression": {
                       "hexValue": "30",
-                      "id": 1324,
+                      "id": 1342,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -3190,28 +3190,28 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 1345,
+                  "id": 1363,
                   "nodeType": "IfStatement",
                   "src": "2954:161:4",
                   "trueBody": {
-                    "id": 1344,
+                    "id": 1362,
                     "nodeType": "Block",
                     "src": "2970:145:4",
                     "statements": [
                       {
                         "assignments": [
-                          1327,
+                          1345,
                           null
                         ],
                         "declarations": [
                           {
                             "constant": false,
-                            "id": 1327,
+                            "id": 1345,
                             "mutability": "mutable",
                             "name": "success",
                             "nameLocation": "2991:7:4",
                             "nodeType": "VariableDeclaration",
-                            "scope": 1344,
+                            "scope": 1362,
                             "src": "2986:12:4",
                             "stateVariable": false,
                             "storageLocation": "default",
@@ -3220,7 +3220,7 @@
                               "typeString": "bool"
                             },
                             "typeName": {
-                              "id": 1326,
+                              "id": 1344,
                               "name": "bool",
                               "nodeType": "ElementaryTypeName",
                               "src": "2986:4:4",
@@ -3233,12 +3233,12 @@
                           },
                           null
                         ],
-                        "id": 1338,
+                        "id": 1356,
                         "initialValue": {
                           "arguments": [
                             {
                               "hexValue": "",
-                              "id": 1336,
+                              "id": 1354,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -3271,18 +3271,18 @@
                                 "arguments": [
                                   {
                                     "expression": {
-                                      "id": 1330,
+                                      "id": 1348,
                                       "name": "escrow",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
-                                      "referencedDeclaration": 1258,
+                                      "referencedDeclaration": 1276,
                                       "src": "3012:6:4",
                                       "typeDescriptions": {
-                                        "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                                        "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                                         "typeString": "struct EscrowPayment.Escrow storage pointer"
                                       }
                                     },
-                                    "id": 1331,
+                                    "id": 1349,
                                     "isConstant": false,
                                     "isLValue": true,
                                     "isPure": false,
@@ -3290,7 +3290,7 @@
                                     "memberLocation": "3019:6:4",
                                     "memberName": "seller",
                                     "nodeType": "MemberAccess",
-                                    "referencedDeclaration": 1116,
+                                    "referencedDeclaration": 1134,
                                     "src": "3012:13:4",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_address",
@@ -3305,7 +3305,7 @@
                                       "typeString": "address"
                                     }
                                   ],
-                                  "id": 1329,
+                                  "id": 1347,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
@@ -3317,7 +3317,7 @@
                                     "typeString": "type(address payable)"
                                   },
                                   "typeName": {
-                                    "id": 1328,
+                                    "id": 1346,
                                     "name": "address",
                                     "nodeType": "ElementaryTypeName",
                                     "src": "3004:8:4",
@@ -3325,7 +3325,7 @@
                                     "typeDescriptions": {}
                                   }
                                 },
-                                "id": 1332,
+                                "id": 1350,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -3341,7 +3341,7 @@
                                   "typeString": "address payable"
                                 }
                               },
-                              "id": 1333,
+                              "id": 1351,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -3355,7 +3355,7 @@
                                 "typeString": "function (bytes memory) payable returns (bool,bytes memory)"
                               }
                             },
-                            "id": 1335,
+                            "id": 1353,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -3366,11 +3366,11 @@
                             "nodeType": "FunctionCallOptions",
                             "options": [
                               {
-                                "id": 1334,
+                                "id": 1352,
                                 "name": "payout",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1292,
+                                "referencedDeclaration": 1310,
                                 "src": "3039:6:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -3384,7 +3384,7 @@
                               "typeString": "function (bytes memory) payable returns (bool,bytes memory)"
                             }
                           },
-                          "id": 1337,
+                          "id": 1355,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3407,11 +3407,11 @@
                         "expression": {
                           "arguments": [
                             {
-                              "id": 1340,
+                              "id": 1358,
                               "name": "success",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1327,
+                              "referencedDeclaration": 1345,
                               "src": "3073:7:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bool",
@@ -3420,7 +3420,7 @@
                             },
                             {
                               "hexValue": "4554482072656c65617365206661696c6564",
-                              "id": 1341,
+                              "id": 1359,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -3446,7 +3446,7 @@
                                 "typeString": "literal_string \"ETH release failed\""
                               }
                             ],
-                            "id": 1339,
+                            "id": 1357,
                             "name": "require",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
@@ -3460,7 +3460,7 @@
                               "typeString": "function (bool,string memory) pure"
                             }
                           },
-                          "id": 1342,
+                          "id": 1360,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3476,7 +3476,7 @@
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 1343,
+                        "id": 1361,
                         "nodeType": "ExpressionStatement",
                         "src": "3065:38:4"
                       }
@@ -3485,7 +3485,7 @@
                 }
               ]
             },
-            "id": 1347,
+            "id": 1365,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -3493,17 +3493,17 @@
             "nameLocation": "2110:14:4",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1254,
+              "id": 1272,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1253,
+                  "id": 1271,
                   "mutability": "mutable",
                   "name": "orderId",
                   "nameLocation": "2133:7:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1347,
+                  "scope": 1365,
                   "src": "2125:15:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3512,7 +3512,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1252,
+                    "id": 1270,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2125:7:4",
@@ -3527,12 +3527,12 @@
               "src": "2124:17:4"
             },
             "returnParameters": {
-              "id": 1255,
+              "id": 1273,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2151:0:4"
             },
-            "scope": 1516,
+            "scope": 1534,
             "src": "2101:1021:4",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -3540,74 +3540,74 @@
           },
           {
             "body": {
-              "id": 1394,
+              "id": 1412,
               "nodeType": "Block",
               "src": "3243:385:4",
               "statements": [
                 {
                   "assignments": [
-                    1354
+                    1372
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1354,
+                      "id": 1372,
                       "mutability": "mutable",
                       "name": "escrow",
                       "nameLocation": "3269:6:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1394,
+                      "scope": 1412,
                       "src": "3254:21:4",
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                        "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                         "typeString": "struct EscrowPayment.Escrow"
                       },
                       "typeName": {
-                        "id": 1353,
+                        "id": 1371,
                         "nodeType": "UserDefinedTypeName",
                         "pathNode": {
-                          "id": 1352,
+                          "id": 1370,
                           "name": "Escrow",
                           "nameLocations": [
                             "3254:6:4"
                           ],
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 1124,
+                          "referencedDeclaration": 1142,
                           "src": "3254:6:4"
                         },
-                        "referencedDeclaration": 1124,
+                        "referencedDeclaration": 1142,
                         "src": "3254:6:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                          "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                           "typeString": "struct EscrowPayment.Escrow"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1358,
+                  "id": 1376,
                   "initialValue": {
                     "baseExpression": {
-                      "id": 1355,
+                      "id": 1373,
                       "name": "escrows",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1151,
+                      "referencedDeclaration": 1169,
                       "src": "3278:7:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1124_storage_$",
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1142_storage_$",
                         "typeString": "mapping(uint256 => struct EscrowPayment.Escrow storage ref)"
                       }
                     },
-                    "id": 1357,
+                    "id": 1375,
                     "indexExpression": {
-                      "id": 1356,
+                      "id": 1374,
                       "name": "orderId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1349,
+                      "referencedDeclaration": 1367,
                       "src": "3286:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -3621,7 +3621,7 @@
                     "nodeType": "IndexAccess",
                     "src": "3278:16:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Escrow_$1124_storage",
+                      "typeIdentifier": "t_struct$_Escrow_$1142_storage",
                       "typeString": "struct EscrowPayment.Escrow storage ref"
                     }
                   },
@@ -3633,28 +3633,28 @@
                     "arguments": [
                       {
                         "commonType": {
-                          "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                          "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                           "typeString": "enum EscrowPayment.EscrowStatus"
                         },
-                        "id": 1364,
+                        "id": 1382,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 1360,
+                            "id": 1378,
                             "name": "escrow",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1354,
+                            "referencedDeclaration": 1372,
                             "src": "3313:6:4",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                              "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                               "typeString": "struct EscrowPayment.Escrow storage pointer"
                             }
                           },
-                          "id": 1361,
+                          "id": 1379,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
@@ -3662,10 +3662,10 @@
                           "memberLocation": "3320:6:4",
                           "memberName": "status",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1123,
+                          "referencedDeclaration": 1141,
                           "src": "3313:13:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                            "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                             "typeString": "enum EscrowPayment.EscrowStatus"
                           }
                         },
@@ -3673,18 +3673,18 @@
                         "operator": "==",
                         "rightExpression": {
                           "expression": {
-                            "id": 1362,
+                            "id": 1380,
                             "name": "EscrowStatus",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1112,
+                            "referencedDeclaration": 1130,
                             "src": "3330:12:4",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_EscrowStatus_$1112_$",
+                              "typeIdentifier": "t_type$_t_enum$_EscrowStatus_$1130_$",
                               "typeString": "type(enum EscrowPayment.EscrowStatus)"
                             }
                           },
-                          "id": 1363,
+                          "id": 1381,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -3692,10 +3692,10 @@
                           "memberLocation": "3343:6:4",
                           "memberName": "Locked",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1109,
+                          "referencedDeclaration": 1127,
                           "src": "3330:19:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                            "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                             "typeString": "enum EscrowPayment.EscrowStatus"
                           }
                         },
@@ -3707,7 +3707,7 @@
                       },
                       {
                         "hexValue": "457363726f77206e6f74206c6f636b6564",
-                        "id": 1365,
+                        "id": 1383,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3733,7 +3733,7 @@
                           "typeString": "literal_string \"Escrow not locked\""
                         }
                       ],
-                      "id": 1359,
+                      "id": 1377,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -3747,7 +3747,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1366,
+                    "id": 1384,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3763,31 +3763,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1367,
+                  "id": 1385,
                   "nodeType": "ExpressionStatement",
                   "src": "3305:66:4"
                 },
                 {
                   "expression": {
-                    "id": 1373,
+                    "id": 1391,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "expression": {
-                        "id": 1368,
+                        "id": 1386,
                         "name": "escrow",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1354,
+                        "referencedDeclaration": 1372,
                         "src": "3453:6:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                          "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                           "typeString": "struct EscrowPayment.Escrow storage pointer"
                         }
                       },
-                      "id": 1370,
+                      "id": 1388,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -3795,10 +3795,10 @@
                       "memberLocation": "3460:6:4",
                       "memberName": "status",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1123,
+                      "referencedDeclaration": 1141,
                       "src": "3453:13:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                        "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                         "typeString": "enum EscrowPayment.EscrowStatus"
                       }
                     },
@@ -3806,18 +3806,18 @@
                     "operator": "=",
                     "rightHandSide": {
                       "expression": {
-                        "id": 1371,
+                        "id": 1389,
                         "name": "EscrowStatus",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1112,
+                        "referencedDeclaration": 1130,
                         "src": "3469:12:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_EscrowStatus_$1112_$",
+                          "typeIdentifier": "t_type$_t_enum$_EscrowStatus_$1130_$",
                           "typeString": "type(enum EscrowPayment.EscrowStatus)"
                         }
                       },
-                      "id": 1372,
+                      "id": 1390,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -3825,37 +3825,37 @@
                       "memberLocation": "3482:8:4",
                       "memberName": "Refunded",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1111,
+                      "referencedDeclaration": 1129,
                       "src": "3469:21:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                        "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                         "typeString": "enum EscrowPayment.EscrowStatus"
                       }
                     },
                     "src": "3453:37:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                      "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                       "typeString": "enum EscrowPayment.EscrowStatus"
                     }
                   },
-                  "id": 1374,
+                  "id": 1392,
                   "nodeType": "ExpressionStatement",
                   "src": "3453:37:4"
                 },
                 {
                   "assignments": [
-                    1376,
+                    1394,
                     null
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1376,
+                      "id": 1394,
                       "mutability": "mutable",
                       "name": "success",
                       "nameLocation": "3507:7:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1394,
+                      "scope": 1412,
                       "src": "3502:12:4",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -3864,7 +3864,7 @@
                         "typeString": "bool"
                       },
                       "typeName": {
-                        "id": 1375,
+                        "id": 1393,
                         "name": "bool",
                         "nodeType": "ElementaryTypeName",
                         "src": "3502:4:4",
@@ -3877,12 +3877,12 @@
                     },
                     null
                   ],
-                  "id": 1388,
+                  "id": 1406,
                   "initialValue": {
                     "arguments": [
                       {
                         "hexValue": "",
-                        "id": 1386,
+                        "id": 1404,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3915,18 +3915,18 @@
                           "arguments": [
                             {
                               "expression": {
-                                "id": 1379,
+                                "id": 1397,
                                 "name": "escrow",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1354,
+                                "referencedDeclaration": 1372,
                                 "src": "3528:6:4",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                                  "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                                   "typeString": "struct EscrowPayment.Escrow storage pointer"
                                 }
                               },
-                              "id": 1380,
+                              "id": 1398,
                               "isConstant": false,
                               "isLValue": true,
                               "isPure": false,
@@ -3934,7 +3934,7 @@
                               "memberLocation": "3535:5:4",
                               "memberName": "buyer",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 1114,
+                              "referencedDeclaration": 1132,
                               "src": "3528:12:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
@@ -3949,7 +3949,7 @@
                                 "typeString": "address"
                               }
                             ],
-                            "id": 1378,
+                            "id": 1396,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -3961,7 +3961,7 @@
                               "typeString": "type(address payable)"
                             },
                             "typeName": {
-                              "id": 1377,
+                              "id": 1395,
                               "name": "address",
                               "nodeType": "ElementaryTypeName",
                               "src": "3520:8:4",
@@ -3969,7 +3969,7 @@
                               "typeDescriptions": {}
                             }
                           },
-                          "id": 1381,
+                          "id": 1399,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3985,7 +3985,7 @@
                             "typeString": "address payable"
                           }
                         },
-                        "id": 1382,
+                        "id": 1400,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -3999,7 +3999,7 @@
                           "typeString": "function (bytes memory) payable returns (bool,bytes memory)"
                         }
                       },
-                      "id": 1385,
+                      "id": 1403,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -4011,18 +4011,18 @@
                       "options": [
                         {
                           "expression": {
-                            "id": 1383,
+                            "id": 1401,
                             "name": "escrow",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1354,
+                            "referencedDeclaration": 1372,
                             "src": "3554:6:4",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                              "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                               "typeString": "struct EscrowPayment.Escrow storage pointer"
                             }
                           },
-                          "id": 1384,
+                          "id": 1402,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
@@ -4030,7 +4030,7 @@
                           "memberLocation": "3561:6:4",
                           "memberName": "amount",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1118,
+                          "referencedDeclaration": 1136,
                           "src": "3554:13:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -4044,7 +4044,7 @@
                         "typeString": "function (bytes memory) payable returns (bool,bytes memory)"
                       }
                     },
-                    "id": 1387,
+                    "id": 1405,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4067,11 +4067,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 1390,
+                        "id": 1408,
                         "name": "success",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1376,
+                        "referencedDeclaration": 1394,
                         "src": "3591:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
@@ -4080,7 +4080,7 @@
                       },
                       {
                         "hexValue": "45544820726566756e64206661696c6564",
-                        "id": 1391,
+                        "id": 1409,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -4106,7 +4106,7 @@
                           "typeString": "literal_string \"ETH refund failed\""
                         }
                       ],
-                      "id": 1389,
+                      "id": 1407,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -4120,7 +4120,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1392,
+                    "id": 1410,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4136,13 +4136,13 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1393,
+                  "id": 1411,
                   "nodeType": "ExpressionStatement",
                   "src": "3583:37:4"
                 }
               ]
             },
-            "id": 1395,
+            "id": 1413,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -4150,17 +4150,17 @@
             "nameLocation": "3203:13:4",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1350,
+              "id": 1368,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1349,
+                  "id": 1367,
                   "mutability": "mutable",
                   "name": "orderId",
                   "nameLocation": "3225:7:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1395,
+                  "scope": 1413,
                   "src": "3217:15:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4169,7 +4169,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1348,
+                    "id": 1366,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3217:7:4",
@@ -4184,12 +4184,12 @@
               "src": "3216:17:4"
             },
             "returnParameters": {
-              "id": 1351,
+              "id": 1369,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3243:0:4"
             },
-            "scope": 1516,
+            "scope": 1534,
             "src": "3194:434:4",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -4197,74 +4197,74 @@
           },
           {
             "body": {
-              "id": 1426,
+              "id": 1444,
               "nodeType": "Block",
               "src": "3780:136:4",
               "statements": [
                 {
                   "assignments": [
-                    1411
+                    1429
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1411,
+                      "id": 1429,
                       "mutability": "mutable",
                       "name": "escrow",
                       "nameLocation": "3806:6:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1426,
+                      "scope": 1444,
                       "src": "3791:21:4",
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                        "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                         "typeString": "struct EscrowPayment.Escrow"
                       },
                       "typeName": {
-                        "id": 1410,
+                        "id": 1428,
                         "nodeType": "UserDefinedTypeName",
                         "pathNode": {
-                          "id": 1409,
+                          "id": 1427,
                           "name": "Escrow",
                           "nameLocations": [
                             "3791:6:4"
                           ],
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 1124,
+                          "referencedDeclaration": 1142,
                           "src": "3791:6:4"
                         },
-                        "referencedDeclaration": 1124,
+                        "referencedDeclaration": 1142,
                         "src": "3791:6:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                          "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                           "typeString": "struct EscrowPayment.Escrow"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1415,
+                  "id": 1433,
                   "initialValue": {
                     "baseExpression": {
-                      "id": 1412,
+                      "id": 1430,
                       "name": "escrows",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1151,
+                      "referencedDeclaration": 1169,
                       "src": "3815:7:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1124_storage_$",
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Escrow_$1142_storage_$",
                         "typeString": "mapping(uint256 => struct EscrowPayment.Escrow storage ref)"
                       }
                     },
-                    "id": 1414,
+                    "id": 1432,
                     "indexExpression": {
-                      "id": 1413,
+                      "id": 1431,
                       "name": "orderId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1397,
+                      "referencedDeclaration": 1415,
                       "src": "3823:7:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -4278,7 +4278,7 @@
                     "nodeType": "IndexAccess",
                     "src": "3815:16:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Escrow_$1124_storage",
+                      "typeIdentifier": "t_struct$_Escrow_$1142_storage",
                       "typeString": "struct EscrowPayment.Escrow storage ref"
                     }
                   },
@@ -4290,18 +4290,18 @@
                     "components": [
                       {
                         "expression": {
-                          "id": 1416,
+                          "id": 1434,
                           "name": "escrow",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1411,
+                          "referencedDeclaration": 1429,
                           "src": "3850:6:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                            "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                             "typeString": "struct EscrowPayment.Escrow storage pointer"
                           }
                         },
-                        "id": 1417,
+                        "id": 1435,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -4309,7 +4309,7 @@
                         "memberLocation": "3857:5:4",
                         "memberName": "buyer",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1114,
+                        "referencedDeclaration": 1132,
                         "src": "3850:12:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -4318,18 +4318,18 @@
                       },
                       {
                         "expression": {
-                          "id": 1418,
+                          "id": 1436,
                           "name": "escrow",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1411,
+                          "referencedDeclaration": 1429,
                           "src": "3864:6:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                            "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                             "typeString": "struct EscrowPayment.Escrow storage pointer"
                           }
                         },
-                        "id": 1419,
+                        "id": 1437,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -4337,7 +4337,7 @@
                         "memberLocation": "3871:6:4",
                         "memberName": "seller",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1116,
+                        "referencedDeclaration": 1134,
                         "src": "3864:13:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -4346,18 +4346,18 @@
                       },
                       {
                         "expression": {
-                          "id": 1420,
+                          "id": 1438,
                           "name": "escrow",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1411,
+                          "referencedDeclaration": 1429,
                           "src": "3879:6:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                            "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                             "typeString": "struct EscrowPayment.Escrow storage pointer"
                           }
                         },
-                        "id": 1421,
+                        "id": 1439,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -4365,7 +4365,7 @@
                         "memberLocation": "3886:6:4",
                         "memberName": "amount",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1118,
+                        "referencedDeclaration": 1136,
                         "src": "3879:13:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -4374,18 +4374,18 @@
                       },
                       {
                         "expression": {
-                          "id": 1422,
+                          "id": 1440,
                           "name": "escrow",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1411,
+                          "referencedDeclaration": 1429,
                           "src": "3894:6:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Escrow_$1124_storage_ptr",
+                            "typeIdentifier": "t_struct$_Escrow_$1142_storage_ptr",
                             "typeString": "struct EscrowPayment.Escrow storage pointer"
                           }
                         },
-                        "id": 1423,
+                        "id": 1441,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -4393,15 +4393,15 @@
                         "memberLocation": "3901:6:4",
                         "memberName": "status",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1123,
+                        "referencedDeclaration": 1141,
                         "src": "3894:13:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                          "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                           "typeString": "enum EscrowPayment.EscrowStatus"
                         }
                       }
                     ],
-                    "id": 1424,
+                    "id": 1442,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -4410,19 +4410,19 @@
                     "nodeType": "TupleExpression",
                     "src": "3849:59:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$_t_address_$_t_address_$_t_uint256_$_t_enum$_EscrowStatus_$1112_$",
+                      "typeIdentifier": "t_tuple$_t_address_$_t_address_$_t_uint256_$_t_enum$_EscrowStatus_$1130_$",
                       "typeString": "tuple(address,address,uint256,enum EscrowPayment.EscrowStatus)"
                     }
                   },
-                  "functionReturnParameters": 1408,
-                  "id": 1425,
+                  "functionReturnParameters": 1426,
+                  "id": 1443,
                   "nodeType": "Return",
                   "src": "3842:66:4"
                 }
               ]
             },
             "functionSelector": "7d19e596",
-            "id": 1427,
+            "id": 1445,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -4430,17 +4430,17 @@
             "nameLocation": "3689:9:4",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1398,
+              "id": 1416,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1397,
+                  "id": 1415,
                   "mutability": "mutable",
                   "name": "orderId",
                   "nameLocation": "3707:7:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1427,
+                  "scope": 1445,
                   "src": "3699:15:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4449,7 +4449,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1396,
+                    "id": 1414,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3699:7:4",
@@ -4464,17 +4464,17 @@
               "src": "3698:17:4"
             },
             "returnParameters": {
-              "id": 1408,
+              "id": 1426,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1400,
+                  "id": 1418,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1427,
+                  "scope": 1445,
                   "src": "3739:7:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4483,7 +4483,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1399,
+                    "id": 1417,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3739:7:4",
@@ -4497,12 +4497,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1402,
+                  "id": 1420,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1427,
+                  "scope": 1445,
                   "src": "3748:7:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4511,7 +4511,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1401,
+                    "id": 1419,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3748:7:4",
@@ -4525,12 +4525,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1404,
+                  "id": 1422,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1427,
+                  "scope": 1445,
                   "src": "3757:7:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4539,7 +4539,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1403,
+                    "id": 1421,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "3757:7:4",
@@ -4552,36 +4552,36 @@
                 },
                 {
                   "constant": false,
-                  "id": 1407,
+                  "id": 1425,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1427,
+                  "scope": 1445,
                   "src": "3766:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                    "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                     "typeString": "enum EscrowPayment.EscrowStatus"
                   },
                   "typeName": {
-                    "id": 1406,
+                    "id": 1424,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 1405,
+                      "id": 1423,
                       "name": "EscrowStatus",
                       "nameLocations": [
                         "3766:12:4"
                       ],
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 1112,
+                      "referencedDeclaration": 1130,
                       "src": "3766:12:4"
                     },
-                    "referencedDeclaration": 1112,
+                    "referencedDeclaration": 1130,
                     "src": "3766:12:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_EscrowStatus_$1112",
+                      "typeIdentifier": "t_enum$_EscrowStatus_$1130",
                       "typeString": "enum EscrowPayment.EscrowStatus"
                     }
                   },
@@ -4590,7 +4590,7 @@
               ],
               "src": "3738:41:4"
             },
-            "scope": 1516,
+            "scope": 1534,
             "src": "3680:236:4",
             "stateMutability": "view",
             "virtual": false,
@@ -4599,12 +4599,12 @@
           {
             "constant": false,
             "functionSelector": "ff96092a",
-            "id": 1430,
+            "id": 1448,
             "mutability": "mutable",
             "name": "platformFeeBP",
             "nameLocation": "4173:13:4",
             "nodeType": "VariableDeclaration",
-            "scope": 1516,
+            "scope": 1534,
             "src": "4158:34:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4613,7 +4613,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1428,
+              "id": 1446,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "4158:7:4",
@@ -4624,7 +4624,7 @@
             },
             "value": {
               "hexValue": "323030",
-              "id": 1429,
+              "id": 1447,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -4643,12 +4643,12 @@
           {
             "constant": false,
             "functionSelector": "62a5dbbc",
-            "id": 1432,
+            "id": 1450,
             "mutability": "mutable",
             "name": "platformBalance",
             "nameLocation": "4304:15:4",
             "nodeType": "VariableDeclaration",
-            "scope": 1516,
+            "scope": 1534,
             "src": "4289:30:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4657,7 +4657,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1431,
+              "id": 1449,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "4289:7:4",
@@ -4670,7 +4670,7 @@
           },
           {
             "body": {
-              "id": 1459,
+              "id": 1477,
               "nodeType": "Block",
               "src": "4442:277:4",
               "statements": [
@@ -4682,17 +4682,17 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 1442,
+                        "id": 1460,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
-                          "id": 1440,
+                          "id": 1458,
                           "name": "_feeBP",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1434,
+                          "referencedDeclaration": 1452,
                           "src": "4543:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -4703,7 +4703,7 @@
                         "operator": "<=",
                         "rightExpression": {
                           "hexValue": "353030",
-                          "id": 1441,
+                          "id": 1459,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -4725,7 +4725,7 @@
                       },
                       {
                         "hexValue": "46656520746f6f2068696768",
-                        "id": 1443,
+                        "id": 1461,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -4751,7 +4751,7 @@
                           "typeString": "literal_string \"Fee too high\""
                         }
                       ],
-                      "id": 1439,
+                      "id": 1457,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -4765,7 +4765,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1444,
+                    "id": 1462,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4781,23 +4781,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1445,
+                  "id": 1463,
                   "nodeType": "ExpressionStatement",
                   "src": "4535:38:4"
                 },
                 {
                   "assignments": [
-                    1447
+                    1465
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1447,
+                      "id": 1465,
                       "mutability": "mutable",
                       "name": "previousFeeBP",
                       "nameLocation": "4592:13:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1459,
+                      "scope": 1477,
                       "src": "4584:21:4",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -4806,7 +4806,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 1446,
+                        "id": 1464,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
                         "src": "4584:7:4",
@@ -4818,13 +4818,13 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1449,
+                  "id": 1467,
                   "initialValue": {
-                    "id": 1448,
+                    "id": 1466,
                     "name": "platformFeeBP",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1430,
+                    "referencedDeclaration": 1448,
                     "src": "4608:13:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -4836,17 +4836,17 @@
                 },
                 {
                   "expression": {
-                    "id": 1452,
+                    "id": 1470,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 1450,
+                      "id": 1468,
                       "name": "platformFeeBP",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1430,
+                      "referencedDeclaration": 1448,
                       "src": "4632:13:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -4856,11 +4856,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 1451,
+                      "id": 1469,
                       "name": "_feeBP",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1434,
+                      "referencedDeclaration": 1452,
                       "src": "4648:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -4873,7 +4873,7 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1453,
+                  "id": 1471,
                   "nodeType": "ExpressionStatement",
                   "src": "4632:22:4"
                 },
@@ -4881,11 +4881,11 @@
                   "eventCall": {
                     "arguments": [
                       {
-                        "id": 1455,
+                        "id": 1473,
                         "name": "previousFeeBP",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1447,
+                        "referencedDeclaration": 1465,
                         "src": "4689:13:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -4893,11 +4893,11 @@
                         }
                       },
                       {
-                        "id": 1456,
+                        "id": 1474,
                         "name": "_feeBP",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1434,
+                        "referencedDeclaration": 1452,
                         "src": "4704:6:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -4916,18 +4916,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 1454,
+                      "id": 1472,
                       "name": "PlatformFeeUpdated",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1140,
+                      "referencedDeclaration": 1158,
                       "src": "4670:18:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$returns$__$",
                         "typeString": "function (uint256,uint256)"
                       }
                     },
-                    "id": 1457,
+                    "id": 1475,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4943,28 +4943,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1458,
+                  "id": 1476,
                   "nodeType": "EmitStatement",
                   "src": "4665:46:4"
                 }
               ]
             },
             "functionSelector": "12e8e2c3",
-            "id": 1460,
+            "id": 1478,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 1437,
+                "id": 1455,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 1436,
+                  "id": 1454,
                   "name": "onlyOwner",
                   "nameLocations": [
                     "4432:9:4"
                   ],
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1163,
+                  "referencedDeclaration": 1181,
                   "src": "4432:9:4"
                 },
                 "nodeType": "ModifierInvocation",
@@ -4975,17 +4975,17 @@
             "nameLocation": "4392:14:4",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1435,
+              "id": 1453,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1434,
+                  "id": 1452,
                   "mutability": "mutable",
                   "name": "_feeBP",
                   "nameLocation": "4415:6:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1460,
+                  "scope": 1478,
                   "src": "4407:14:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4994,7 +4994,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1433,
+                    "id": 1451,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "4407:7:4",
@@ -5009,12 +5009,12 @@
               "src": "4406:16:4"
             },
             "returnParameters": {
-              "id": 1438,
+              "id": 1456,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "4442:0:4"
             },
-            "scope": 1516,
+            "scope": 1534,
             "src": "4383:336:4",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -5022,7 +5022,7 @@
           },
           {
             "body": {
-              "id": 1474,
+              "id": 1492,
               "nodeType": "Block",
               "src": "4866:58:4",
               "statements": [
@@ -5032,7 +5032,7 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1472,
+                    "id": 1490,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -5044,17 +5044,17 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 1469,
+                          "id": 1487,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
-                            "id": 1467,
+                            "id": 1485,
                             "name": "amount",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1462,
+                            "referencedDeclaration": 1480,
                             "src": "4885:6:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -5064,11 +5064,11 @@
                           "nodeType": "BinaryOperation",
                           "operator": "*",
                           "rightExpression": {
-                            "id": 1468,
+                            "id": 1486,
                             "name": "platformFeeBP",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1430,
+                            "referencedDeclaration": 1448,
                             "src": "4894:13:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -5082,7 +5082,7 @@
                           }
                         }
                       ],
-                      "id": 1470,
+                      "id": 1488,
                       "isConstant": false,
                       "isInlineArray": false,
                       "isLValue": false,
@@ -5099,7 +5099,7 @@
                     "operator": "/",
                     "rightExpression": {
                       "hexValue": "3130303030",
-                      "id": 1471,
+                      "id": 1489,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -5119,15 +5119,15 @@
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 1466,
-                  "id": 1473,
+                  "functionReturnParameters": 1484,
+                  "id": 1491,
                   "nodeType": "Return",
                   "src": "4877:39:4"
                 }
               ]
             },
             "functionSelector": "0cbab4f7",
-            "id": 1475,
+            "id": 1493,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -5135,17 +5135,17 @@
             "nameLocation": "4799:20:4",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1463,
+              "id": 1481,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1462,
+                  "id": 1480,
                   "mutability": "mutable",
                   "name": "amount",
                   "nameLocation": "4828:6:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1475,
+                  "scope": 1493,
                   "src": "4820:14:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5154,7 +5154,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1461,
+                    "id": 1479,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "4820:7:4",
@@ -5169,17 +5169,17 @@
               "src": "4819:16:4"
             },
             "returnParameters": {
-              "id": 1466,
+              "id": 1484,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1465,
+                  "id": 1483,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1475,
+                  "scope": 1493,
                   "src": "4857:7:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5188,7 +5188,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1464,
+                    "id": 1482,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "4857:7:4",
@@ -5202,7 +5202,7 @@
               ],
               "src": "4856:9:4"
             },
-            "scope": 1516,
+            "scope": 1534,
             "src": "4790:134:4",
             "stateMutability": "view",
             "virtual": false,
@@ -5210,7 +5210,7 @@
           },
           {
             "body": {
-              "id": 1514,
+              "id": 1532,
               "nodeType": "Block",
               "src": "5138:399:4",
               "statements": [
@@ -5222,17 +5222,17 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 1483,
+                        "id": 1501,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
-                          "id": 1481,
+                          "id": 1499,
                           "name": "platformBalance",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1432,
+                          "referencedDeclaration": 1450,
                           "src": "5157:15:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -5243,7 +5243,7 @@
                         "operator": ">",
                         "rightExpression": {
                           "hexValue": "30",
-                          "id": 1482,
+                          "id": 1500,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -5265,7 +5265,7 @@
                       },
                       {
                         "hexValue": "4e6f20706c6174666f726d2066656573",
-                        "id": 1484,
+                        "id": 1502,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -5291,7 +5291,7 @@
                           "typeString": "literal_string \"No platform fees\""
                         }
                       ],
-                      "id": 1480,
+                      "id": 1498,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -5305,7 +5305,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1485,
+                    "id": 1503,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -5321,23 +5321,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1486,
+                  "id": 1504,
                   "nodeType": "ExpressionStatement",
                   "src": "5149:48:4"
                 },
                 {
                   "assignments": [
-                    1488
+                    1506
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1488,
+                      "id": 1506,
                       "mutability": "mutable",
                       "name": "amount",
                       "nameLocation": "5305:6:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1514,
+                      "scope": 1532,
                       "src": "5297:14:4",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -5346,7 +5346,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 1487,
+                        "id": 1505,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
                         "src": "5297:7:4",
@@ -5358,13 +5358,13 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1490,
+                  "id": 1508,
                   "initialValue": {
-                    "id": 1489,
+                    "id": 1507,
                     "name": "platformBalance",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1432,
+                    "referencedDeclaration": 1450,
                     "src": "5314:15:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -5376,17 +5376,17 @@
                 },
                 {
                   "expression": {
-                    "id": 1493,
+                    "id": 1511,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 1491,
+                      "id": 1509,
                       "name": "platformBalance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1432,
+                      "referencedDeclaration": 1450,
                       "src": "5340:15:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -5397,7 +5397,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "30",
-                      "id": 1492,
+                      "id": 1510,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -5417,24 +5417,24 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1494,
+                  "id": 1512,
                   "nodeType": "ExpressionStatement",
                   "src": "5340:19:4"
                 },
                 {
                   "assignments": [
-                    1496,
+                    1514,
                     null
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1496,
+                      "id": 1514,
                       "mutability": "mutable",
                       "name": "success",
                       "nameLocation": "5378:7:4",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1514,
+                      "scope": 1532,
                       "src": "5373:12:4",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -5443,7 +5443,7 @@
                         "typeString": "bool"
                       },
                       "typeName": {
-                        "id": 1495,
+                        "id": 1513,
                         "name": "bool",
                         "nodeType": "ElementaryTypeName",
                         "src": "5373:4:4",
@@ -5456,12 +5456,12 @@
                     },
                     null
                   ],
-                  "id": 1503,
+                  "id": 1521,
                   "initialValue": {
                     "arguments": [
                       {
                         "hexValue": "",
-                        "id": 1501,
+                        "id": 1519,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -5491,18 +5491,18 @@
                           }
                         ],
                         "expression": {
-                          "id": 1497,
+                          "id": 1515,
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1107,
+                          "referencedDeclaration": 1125,
                           "src": "5391:5:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address_payable",
                             "typeString": "address payable"
                           }
                         },
-                        "id": 1498,
+                        "id": 1516,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -5516,7 +5516,7 @@
                           "typeString": "function (bytes memory) payable returns (bool,bytes memory)"
                         }
                       },
-                      "id": 1500,
+                      "id": 1518,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -5527,11 +5527,11 @@
                       "nodeType": "FunctionCallOptions",
                       "options": [
                         {
-                          "id": 1499,
+                          "id": 1517,
                           "name": "amount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1488,
+                          "referencedDeclaration": 1506,
                           "src": "5409:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -5545,7 +5545,7 @@
                         "typeString": "function (bytes memory) payable returns (bool,bytes memory)"
                       }
                     },
-                    "id": 1502,
+                    "id": 1520,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -5568,11 +5568,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 1505,
+                        "id": 1523,
                         "name": "success",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1496,
+                        "referencedDeclaration": 1514,
                         "src": "5439:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
@@ -5581,7 +5581,7 @@
                       },
                       {
                         "hexValue": "506c6174666f726d207769746864726177616c206661696c6564",
-                        "id": 1506,
+                        "id": 1524,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -5607,7 +5607,7 @@
                           "typeString": "literal_string \"Platform withdrawal failed\""
                         }
                       ],
-                      "id": 1504,
+                      "id": 1522,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -5621,7 +5621,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1507,
+                    "id": 1525,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -5637,7 +5637,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1508,
+                  "id": 1526,
                   "nodeType": "ExpressionStatement",
                   "src": "5431:46:4"
                 },
@@ -5645,11 +5645,11 @@
                   "eventCall": {
                     "arguments": [
                       {
-                        "id": 1510,
+                        "id": 1528,
                         "name": "amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1488,
+                        "referencedDeclaration": 1506,
                         "src": "5515:6:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -5657,11 +5657,11 @@
                         }
                       },
                       {
-                        "id": 1511,
+                        "id": 1529,
                         "name": "owner",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1107,
+                        "referencedDeclaration": 1125,
                         "src": "5523:5:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address_payable",
@@ -5680,18 +5680,18 @@
                           "typeString": "address payable"
                         }
                       ],
-                      "id": 1509,
+                      "id": 1527,
                       "name": "PlatformFeesWithdrawn",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1146,
+                      "referencedDeclaration": 1164,
                       "src": "5493:21:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_$returns$__$",
                         "typeString": "function (uint256,address)"
                       }
                     },
-                    "id": 1512,
+                    "id": 1530,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -5707,28 +5707,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1513,
+                  "id": 1531,
                   "nodeType": "EmitStatement",
                   "src": "5488:41:4"
                 }
               ]
             },
             "functionSelector": "d0b7830b",
-            "id": 1515,
+            "id": 1533,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 1478,
+                "id": 1496,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 1477,
+                  "id": 1495,
                   "name": "onlyOwner",
                   "nameLocations": [
                     "5128:9:4"
                   ],
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1163,
+                  "referencedDeclaration": 1181,
                   "src": "5128:9:4"
                 },
                 "nodeType": "ModifierInvocation",
@@ -5739,25 +5739,25 @@
             "nameLocation": "5096:20:4",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1476,
+              "id": 1494,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "5116:2:4"
             },
             "returnParameters": {
-              "id": 1479,
+              "id": 1497,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "5138:0:4"
             },
-            "scope": 1516,
+            "scope": 1534,
             "src": "5087:450:4",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1517,
+        "scope": 1535,
         "src": "322:5218:4",
         "usedErrors": []
       }
@@ -5770,7 +5770,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.16",
-  "updatedAt": "2026-01-30T06:52:38.903Z",
+  "updatedAt": "2026-01-30T11:17:26.666Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

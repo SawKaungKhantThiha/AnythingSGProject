@@ -2511,15 +2511,15 @@
     "absolutePath": "project:/contracts/Roles&Access.sol",
     "exportedSymbols": {
       "EscrowRoles": [
-        1719
+        1737
       ]
     },
-    "id": 1720,
+    "id": 1738,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1518,
+        "id": 1536,
         "literals": [
           "solidity",
           "^",
@@ -2536,9 +2536,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 1719,
+        "id": 1737,
         "linearizedBaseContracts": [
-          1719
+          1737
         ],
         "name": "EscrowRoles",
         "nameLocation": "70:11:5",
@@ -2547,12 +2547,12 @@
           {
             "constant": false,
             "functionSelector": "8da5cb5b",
-            "id": 1520,
+            "id": 1538,
             "mutability": "mutable",
             "name": "owner",
             "nameLocation": "285:5:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1719,
+            "scope": 1737,
             "src": "270:20:5",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2561,7 +2561,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1519,
+              "id": 1537,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "270:7:5",
@@ -2576,12 +2576,12 @@
           {
             "constant": false,
             "functionSelector": "6cc6cde1",
-            "id": 1522,
+            "id": 1540,
             "mutability": "mutable",
             "name": "arbitrator",
             "nameLocation": "312:10:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1719,
+            "scope": 1737,
             "src": "297:25:5",
             "stateVariable": true,
             "storageLocation": "default",
@@ -2590,7 +2590,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1521,
+              "id": 1539,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "297:7:5",
@@ -2604,16 +2604,16 @@
           },
           {
             "canonicalName": "EscrowRoles.OrderRoles",
-            "id": 1529,
+            "id": 1547,
             "members": [
               {
                 "constant": false,
-                "id": 1524,
+                "id": 1542,
                 "mutability": "mutable",
                 "name": "buyer",
                 "nameLocation": "368:5:5",
                 "nodeType": "VariableDeclaration",
-                "scope": 1529,
+                "scope": 1547,
                 "src": "360:13:5",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -2622,7 +2622,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 1523,
+                  "id": 1541,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "360:7:5",
@@ -2636,12 +2636,12 @@
               },
               {
                 "constant": false,
-                "id": 1526,
+                "id": 1544,
                 "mutability": "mutable",
                 "name": "seller",
                 "nameLocation": "392:6:5",
                 "nodeType": "VariableDeclaration",
-                "scope": 1529,
+                "scope": 1547,
                 "src": "384:14:5",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -2650,7 +2650,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 1525,
+                  "id": 1543,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "384:7:5",
@@ -2664,12 +2664,12 @@
               },
               {
                 "constant": false,
-                "id": 1528,
+                "id": 1546,
                 "mutability": "mutable",
                 "name": "courier",
                 "nameLocation": "417:7:5",
                 "nodeType": "VariableDeclaration",
-                "scope": 1529,
+                "scope": 1547,
                 "src": "409:15:5",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -2678,7 +2678,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 1527,
+                  "id": 1545,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "409:7:5",
@@ -2694,31 +2694,31 @@
             "name": "OrderRoles",
             "nameLocation": "338:10:5",
             "nodeType": "StructDefinition",
-            "scope": 1719,
+            "scope": 1737,
             "src": "331:101:5",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 1534,
+            "id": 1552,
             "mutability": "mutable",
             "name": "orderRoles",
             "nameLocation": "480:10:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1719,
+            "scope": 1737,
             "src": "440:50:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1529_storage_$",
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1547_storage_$",
               "typeString": "mapping(uint256 => struct EscrowRoles.OrderRoles)"
             },
             "typeName": {
-              "id": 1533,
+              "id": 1551,
               "keyName": "",
               "keyNameLocation": "-1:-1:-1",
               "keyType": {
-                "id": 1530,
+                "id": 1548,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
                 "src": "448:7:5",
@@ -2730,28 +2730,28 @@
               "nodeType": "Mapping",
               "src": "440:30:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1529_storage_$",
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1547_storage_$",
                 "typeString": "mapping(uint256 => struct EscrowRoles.OrderRoles)"
               },
               "valueName": "",
               "valueNameLocation": "-1:-1:-1",
               "valueType": {
-                "id": 1532,
+                "id": 1550,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 1531,
+                  "id": 1549,
                   "name": "OrderRoles",
                   "nameLocations": [
                     "459:10:5"
                   ],
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1529,
+                  "referencedDeclaration": 1547,
                   "src": "459:10:5"
                 },
-                "referencedDeclaration": 1529,
+                "referencedDeclaration": 1547,
                 "src": "459:10:5",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_OrderRoles_$1529_storage_ptr",
+                  "typeIdentifier": "t_struct$_OrderRoles_$1547_storage_ptr",
                   "typeString": "struct EscrowRoles.OrderRoles"
                 }
               }
@@ -2761,23 +2761,23 @@
           {
             "anonymous": false,
             "eventSelector": "03886d1fed35a3263522439dc8d082cf2bdb47b78ab42d4aa3cab0fba157d659",
-            "id": 1540,
+            "id": 1558,
             "name": "CourierAssigned",
             "nameLocation": "687:15:5",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1539,
+              "id": 1557,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1536,
+                  "id": 1554,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "orderId",
                   "nameLocation": "719:7:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1540,
+                  "scope": 1558,
                   "src": "703:23:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2786,7 +2786,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1535,
+                    "id": 1553,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "703:7:5",
@@ -2799,13 +2799,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 1538,
+                  "id": 1556,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "courier",
                   "nameLocation": "736:7:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1540,
+                  "scope": 1558,
                   "src": "728:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2814,7 +2814,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1537,
+                    "id": 1555,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "728:7:5",
@@ -2834,23 +2834,23 @@
           {
             "anonymous": false,
             "eventSelector": "15553b2160018e09e4f7d09e547711e136a2b5dce117a8f3ef2ada919052f095",
-            "id": 1544,
+            "id": 1562,
             "name": "ArbitratorAssigned",
             "nameLocation": "757:18:5",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 1543,
+              "id": 1561,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1542,
+                  "id": 1560,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "arbitrator",
                   "nameLocation": "784:10:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1544,
+                  "scope": 1562,
                   "src": "776:18:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2859,7 +2859,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1541,
+                    "id": 1559,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "776:7:5",
@@ -2878,7 +2878,7 @@
           },
           {
             "body": {
-              "id": 1555,
+              "id": 1573,
               "nodeType": "Block",
               "src": "1008:81:5",
               "statements": [
@@ -2890,14 +2890,14 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 1550,
+                        "id": 1568,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 1547,
+                            "id": 1565,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -2908,7 +2908,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 1548,
+                          "id": 1566,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2925,11 +2925,11 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-                          "id": 1549,
+                          "id": 1567,
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1520,
+                          "referencedDeclaration": 1538,
                           "src": "1041:5:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -2944,7 +2944,7 @@
                       },
                       {
                         "hexValue": "4e6f7420706c6174666f726d206f776e6572",
-                        "id": 1551,
+                        "id": 1569,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2970,7 +2970,7 @@
                           "typeString": "literal_string \"Not platform owner\""
                         }
                       ],
-                      "id": 1546,
+                      "id": 1564,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -2984,7 +2984,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1552,
+                    "id": 1570,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3000,23 +3000,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1553,
+                  "id": 1571,
                   "nodeType": "ExpressionStatement",
                   "src": "1019:50:5"
                 },
                 {
-                  "id": 1554,
+                  "id": 1572,
                   "nodeType": "PlaceholderStatement",
                   "src": "1080:1:5"
                 }
               ]
             },
-            "id": 1556,
+            "id": 1574,
             "name": "onlyOwner",
             "nameLocation": "996:9:5",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1545,
+              "id": 1563,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1005:2:5"
@@ -3027,7 +3027,7 @@
           },
           {
             "body": {
-              "id": 1572,
+              "id": 1590,
               "nodeType": "Block",
               "src": "1133:92:5",
               "statements": [
@@ -3039,14 +3039,14 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 1567,
+                        "id": 1585,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 1561,
+                            "id": 1579,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -3057,7 +3057,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 1562,
+                          "id": 1580,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3076,24 +3076,24 @@
                         "rightExpression": {
                           "expression": {
                             "baseExpression": {
-                              "id": 1563,
+                              "id": 1581,
                               "name": "orderRoles",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1534,
+                              "referencedDeclaration": 1552,
                               "src": "1166:10:5",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1529_storage_$",
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1547_storage_$",
                                 "typeString": "mapping(uint256 => struct EscrowRoles.OrderRoles storage ref)"
                               }
                             },
-                            "id": 1565,
+                            "id": 1583,
                             "indexExpression": {
-                              "id": 1564,
+                              "id": 1582,
                               "name": "orderId",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1558,
+                              "referencedDeclaration": 1576,
                               "src": "1177:7:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -3107,11 +3107,11 @@
                             "nodeType": "IndexAccess",
                             "src": "1166:19:5",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_OrderRoles_$1529_storage",
+                              "typeIdentifier": "t_struct$_OrderRoles_$1547_storage",
                               "typeString": "struct EscrowRoles.OrderRoles storage ref"
                             }
                           },
-                          "id": 1566,
+                          "id": 1584,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
@@ -3119,7 +3119,7 @@
                           "memberLocation": "1186:5:5",
                           "memberName": "buyer",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1524,
+                          "referencedDeclaration": 1542,
                           "src": "1166:25:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -3134,7 +3134,7 @@
                       },
                       {
                         "hexValue": "4e6f74206275796572",
-                        "id": 1568,
+                        "id": 1586,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3160,7 +3160,7 @@
                           "typeString": "literal_string \"Not buyer\""
                         }
                       ],
-                      "id": 1560,
+                      "id": 1578,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -3174,7 +3174,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1569,
+                    "id": 1587,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3190,33 +3190,33 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1570,
+                  "id": 1588,
                   "nodeType": "ExpressionStatement",
                   "src": "1144:61:5"
                 },
                 {
-                  "id": 1571,
+                  "id": 1589,
                   "nodeType": "PlaceholderStatement",
                   "src": "1216:1:5"
                 }
               ]
             },
-            "id": 1573,
+            "id": 1591,
             "name": "onlyBuyer",
             "nameLocation": "1106:9:5",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1559,
+              "id": 1577,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1558,
+                  "id": 1576,
                   "mutability": "mutable",
                   "name": "orderId",
                   "nameLocation": "1124:7:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1573,
+                  "scope": 1591,
                   "src": "1116:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3225,7 +3225,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1557,
+                    "id": 1575,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1116:7:5",
@@ -3245,7 +3245,7 @@
           },
           {
             "body": {
-              "id": 1589,
+              "id": 1607,
               "nodeType": "Block",
               "src": "1270:94:5",
               "statements": [
@@ -3257,14 +3257,14 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 1584,
+                        "id": 1602,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 1578,
+                            "id": 1596,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -3275,7 +3275,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 1579,
+                          "id": 1597,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3294,24 +3294,24 @@
                         "rightExpression": {
                           "expression": {
                             "baseExpression": {
-                              "id": 1580,
+                              "id": 1598,
                               "name": "orderRoles",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1534,
+                              "referencedDeclaration": 1552,
                               "src": "1303:10:5",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1529_storage_$",
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1547_storage_$",
                                 "typeString": "mapping(uint256 => struct EscrowRoles.OrderRoles storage ref)"
                               }
                             },
-                            "id": 1582,
+                            "id": 1600,
                             "indexExpression": {
-                              "id": 1581,
+                              "id": 1599,
                               "name": "orderId",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1575,
+                              "referencedDeclaration": 1593,
                               "src": "1314:7:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -3325,11 +3325,11 @@
                             "nodeType": "IndexAccess",
                             "src": "1303:19:5",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_OrderRoles_$1529_storage",
+                              "typeIdentifier": "t_struct$_OrderRoles_$1547_storage",
                               "typeString": "struct EscrowRoles.OrderRoles storage ref"
                             }
                           },
-                          "id": 1583,
+                          "id": 1601,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
@@ -3337,7 +3337,7 @@
                           "memberLocation": "1323:6:5",
                           "memberName": "seller",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1526,
+                          "referencedDeclaration": 1544,
                           "src": "1303:26:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -3352,7 +3352,7 @@
                       },
                       {
                         "hexValue": "4e6f742073656c6c6572",
-                        "id": 1585,
+                        "id": 1603,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3378,7 +3378,7 @@
                           "typeString": "literal_string \"Not seller\""
                         }
                       ],
-                      "id": 1577,
+                      "id": 1595,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -3392,7 +3392,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1586,
+                    "id": 1604,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3408,33 +3408,33 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1587,
+                  "id": 1605,
                   "nodeType": "ExpressionStatement",
                   "src": "1281:63:5"
                 },
                 {
-                  "id": 1588,
+                  "id": 1606,
                   "nodeType": "PlaceholderStatement",
                   "src": "1355:1:5"
                 }
               ]
             },
-            "id": 1590,
+            "id": 1608,
             "name": "onlySeller",
             "nameLocation": "1242:10:5",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1576,
+              "id": 1594,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1575,
+                  "id": 1593,
                   "mutability": "mutable",
                   "name": "orderId",
                   "nameLocation": "1261:7:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1590,
+                  "scope": 1608,
                   "src": "1253:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3443,7 +3443,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1574,
+                    "id": 1592,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1253:7:5",
@@ -3463,7 +3463,7 @@
           },
           {
             "body": {
-              "id": 1606,
+              "id": 1624,
               "nodeType": "Block",
               "src": "1410:96:5",
               "statements": [
@@ -3475,14 +3475,14 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 1601,
+                        "id": 1619,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 1595,
+                            "id": 1613,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -3493,7 +3493,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 1596,
+                          "id": 1614,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3512,24 +3512,24 @@
                         "rightExpression": {
                           "expression": {
                             "baseExpression": {
-                              "id": 1597,
+                              "id": 1615,
                               "name": "orderRoles",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1534,
+                              "referencedDeclaration": 1552,
                               "src": "1443:10:5",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1529_storage_$",
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1547_storage_$",
                                 "typeString": "mapping(uint256 => struct EscrowRoles.OrderRoles storage ref)"
                               }
                             },
-                            "id": 1599,
+                            "id": 1617,
                             "indexExpression": {
-                              "id": 1598,
+                              "id": 1616,
                               "name": "orderId",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1592,
+                              "referencedDeclaration": 1610,
                               "src": "1454:7:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -3543,11 +3543,11 @@
                             "nodeType": "IndexAccess",
                             "src": "1443:19:5",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_OrderRoles_$1529_storage",
+                              "typeIdentifier": "t_struct$_OrderRoles_$1547_storage",
                               "typeString": "struct EscrowRoles.OrderRoles storage ref"
                             }
                           },
-                          "id": 1600,
+                          "id": 1618,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
@@ -3555,7 +3555,7 @@
                           "memberLocation": "1463:7:5",
                           "memberName": "courier",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 1528,
+                          "referencedDeclaration": 1546,
                           "src": "1443:27:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -3570,7 +3570,7 @@
                       },
                       {
                         "hexValue": "4e6f7420636f7572696572",
-                        "id": 1602,
+                        "id": 1620,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3596,7 +3596,7 @@
                           "typeString": "literal_string \"Not courier\""
                         }
                       ],
-                      "id": 1594,
+                      "id": 1612,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -3610,7 +3610,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1603,
+                    "id": 1621,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3626,33 +3626,33 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1604,
+                  "id": 1622,
                   "nodeType": "ExpressionStatement",
                   "src": "1421:65:5"
                 },
                 {
-                  "id": 1605,
+                  "id": 1623,
                   "nodeType": "PlaceholderStatement",
                   "src": "1497:1:5"
                 }
               ]
             },
-            "id": 1607,
+            "id": 1625,
             "name": "onlyCourier",
             "nameLocation": "1381:11:5",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1593,
+              "id": 1611,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1592,
+                  "id": 1610,
                   "mutability": "mutable",
                   "name": "orderId",
                   "nameLocation": "1401:7:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1607,
+                  "scope": 1625,
                   "src": "1393:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3661,7 +3661,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1591,
+                    "id": 1609,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1393:7:5",
@@ -3681,7 +3681,7 @@
           },
           {
             "body": {
-              "id": 1618,
+              "id": 1636,
               "nodeType": "Block",
               "src": "1540:82:5",
               "statements": [
@@ -3693,14 +3693,14 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 1613,
+                        "id": 1631,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 1610,
+                            "id": 1628,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -3711,7 +3711,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 1611,
+                          "id": 1629,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3728,11 +3728,11 @@
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
-                          "id": 1612,
+                          "id": 1630,
                           "name": "arbitrator",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1522,
+                          "referencedDeclaration": 1540,
                           "src": "1573:10:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -3747,7 +3747,7 @@
                       },
                       {
                         "hexValue": "4e6f742061726269747261746f72",
-                        "id": 1614,
+                        "id": 1632,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3773,7 +3773,7 @@
                           "typeString": "literal_string \"Not arbitrator\""
                         }
                       ],
-                      "id": 1609,
+                      "id": 1627,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -3787,7 +3787,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1615,
+                    "id": 1633,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3803,23 +3803,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1616,
+                  "id": 1634,
                   "nodeType": "ExpressionStatement",
                   "src": "1551:51:5"
                 },
                 {
-                  "id": 1617,
+                  "id": 1635,
                   "nodeType": "PlaceholderStatement",
                   "src": "1613:1:5"
                 }
               ]
             },
-            "id": 1619,
+            "id": 1637,
             "name": "onlyArbitrator",
             "nameLocation": "1523:14:5",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1608,
+              "id": 1626,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1537:2:5"
@@ -3830,23 +3830,23 @@
           },
           {
             "body": {
-              "id": 1627,
+              "id": 1645,
               "nodeType": "Block",
               "src": "1829:37:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 1625,
+                    "id": 1643,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 1622,
+                      "id": 1640,
                       "name": "owner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1520,
+                      "referencedDeclaration": 1538,
                       "src": "1840:5:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3857,7 +3857,7 @@
                     "operator": "=",
                     "rightHandSide": {
                       "expression": {
-                        "id": 1623,
+                        "id": 1641,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
@@ -3868,7 +3868,7 @@
                           "typeString": "msg"
                         }
                       },
-                      "id": 1624,
+                      "id": 1642,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -3888,13 +3888,13 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1626,
+                  "id": 1644,
                   "nodeType": "ExpressionStatement",
                   "src": "1840:18:5"
                 }
               ]
             },
-            "id": 1628,
+            "id": 1646,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -3902,18 +3902,18 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1620,
+              "id": 1638,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1826:2:5"
             },
             "returnParameters": {
-              "id": 1621,
+              "id": 1639,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1829:0:5"
             },
-            "scope": 1719,
+            "scope": 1737,
             "src": "1815:51:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -3921,13 +3921,13 @@
           },
           {
             "body": {
-              "id": 1651,
+              "id": 1669,
               "nodeType": "Block",
               "src": "2176:98:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 1642,
+                    "id": 1660,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3935,24 +3935,24 @@
                     "leftHandSide": {
                       "expression": {
                         "baseExpression": {
-                          "id": 1637,
+                          "id": 1655,
                           "name": "orderRoles",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1534,
+                          "referencedDeclaration": 1552,
                           "src": "2187:10:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1529_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1547_storage_$",
                             "typeString": "mapping(uint256 => struct EscrowRoles.OrderRoles storage ref)"
                           }
                         },
-                        "id": 1639,
+                        "id": 1657,
                         "indexExpression": {
-                          "id": 1638,
+                          "id": 1656,
                           "name": "orderId",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1630,
+                          "referencedDeclaration": 1648,
                           "src": "2198:7:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -3966,11 +3966,11 @@
                         "nodeType": "IndexAccess",
                         "src": "2187:19:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_OrderRoles_$1529_storage",
+                          "typeIdentifier": "t_struct$_OrderRoles_$1547_storage",
                           "typeString": "struct EscrowRoles.OrderRoles storage ref"
                         }
                       },
-                      "id": 1640,
+                      "id": 1658,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -3978,7 +3978,7 @@
                       "memberLocation": "2207:5:5",
                       "memberName": "buyer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1524,
+                      "referencedDeclaration": 1542,
                       "src": "2187:25:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3988,11 +3988,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 1641,
+                      "id": 1659,
                       "name": "buyer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1632,
+                      "referencedDeclaration": 1650,
                       "src": "2215:5:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4005,13 +4005,13 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1643,
+                  "id": 1661,
                   "nodeType": "ExpressionStatement",
                   "src": "2187:33:5"
                 },
                 {
                   "expression": {
-                    "id": 1649,
+                    "id": 1667,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4019,24 +4019,24 @@
                     "leftHandSide": {
                       "expression": {
                         "baseExpression": {
-                          "id": 1644,
+                          "id": 1662,
                           "name": "orderRoles",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1534,
+                          "referencedDeclaration": 1552,
                           "src": "2231:10:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1529_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1547_storage_$",
                             "typeString": "mapping(uint256 => struct EscrowRoles.OrderRoles storage ref)"
                           }
                         },
-                        "id": 1646,
+                        "id": 1664,
                         "indexExpression": {
-                          "id": 1645,
+                          "id": 1663,
                           "name": "orderId",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1630,
+                          "referencedDeclaration": 1648,
                           "src": "2242:7:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -4050,11 +4050,11 @@
                         "nodeType": "IndexAccess",
                         "src": "2231:19:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_OrderRoles_$1529_storage",
+                          "typeIdentifier": "t_struct$_OrderRoles_$1547_storage",
                           "typeString": "struct EscrowRoles.OrderRoles storage ref"
                         }
                       },
-                      "id": 1647,
+                      "id": 1665,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -4062,7 +4062,7 @@
                       "memberLocation": "2251:6:5",
                       "memberName": "seller",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1526,
+                      "referencedDeclaration": 1544,
                       "src": "2231:26:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4072,11 +4072,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 1648,
+                      "id": 1666,
                       "name": "seller",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1634,
+                      "referencedDeclaration": 1652,
                       "src": "2260:6:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4089,13 +4089,13 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1650,
+                  "id": 1668,
                   "nodeType": "ExpressionStatement",
                   "src": "2231:35:5"
                 }
               ]
             },
-            "id": 1652,
+            "id": 1670,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -4103,17 +4103,17 @@
             "nameLocation": "2068:16:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1635,
+              "id": 1653,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1630,
+                  "id": 1648,
                   "mutability": "mutable",
                   "name": "orderId",
                   "nameLocation": "2103:7:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1652,
+                  "scope": 1670,
                   "src": "2095:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4122,7 +4122,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1629,
+                    "id": 1647,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2095:7:5",
@@ -4135,12 +4135,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1632,
+                  "id": 1650,
                   "mutability": "mutable",
                   "name": "buyer",
                   "nameLocation": "2129:5:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1652,
+                  "scope": 1670,
                   "src": "2121:13:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4149,7 +4149,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1631,
+                    "id": 1649,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2121:7:5",
@@ -4163,12 +4163,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1634,
+                  "id": 1652,
                   "mutability": "mutable",
                   "name": "seller",
                   "nameLocation": "2153:6:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1652,
+                  "scope": 1670,
                   "src": "2145:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4177,7 +4177,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1633,
+                    "id": 1651,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2145:7:5",
@@ -4193,12 +4193,12 @@
               "src": "2084:82:5"
             },
             "returnParameters": {
-              "id": 1636,
+              "id": 1654,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2176:0:5"
             },
-            "scope": 1719,
+            "scope": 1737,
             "src": "2059:215:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -4206,13 +4206,13 @@
           },
           {
             "body": {
-              "id": 1674,
+              "id": 1692,
               "nodeType": "Block",
               "src": "2390:105:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 1667,
+                    "id": 1685,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4220,24 +4220,24 @@
                     "leftHandSide": {
                       "expression": {
                         "baseExpression": {
-                          "id": 1662,
+                          "id": 1680,
                           "name": "orderRoles",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1534,
+                          "referencedDeclaration": 1552,
                           "src": "2401:10:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1529_storage_$",
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1547_storage_$",
                             "typeString": "mapping(uint256 => struct EscrowRoles.OrderRoles storage ref)"
                           }
                         },
-                        "id": 1664,
+                        "id": 1682,
                         "indexExpression": {
-                          "id": 1663,
+                          "id": 1681,
                           "name": "orderId",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1654,
+                          "referencedDeclaration": 1672,
                           "src": "2412:7:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -4251,11 +4251,11 @@
                         "nodeType": "IndexAccess",
                         "src": "2401:19:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_OrderRoles_$1529_storage",
+                          "typeIdentifier": "t_struct$_OrderRoles_$1547_storage",
                           "typeString": "struct EscrowRoles.OrderRoles storage ref"
                         }
                       },
-                      "id": 1665,
+                      "id": 1683,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -4263,7 +4263,7 @@
                       "memberLocation": "2421:7:5",
                       "memberName": "courier",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1528,
+                      "referencedDeclaration": 1546,
                       "src": "2401:27:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4273,11 +4273,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 1666,
+                      "id": 1684,
                       "name": "courier",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1656,
+                      "referencedDeclaration": 1674,
                       "src": "2431:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4290,7 +4290,7 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1668,
+                  "id": 1686,
                   "nodeType": "ExpressionStatement",
                   "src": "2401:37:5"
                 },
@@ -4298,11 +4298,11 @@
                   "eventCall": {
                     "arguments": [
                       {
-                        "id": 1670,
+                        "id": 1688,
                         "name": "orderId",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1654,
+                        "referencedDeclaration": 1672,
                         "src": "2470:7:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -4310,11 +4310,11 @@
                         }
                       },
                       {
-                        "id": 1671,
+                        "id": 1689,
                         "name": "courier",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1656,
+                        "referencedDeclaration": 1674,
                         "src": "2479:7:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -4333,18 +4333,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 1669,
+                      "id": 1687,
                       "name": "CourierAssigned",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1540,
+                      "referencedDeclaration": 1558,
                       "src": "2454:15:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_$returns$__$",
                         "typeString": "function (uint256,address)"
                       }
                     },
-                    "id": 1672,
+                    "id": 1690,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4360,25 +4360,25 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1673,
+                  "id": 1691,
                   "nodeType": "EmitStatement",
                   "src": "2449:38:5"
                 }
               ]
             },
             "functionSelector": "232667a3",
-            "id": 1675,
+            "id": 1693,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": [
                   {
-                    "id": 1659,
+                    "id": 1677,
                     "name": "orderId",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1654,
+                    "referencedDeclaration": 1672,
                     "src": "2381:7:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -4386,16 +4386,16 @@
                     }
                   }
                 ],
-                "id": 1660,
+                "id": 1678,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 1658,
+                  "id": 1676,
                   "name": "onlySeller",
                   "nameLocations": [
                     "2370:10:5"
                   ],
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1590,
+                  "referencedDeclaration": 1608,
                   "src": "2370:10:5"
                 },
                 "nodeType": "ModifierInvocation",
@@ -4406,17 +4406,17 @@
             "nameLocation": "2291:10:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1657,
+              "id": 1675,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1654,
+                  "id": 1672,
                   "mutability": "mutable",
                   "name": "orderId",
                   "nameLocation": "2320:7:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1675,
+                  "scope": 1693,
                   "src": "2312:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4425,7 +4425,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1653,
+                    "id": 1671,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2312:7:5",
@@ -4438,12 +4438,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1656,
+                  "id": 1674,
                   "mutability": "mutable",
                   "name": "courier",
                   "nameLocation": "2346:7:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1675,
+                  "scope": 1693,
                   "src": "2338:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4452,7 +4452,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1655,
+                    "id": 1673,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2338:7:5",
@@ -4468,12 +4468,12 @@
               "src": "2301:59:5"
             },
             "returnParameters": {
-              "id": 1661,
+              "id": 1679,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2390:0:5"
             },
-            "scope": 1719,
+            "scope": 1737,
             "src": "2282:213:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -4481,23 +4481,23 @@
           },
           {
             "body": {
-              "id": 1690,
+              "id": 1708,
               "nodeType": "Block",
               "src": "2585:90:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 1684,
+                    "id": 1702,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 1682,
+                      "id": 1700,
                       "name": "arbitrator",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1522,
+                      "referencedDeclaration": 1540,
                       "src": "2596:10:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4507,11 +4507,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 1683,
+                      "id": 1701,
                       "name": "_arbitrator",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1677,
+                      "referencedDeclaration": 1695,
                       "src": "2609:11:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4524,7 +4524,7 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1685,
+                  "id": 1703,
                   "nodeType": "ExpressionStatement",
                   "src": "2596:24:5"
                 },
@@ -4532,11 +4532,11 @@
                   "eventCall": {
                     "arguments": [
                       {
-                        "id": 1687,
+                        "id": 1705,
                         "name": "_arbitrator",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1677,
+                        "referencedDeclaration": 1695,
                         "src": "2655:11:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -4551,18 +4551,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 1686,
+                      "id": 1704,
                       "name": "ArbitratorAssigned",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1544,
+                      "referencedDeclaration": 1562,
                       "src": "2636:18:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 1688,
+                    "id": 1706,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4578,28 +4578,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1689,
+                  "id": 1707,
                   "nodeType": "EmitStatement",
                   "src": "2631:36:5"
                 }
               ]
             },
             "functionSelector": "e237c361",
-            "id": 1691,
+            "id": 1709,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 1680,
+                "id": 1698,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 1679,
+                  "id": 1697,
                   "name": "onlyOwner",
                   "nameLocations": [
                     "2575:9:5"
                   ],
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1556,
+                  "referencedDeclaration": 1574,
                   "src": "2575:9:5"
                 },
                 "nodeType": "ModifierInvocation",
@@ -4610,17 +4610,17 @@
             "nameLocation": "2512:16:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1678,
+              "id": 1696,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1677,
+                  "id": 1695,
                   "mutability": "mutable",
                   "name": "_arbitrator",
                   "nameLocation": "2547:11:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1691,
+                  "scope": 1709,
                   "src": "2539:19:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4629,7 +4629,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1676,
+                    "id": 1694,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2539:7:5",
@@ -4645,12 +4645,12 @@
               "src": "2528:37:5"
             },
             "returnParameters": {
-              "id": 1681,
+              "id": 1699,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2585:0:5"
             },
-            "scope": 1719,
+            "scope": 1737,
             "src": "2503:172:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -4658,74 +4658,74 @@
           },
           {
             "body": {
-              "id": 1717,
+              "id": 1735,
               "nodeType": "Block",
               "src": "3074:108:5",
               "statements": [
                 {
                   "assignments": [
-                    1704
+                    1722
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1704,
+                      "id": 1722,
                       "mutability": "mutable",
                       "name": "r",
                       "nameLocation": "3103:1:5",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1717,
+                      "scope": 1735,
                       "src": "3085:19:5",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_OrderRoles_$1529_memory_ptr",
+                        "typeIdentifier": "t_struct$_OrderRoles_$1547_memory_ptr",
                         "typeString": "struct EscrowRoles.OrderRoles"
                       },
                       "typeName": {
-                        "id": 1703,
+                        "id": 1721,
                         "nodeType": "UserDefinedTypeName",
                         "pathNode": {
-                          "id": 1702,
+                          "id": 1720,
                           "name": "OrderRoles",
                           "nameLocations": [
                             "3085:10:5"
                           ],
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 1529,
+                          "referencedDeclaration": 1547,
                           "src": "3085:10:5"
                         },
-                        "referencedDeclaration": 1529,
+                        "referencedDeclaration": 1547,
                         "src": "3085:10:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_OrderRoles_$1529_storage_ptr",
+                          "typeIdentifier": "t_struct$_OrderRoles_$1547_storage_ptr",
                           "typeString": "struct EscrowRoles.OrderRoles"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1708,
+                  "id": 1726,
                   "initialValue": {
                     "baseExpression": {
-                      "id": 1705,
+                      "id": 1723,
                       "name": "orderRoles",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1534,
+                      "referencedDeclaration": 1552,
                       "src": "3107:10:5",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1529_storage_$",
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_OrderRoles_$1547_storage_$",
                         "typeString": "mapping(uint256 => struct EscrowRoles.OrderRoles storage ref)"
                       }
                     },
-                    "id": 1707,
+                    "id": 1725,
                     "indexExpression": {
-                      "id": 1706,
+                      "id": 1724,
                       "name": "orderId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1693,
+                      "referencedDeclaration": 1711,
                       "src": "3118:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -4739,7 +4739,7 @@
                     "nodeType": "IndexAccess",
                     "src": "3107:19:5",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_OrderRoles_$1529_storage",
+                      "typeIdentifier": "t_struct$_OrderRoles_$1547_storage",
                       "typeString": "struct EscrowRoles.OrderRoles storage ref"
                     }
                   },
@@ -4751,18 +4751,18 @@
                     "components": [
                       {
                         "expression": {
-                          "id": 1709,
+                          "id": 1727,
                           "name": "r",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1704,
+                          "referencedDeclaration": 1722,
                           "src": "3145:1:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_OrderRoles_$1529_memory_ptr",
+                            "typeIdentifier": "t_struct$_OrderRoles_$1547_memory_ptr",
                             "typeString": "struct EscrowRoles.OrderRoles memory"
                           }
                         },
-                        "id": 1710,
+                        "id": 1728,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -4770,7 +4770,7 @@
                         "memberLocation": "3147:5:5",
                         "memberName": "buyer",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1524,
+                        "referencedDeclaration": 1542,
                         "src": "3145:7:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -4779,18 +4779,18 @@
                       },
                       {
                         "expression": {
-                          "id": 1711,
+                          "id": 1729,
                           "name": "r",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1704,
+                          "referencedDeclaration": 1722,
                           "src": "3154:1:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_OrderRoles_$1529_memory_ptr",
+                            "typeIdentifier": "t_struct$_OrderRoles_$1547_memory_ptr",
                             "typeString": "struct EscrowRoles.OrderRoles memory"
                           }
                         },
-                        "id": 1712,
+                        "id": 1730,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -4798,7 +4798,7 @@
                         "memberLocation": "3156:6:5",
                         "memberName": "seller",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1526,
+                        "referencedDeclaration": 1544,
                         "src": "3154:8:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -4807,18 +4807,18 @@
                       },
                       {
                         "expression": {
-                          "id": 1713,
+                          "id": 1731,
                           "name": "r",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1704,
+                          "referencedDeclaration": 1722,
                           "src": "3164:1:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_OrderRoles_$1529_memory_ptr",
+                            "typeIdentifier": "t_struct$_OrderRoles_$1547_memory_ptr",
                             "typeString": "struct EscrowRoles.OrderRoles memory"
                           }
                         },
-                        "id": 1714,
+                        "id": 1732,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -4826,7 +4826,7 @@
                         "memberLocation": "3166:7:5",
                         "memberName": "courier",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1528,
+                        "referencedDeclaration": 1546,
                         "src": "3164:9:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -4834,7 +4834,7 @@
                         }
                       }
                     ],
-                    "id": 1715,
+                    "id": 1733,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -4847,15 +4847,15 @@
                       "typeString": "tuple(address,address,address)"
                     }
                   },
-                  "functionReturnParameters": 1701,
-                  "id": 1716,
+                  "functionReturnParameters": 1719,
+                  "id": 1734,
                   "nodeType": "Return",
                   "src": "3137:37:5"
                 }
               ]
             },
             "functionSelector": "77237ad6",
-            "id": 1718,
+            "id": 1736,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -4863,17 +4863,17 @@
             "nameLocation": "2874:13:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1694,
+              "id": 1712,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1693,
+                  "id": 1711,
                   "mutability": "mutable",
                   "name": "orderId",
                   "nameLocation": "2906:7:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1718,
+                  "scope": 1736,
                   "src": "2898:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4882,7 +4882,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1692,
+                    "id": 1710,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2898:7:5",
@@ -4897,17 +4897,17 @@
               "src": "2887:33:5"
             },
             "returnParameters": {
-              "id": 1701,
+              "id": 1719,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1696,
+                  "id": 1714,
                   "mutability": "mutable",
                   "name": "buyer",
                   "nameLocation": "2993:5:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1718,
+                  "scope": 1736,
                   "src": "2985:13:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4916,7 +4916,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1695,
+                    "id": 1713,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2985:7:5",
@@ -4930,12 +4930,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1698,
+                  "id": 1716,
                   "mutability": "mutable",
                   "name": "seller",
                   "nameLocation": "3021:6:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1718,
+                  "scope": 1736,
                   "src": "3013:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4944,7 +4944,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1697,
+                    "id": 1715,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3013:7:5",
@@ -4958,12 +4958,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1700,
+                  "id": 1718,
                   "mutability": "mutable",
                   "name": "courier",
                   "nameLocation": "3050:7:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1718,
+                  "scope": 1736,
                   "src": "3042:15:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4972,7 +4972,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1699,
+                    "id": 1717,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3042:7:5",
@@ -4987,14 +4987,14 @@
               ],
               "src": "2970:98:5"
             },
-            "scope": 1719,
+            "scope": 1737,
             "src": "2865:317:5",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1720,
+        "scope": 1738,
         "src": "61:3124:5",
         "usedErrors": []
       }
@@ -5007,7 +5007,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.16",
-  "updatedAt": "2026-01-30T06:52:38.908Z",
+  "updatedAt": "2026-01-30T11:17:26.670Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

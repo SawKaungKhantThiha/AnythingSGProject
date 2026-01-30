@@ -65,6 +65,12 @@
   <script>
     const raiseDisputeForm = document.getElementById("raiseDisputeForm");
     const statusEl = document.getElementById("status");
+    const orderStatusMap = {
+      0: "None",
+      1: "Paid",
+      2: "Disputed",
+      3: "Resolved"
+    };
 
     raiseDisputeForm.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -74,6 +80,39 @@
         const contract = await loadContract("OnlineStoreDisputes");
         const orderId = raiseDisputeForm.orderId.value.trim();
         const reason = raiseDisputeForm.reason.value.trim();
+
+        console.group("RaiseDispute debug");
+        console.log("account", account);
+        console.log("orderId", orderId);
+        console.log("reason", reason);
+        console.log("contract", contract?.options?.address);
+
+        try {
+          const [order, dispute, canRaise] = await Promise.all([
+            contract.methods.orders(orderId).call(),
+            contract.methods.disputes(orderId).call(),
+            contract.methods.canRaiseDispute(orderId, account).call()
+          ]);
+
+          const statusKey = Number(order?.status);
+          console.log("order", order);
+          console.log("order.status", statusKey, orderStatusMap[statusKey] || "Unknown");
+          console.log("dispute", dispute);
+          console.log("canRaiseDispute", canRaise);
+
+          if (!canRaise) {
+            setStatus(
+              statusEl,
+              `Cannot raise dispute. Order status: ${orderStatusMap[statusKey] || "Unknown"}. ` +
+                `Dispute exists: ${Boolean(dispute?.exists)}.`,
+              true
+            );
+          }
+        } catch (debugError) {
+          console.warn("Debug precheck failed", debugError);
+        } finally {
+          console.groupEnd();
+        }
 
         setStatus(statusEl, "Submitting dispute...", false);
         await contract.methods.raiseDispute(orderId, reason).send({ from: account });
