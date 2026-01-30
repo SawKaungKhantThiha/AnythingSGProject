@@ -69,6 +69,11 @@ app.get('/orders/manage', (req, res) => {
   res.render('order_actions', { orderData: null });
 });
 
+// ADDED FOR ARBITRATOR / REFUND HISTORY
+app.get('/orders/history', (req, res) => {
+  res.render('order_history');
+});
+
 app.get('/escrow/new', (req, res) => {
   res.render('escrow_create');
 });

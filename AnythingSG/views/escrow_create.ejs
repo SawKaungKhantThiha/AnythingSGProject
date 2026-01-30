@@ -112,6 +112,28 @@
               amountWei: amountWei,
               amountEth: amount
             }));
+            // ADDED FOR ARBITRATOR / REFUND HISTORY
+            try {
+              const historyKey = "orderHistory";
+              const rawHistory = localStorage.getItem(historyKey);
+              const history = rawHistory ? JSON.parse(rawHistory) : [];
+              const exists = Array.isArray(history) && history.some((item) => String(item.orderId) === String(orderId));
+              if (!exists) {
+                const nextHistory = Array.isArray(history) ? history : [];
+                nextHistory.unshift({
+                  orderId: String(orderId),
+                  note: "Created via escrow checkout",
+                  buyer: account,
+                  seller: seller,
+                  amountWei: amountWei,
+                  amountEth: amount,
+                  addedAt: new Date().toISOString()
+                });
+                localStorage.setItem(historyKey, JSON.stringify(nextHistory.slice(0, 50)));
+              }
+            } catch (historyError) {
+              // Non-blocking: history is local-only.
+            }
           } catch (trackingError) {
             setStatus(statusEl, `Escrow locked, but tracking setup failed: ${trackingError.message}`, true);
             return;

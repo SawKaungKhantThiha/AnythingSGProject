@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shop.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.1/web3.min.js"></script>
+  <title>Order History</title>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="nav">
+      <div class="nav-title">Order History</div>
+      <div class="nav-links">
+        <a href="/shop">Home</a>
+        <a href="/escrow/new">Escrow Checkout</a>
+        <a href="/orders/manage">Order Actions</a>
+      </div>
+      <div class="nav-actions">
+        <span id="navUserLabel" class="nav-user" data-auth="user" hidden></span>
+        <a href="/auth/login" data-auth="guest">Log in</a>
+        <a href="/auth/register" data-auth="guest">Register</a>
+        <a href="#" id="logoutBtn" data-auth="user" hidden>Log out</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <span class="pill">OnlineStoreDisputes.sol</span>
+        <h1>Order history (local + on-chain)</h1>
+        <p>This page reads order IDs from your browser storage and loads escrow + dispute state from the contract.</p>
+      </div>
+      <div class="hero-card">
+        <div class="pill">Tip</div>
+        <p>If you created orders in another browser, add them below to track here.</p>
+      </div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Add an existing Order ID</h3>
+      <form id="addOrderForm">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="orderId">Order ID</label>
+            <input id="orderId" name="orderId" placeholder="e.g. 1" required>
+          </div>
+          <div class="input-group">
+            <label for="note">Note (optional)</label>
+            <input id="note" name="note" placeholder="Buyer, seller, or label">
+          </div>
+        </div>
+        <button class="btn" type="submit">Add to History</button>
+      </form>
+      <div id="status" class="status-block"></div>
+    </section>
+
+    <section class="form-panel">
+      <h3>Tracked Orders</h3>
+      <div class="form-grid">
+        <button class="btn secondary" id="refreshBtn" type="button">Refresh On-Chain Data</button>
+        <button class="btn secondary" id="clearBtn" type="button">Clear History (Local)</button>
+      </div>
+      <div id="orderList" class="status-block"></div>
+    </section>
+  </div>
+
+  <script src="/js/shop-web3.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    const HISTORY_KEY = "orderHistory";
+    const statusEl = document.getElementById("status");
+    const orderListEl = document.getElementById("orderList");
+    const addOrderForm = document.getElementById("addOrderForm");
+    const refreshBtn = document.getElementById("refreshBtn");
+    const clearBtn = document.getElementById("clearBtn");
+
+    const orderStatusLabels = {
+      0: "None",
+      1: "Paid",
+      2: "Disputed (Pending)",
+      3: "Resolved"
+    };
+
+    const escrowStatusLabels = {
+      0: "None",
+      1: "Locked",
+      2: "Released",
+      3: "Refunded"
+    };
+
+    function loadHistory() {
+      const raw = localStorage.getItem(HISTORY_KEY);
+      if (!raw) return [];
+      try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveHistory(entries) {
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(entries));
+    }
+
+    function addHistoryEntry(entry) {
+      const entries = loadHistory();
+      const exists = entries.some((item) => String(item.orderId) === String(entry.orderId));
+      if (!exists) {
+        entries.unshift(entry);
+        saveHistory(entries.slice(0, 50));
+      }
+    }
+
+    async function loadOnChain(orderId) {
+      const contract = await loadContract("OnlineStoreDisputes");
+      const [buyer, seller, amountWei, escrowStatus] = await contract.methods.getEscrow(orderId).call();
+      const order = await contract.methods.orders(orderId).call();
+      return {
+        buyer,
+        seller,
+        amountWei,
+        escrowStatus,
+        orderStatus: order.status,
+        payoutDone: order.payoutDone
+      };
+    }
+
+    async function renderOrders() {
+      const entries = loadHistory();
+      if (!entries.length) {
+        orderListEl.textContent = "No orders saved yet.";
+        orderListEl.className = "status-block";
+        return;
+      }
+
+      orderListEl.className = "status-block";
+      orderListEl.textContent = "Loading on-chain data...";
+
+      const rows = [];
+      for (const entry of entries) {
+        try {
+          const onChain = await loadOnChain(entry.orderId);
+          rows.push({
+            orderId: entry.orderId,
+            note: entry.note || "",
+            buyer: onChain.buyer,
+            seller: onChain.seller,
+            amountWei: onChain.amountWei,
+            escrowStatus: escrowStatusLabels[onChain.escrowStatus] || onChain.escrowStatus,
+            orderStatus: orderStatusLabels[onChain.orderStatus] || onChain.orderStatus,
+            payoutDone: onChain.payoutDone ? "Yes" : "No"
+          });
+        } catch (error) {
+          rows.push({
+            orderId: entry.orderId,
+            note: entry.note || "",
+            error: error.message
+          });
+        }
+      }
+
+      orderListEl.className = "status-block success";
+      orderListEl.innerHTML = rows.map((row) => {
+        if (row.error) {
+          return `<div>Order ${row.orderId} ${row.note ? `(${row.note})` : ""}: ${row.error}</div>`;
+        }
+        return `<div>
+          <strong>Order ${row.orderId}</strong> ${row.note ? `(${row.note})` : ""} |
+          Escrow: ${row.escrowStatus} |
+          Order: ${row.orderStatus} |
+          Payout: ${row.payoutDone}<br>
+          Buyer: ${row.buyer} | Seller: ${row.seller} | Amount (wei): ${row.amountWei}
+        </div>`;
+      }).join("");
+    }
+
+    addOrderForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        const orderId = addOrderForm.orderId.value.trim();
+        const note = addOrderForm.note.value.trim();
+        if (!orderId) {
+          setStatus(statusEl, "Enter an Order ID.", true);
+          return;
+        }
+        addHistoryEntry({
+          orderId,
+          note,
+          addedAt: new Date().toISOString()
+        });
+        addOrderForm.reset();
+        setStatus(statusEl, "Order added to history.", false);
+        await renderOrders();
+      } catch (error) {
+        setStatus(statusEl, error.message, true);
+      }
+    });
+
+    refreshBtn.addEventListener("click", async () => {
+      await renderOrders();
+    });
+
+    clearBtn.addEventListener("click", () => {
+      localStorage.removeItem(HISTORY_KEY);
+      renderOrders();
+    });
+
+    window.addEventListener("DOMContentLoaded", async () => {
+      const lastOrderId = localStorage.getItem("lastEscrowOrderId");
+      if (lastOrderId) {
+        addHistoryEntry({ orderId: lastOrderId, note: "Last escrow order" });
+      }
+      await renderOrders();
+    });
+  </script>
+</body>
+</html>
